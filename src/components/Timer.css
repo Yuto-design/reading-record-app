@@ -1,0 +1,57 @@
+.timer.card {
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.timer-title {
+  margin: 0 0 1rem;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.timer-display {
+  font-size: 2.5rem;
+  font-weight: 300;
+  font-variant-numeric: tabular-nums;
+  color: #1a1a2e;
+  margin-bottom: 1rem;
+}
+
+.timer-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.timer-btn {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.1s;
+}
+
+.timer-btn:active {
+  transform: scale(0.98);
+}
+
+.timer-btn.start {
+  background: #1a1a2e;
+  color: #fff;
+}
+
+.timer-btn.start:hover {
+  opacity: 0.9;
+}
+
+.timer-btn.stop {
+  background: #c0392b;
+  color: #fff;
+}
+
+.timer-btn.stop:hover {
+  opacity: 0.9;
+}

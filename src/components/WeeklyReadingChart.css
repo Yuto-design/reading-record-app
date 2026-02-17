@@ -1,0 +1,18 @@
+.weekly-reading-chart.card {
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.weekly-reading-chart-title {
+  margin: 0 0 1rem;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.weekly-reading-chart-container {
+  width: 100%;
+  min-height: 260px;
+}
