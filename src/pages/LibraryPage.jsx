@@ -1,8 +1,8 @@
 import { useState, useCallback } from 'react';
 import { getBooks, saveBook, getBookById, deleteBook } from '../utils/storage';
-import BookForm from '../components/BookForm';
-import BookList from '../components/BookList';
-import BookDetail from '../components/BookDetail';
+import BookForm from '../features/bookList/BookForm';
+import BookList from '../features/bookList/BookList';
+import BookDetail from '../features/bookList/BookDetail';
 
 function LibraryPage() {
   const [books, setBooks] = useState(getBooks());
@@ -30,7 +30,7 @@ function LibraryPage() {
 
   return (
     <div className="library-page">
-      <h2 className="library-page-heading">マイ図書館</h2>
+      <h2 className="library-page-heading">My Library</h2>
 
       {!showAddForm && !selectedBook && (
         <button

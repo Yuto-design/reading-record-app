@@ -10,7 +10,7 @@ import {
 } from 'recharts';
 import { format, subDays, parseISO } from 'date-fns';
 import { ja } from 'date-fns/locale';
-import { getReadingSessions } from '../utils/storage';
+import { getReadingSessions } from '../../utils/storage';
 import './WeeklyReadingChart.css';
 
 function WeeklyReadingChart() {

@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { format } from 'date-fns';
-import { saveReadingSession } from '../utils/storage';
+import { saveReadingSession } from '../../utils/storage';
 import './Timer.css';
 
 function Timer({ onSessionSaved }) {

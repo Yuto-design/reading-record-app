@@ -10,20 +10,20 @@ function Layout() {
     <div className="layout">
       <header className="layout-header">
         <h1 className="layout-title">
-          <Link to="/">読書記録</Link>
+          <Link to="/">Reading Record</Link>
         </h1>
         <nav className="layout-nav">
           <Link
             to="/reading"
             className={isReading ? 'layout-nav-link active' : 'layout-nav-link'}
           >
-            読書時間
+            Reading Time
           </Link>
           <Link
             to="/library"
             className={isLibrary ? 'layout-nav-link active' : 'layout-nav-link'}
           >
-            図書館
+            My Library
           </Link>
         </nav>
       </header>

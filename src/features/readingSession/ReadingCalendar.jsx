@@ -11,7 +11,7 @@ import {
   isSameMonth,
 } from 'date-fns';
 import { ja } from 'date-fns/locale';
-import { getReadingSessions } from '../utils/storage';
+import { getReadingSessions } from '../../utils/storage';
 import './ReadingCalendar.css';
 
 function ReadingCalendar() {

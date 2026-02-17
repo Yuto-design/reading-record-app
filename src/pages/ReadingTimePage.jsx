@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import Timer from '../components/Timer';
-import ReadingCalendar from '../components/ReadingCalendar';
-import WeeklyReadingChart from '../components/WeeklyReadingChart';
+import Timer from '../features/readingSession/Timer';
+import ReadingCalendar from '../features/readingSession/ReadingCalendar';
+import WeeklyReadingChart from '../features/readingSession/WeeklyReadingChart';
 
 function ReadingTimePage() {
   const [refreshKey, setRefreshKey] = useState(0);
