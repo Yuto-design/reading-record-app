@@ -3,6 +3,7 @@ import { format, startOfWeek, endOfWeek, startOfMonth, endOfMonth } from 'date-f
 import { ja } from 'date-fns/locale';
 import { getReadingSessions, getBooks } from '../../utils/storage';
 import { formatMinutes } from './utils';
+import './styles/HomeStars.css';
 
 function HomeStats() {
   const sessions = getReadingSessions();

@@ -1,5 +1,4 @@
 import { HomeHero, HomeStats, HomeActions } from '../features/home';
-import './Home.css';
 
 function Home() {
   return (

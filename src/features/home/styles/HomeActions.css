@@ -1,0 +1,49 @@
+.home-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.home-action-card {
+  display: block;
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow 0.2s, transform 0.15s;
+  border: 1px solid transparent;
+}
+
+.home-action-card:hover {
+  box-shadow: 0 4px 16px rgba(26, 26, 46, 0.12);
+  transform: translateY(-2px);
+  border-color: rgba(26, 26, 46, 0.1);
+}
+
+.home-action-card-content {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 0.5rem;
+}
+
+.home-action-icon {
+  display: inline-block;
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
+}
+
+.home-action-title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1a1a2e;
+}
+
+.home-action-desc {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.4;
+}
