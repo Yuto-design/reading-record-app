@@ -1,3 +1,11 @@
+.home-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+}
+
 .reading-time-page {
   display: flex;
   flex-direction: column;
