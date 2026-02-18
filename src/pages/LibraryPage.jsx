@@ -3,6 +3,7 @@ import { getBooks, saveBook, getBookById, deleteBook } from '../utils/storage';
 import BookForm from '../features/bookList/BookForm';
 import BookList from '../features/bookList/BookList';
 import BookDetail from '../features/bookList/BookDetail';
+import './LibraryPage.css';
 
 function LibraryPage() {
   const [books, setBooks] = useState(getBooks());
