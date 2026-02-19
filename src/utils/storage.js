@@ -42,6 +42,7 @@ export function getReadingSessions() {
 
 export function saveReadingSession(session) {
   const sessions = getReadingSessions();
+  const isEdit = session.id && sessions.some((s) => s.id === session.id);
   const newSession = {
     id: session.id || generateId(),
     date: session.date,
@@ -49,9 +50,28 @@ export function saveReadingSession(session) {
     ...(session.startedAt != null && { startedAt: session.startedAt }),
     ...(session.endedAt != null && { endedAt: session.endedAt }),
   };
-  sessions.push(newSession);
+  if (isEdit) {
+    const index = sessions.findIndex((s) => s.id === session.id);
+    sessions[index] = { ...sessions[index], ...newSession };
+  } else {
+    sessions.push(newSession);
+  }
   setJson(SESSIONS_KEY, sessions);
   return newSession;
+}
+
+export function updateReadingSession(session) {
+  const sessions = getReadingSessions();
+  const index = sessions.findIndex((s) => s.id === session.id);
+  if (index === -1) return null;
+  sessions[index] = { ...sessions[index], ...session };
+  setJson(SESSIONS_KEY, sessions);
+  return sessions[index];
+}
+
+export function deleteReadingSession(id) {
+  const sessions = getReadingSessions().filter((s) => s.id !== id);
+  setJson(SESSIONS_KEY, sessions);
 }
 
 export function getBooks() {

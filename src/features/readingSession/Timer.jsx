@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { format } from 'date-fns';
 import { saveReadingSession } from '../../utils/storage';
-import './Timer.css';
+import './styles/Timer.css';
 
 function Timer({ onSessionSaved }) {
   const [running, setRunning] = useState(false);

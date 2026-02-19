@@ -10,7 +10,10 @@ function ReadingTimePage() {
     <div className="reading-time-page">
       <Timer onSessionSaved={() => setRefreshKey((k) => k + 1)} />
       <WeeklyReadingChart key={`chart-${refreshKey}`} />
-      <ReadingCalendar key={`cal-${refreshKey}`} />
+      <ReadingCalendar
+        key={`cal-${refreshKey}`}
+        onSessionsChange={() => setRefreshKey((k) => k + 1)}
+      />
     </div>
   );
 }
