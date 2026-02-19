@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { format, startOfWeek, endOfWeek, startOfMonth, endOfMonth } from 'date-fns';
 import { ja } from 'date-fns/locale';
 import { getReadingSessions, getBooks } from '../../utils/storage';
-import { formatMinutes } from './utils';
+import { formatMinutes } from '../../utils/changeTime';
 import './styles/HomeStars.css';
 
 function HomeStats() {

@@ -11,12 +11,8 @@ import {
   isSameMonth,
 } from 'date-fns';
 import { ja } from 'date-fns/locale';
-import {
-  getReadingSessions,
-  saveReadingSession,
-  updateReadingSession,
-  deleteReadingSession,
-} from '../../utils/storage';
+import { getReadingSessions, saveReadingSession } from '../../utils/storage';
+import { updateReadingSession, deleteReadingSession } from '../../utils/changeRecord';
 import './styles/ReadingCalendar.css';
 
 function formatMinutes(m) {
