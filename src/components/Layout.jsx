@@ -3,8 +3,8 @@ import './Layout.css';
 
 function Layout() {
   const location = useLocation();
-  const isHome = location.pathname === '/home';
-  const isReading = location.pathname === '/reading' || location.pathname === '/';
+  const isHome = location.pathname === '/home' || location.pathname === '/';
+  const isReading = location.pathname === '/reading';
   const isLibrary = location.pathname === '/library';
 
   return (
