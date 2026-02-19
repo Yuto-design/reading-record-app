@@ -39,18 +39,20 @@ function Timer({ onSessionSaved }) {
   return (
     <section className="timer card">
       <h2 className="timer-title">読書タイマー</h2>
-      <div className="timer-container">
-        <TimerChart elapsed={elapsed} running={running} />
-        <div className="timer-actions">
-          {running ? (
-            <button type="button" className="timer-btn stop" onClick={handleStop}>
-              停止して記録
-            </button>
-          ) : (
-            <button type="button" className="timer-btn start" onClick={handleStart}>
-              開始
-            </button>
-          )}
+      <div className="timer-inner">
+        <div className="timer-container">
+          <TimerChart elapsed={elapsed} running={running} />
+          <div className="timer-actions">
+            {running ? (
+              <button type="button" className="timer-btn stop" onClick={handleStop}>
+                停止して記録
+              </button>
+            ) : (
+              <button type="button" className="timer-btn start" onClick={handleStart}>
+                開始
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </section>

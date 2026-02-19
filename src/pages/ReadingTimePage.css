@@ -1,4 +1,19 @@
 .reading-time-page {
   display: flex;
   flex-direction: column;
+  gap: 0;
+}
+
+.timer-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.timer-row .timer.card,
+.timer-row .pomodoro.card {
+  margin-bottom: 0;
+  flex: 1 1 0;
+  min-width: 260px;
 }
