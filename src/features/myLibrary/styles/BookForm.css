@@ -52,6 +52,56 @@
   min-height: 80px;
 }
 
+.book-form-image-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.book-form-image-row .book-form-input {
+  flex: 1;
+  min-width: 0;
+}
+
+.book-form-file-label {
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.book-form-file-btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #f8f9fa;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+}
+
+.book-form-file-label:hover .book-form-file-btn {
+  background: #eee;
+}
+
+.book-form-file-input {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+.book-form-image-preview {
+  margin-top: 0.5rem;
+}
+
+.book-form-image-preview-img {
+  max-width: 120px;
+  max-height: 160px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #eee;
+}
+
 .book-form-actions {
   display: flex;
   gap: 0.75rem;

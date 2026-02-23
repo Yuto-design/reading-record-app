@@ -21,6 +21,11 @@ function BookList({ books, onSelect, onDelete, emptyMessage }) {
         const status = book.status === 'reading' || book.status === 'read' ? book.status : 'want';
         return (
           <li key={book.id} className="book-list-item">
+            {book.imageUrl && (
+              <div className="book-list-item-thumb">
+                <img src={book.imageUrl} alt="" className="book-list-item-thumb-img" />
+              </div>
+            )}
             <button
               type="button"
               className="book-list-item-content"

@@ -24,6 +24,7 @@ const BOOKS_KEY = 'reading_books';
  * @property {string} author
  * @property {string} summary
  * @property {BookStatus} [status]
+ * @property {string} [imageUrl] - 画像URL または Data URL
  * @property {string} [createdAt] - ISO string
  */
 
@@ -89,6 +90,7 @@ export function saveBook(book) {
     author: book.author || '',
     summary: book.summary || '',
     status: book.status === 'reading' || book.status === 'read' ? book.status : 'want',
+    imageUrl: (book.imageUrl != null && String(book.imageUrl).trim()) ? String(book.imageUrl).trim() : undefined,
     createdAt: book.createdAt || new Date().toISOString(),
   };
   if (isEdit) {

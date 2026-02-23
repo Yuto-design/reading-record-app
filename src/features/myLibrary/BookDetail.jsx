@@ -17,6 +17,11 @@ function BookDetail({ book, onSave, onClose, onDelete }) {
           ×
         </button>
       </div>
+      {book.imageUrl && (
+        <div className="book-detail-cover">
+          <img src={book.imageUrl} alt="" className="book-detail-cover-img" />
+        </div>
+      )}
       <BookForm book={book} onSave={onSave} onCancel={onClose} />
       <div className="book-detail-footer">
         <button

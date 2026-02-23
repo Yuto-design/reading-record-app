@@ -41,6 +41,19 @@
   color: #333;
 }
 
+.book-detail-cover {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.book-detail-cover-img {
+  max-width: 140px;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
 .book-detail .book-form-title {
   display: none;
 }

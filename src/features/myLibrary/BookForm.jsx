@@ -12,6 +12,7 @@ function BookForm({ book = null, onSave, onCancel }) {
   const [author, setAuthor] = useState('');
   const [summary, setSummary] = useState('');
   const [status, setStatus] = useState('want');
+  const [imageUrl, setImageUrl] = useState('');
 
   useEffect(() => {
     if (book) {
@@ -19,13 +20,23 @@ function BookForm({ book = null, onSave, onCancel }) {
       setAuthor(book.author || '');
       setSummary(book.summary || '');
       setStatus(book.status === 'reading' || book.status === 'read' ? book.status : 'want');
+      setImageUrl(book.imageUrl || '');
     } else {
       setTitle('');
       setAuthor('');
       setSummary('');
       setStatus('want');
+      setImageUrl('');
     }
   }, [book]);
+
+  const handleImageFile = (e) => {
+    const file = e.target.files?.[0];
+    if (!file || !file.type.startsWith('image/')) return;
+    const reader = new FileReader();
+    reader.onload = () => setImageUrl(reader.result);
+    reader.readAsDataURL(file);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,6 +46,7 @@ function BookForm({ book = null, onSave, onCancel }) {
       author: author.trim(),
       summary: summary.trim(),
       status,
+      ...(imageUrl.trim() && { imageUrl: imageUrl.trim() }),
     });
   };
 
@@ -61,6 +73,33 @@ function BookForm({ book = null, onSave, onCancel }) {
           onChange={(e) => setAuthor(e.target.value)}
           placeholder="著者名"
         />
+      </div>
+      <div className="book-form-field">
+        <label htmlFor="book-image">表紙画像</label>
+        <div className="book-form-image-row">
+          <input
+            id="book-image"
+            type="text"
+            value={imageUrl}
+            onChange={(e) => setImageUrl(e.target.value)}
+            placeholder="画像URL または下でファイルを選択"
+            className="book-form-input"
+          />
+          <label className="book-form-file-label">
+            <span className="book-form-file-btn">ファイルを選択</span>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageFile}
+              className="book-form-file-input"
+            />
+          </label>
+        </div>
+        {imageUrl && (
+          <div className="book-form-image-preview">
+            <img src={imageUrl} alt="" className="book-form-image-preview-img" />
+          </div>
+        )}
       </div>
       <div className="book-form-field">
         <label htmlFor="book-status">ステータス</label>

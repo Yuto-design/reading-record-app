@@ -16,10 +16,32 @@
   align-items: stretch;
   gap: 0.5rem;
   margin-bottom: 1rem;
+  padding-left: 1rem;
   border-radius: 12px;
   background: #fff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   overflow: hidden;
+}
+
+.book-list-item-thumb {
+  flex-shrink: 0;
+  width: 56px;
+  height: 76px;
+  margin-left: 0.5rem;
+  background: #f0f0f0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+}
+
+.book-list-item-thumb-img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
 }
 
 .book-list-item-content {
@@ -31,6 +53,7 @@
   cursor: pointer;
   font-family: inherit;
   transition: background 0.2s;
+  min-width: 0;
 }
 
 .book-list-item-content:hover {
