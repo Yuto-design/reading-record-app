@@ -15,8 +15,8 @@
   display: flex;
   align-items: stretch;
   gap: 0.5rem;
-  margin-bottom: 0.75rem;
-  border-radius: 10px;
+  margin-bottom: 1rem;
+  border-radius: 12px;
   background: #fff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   overflow: hidden;
@@ -24,7 +24,7 @@
 
 .book-list-item-content {
   flex: 1;
-  padding: 1rem 1.25rem;
+  padding: 1.25rem 1.5rem;
   text-align: left;
   border: none;
   background: none;
@@ -42,11 +42,11 @@
   flex-wrap: wrap;
   align-items: baseline;
   gap: 0.5rem;
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.5rem;
 }
 
 .book-list-item-title {
-  font-size: 1.05rem;
+  font-size: 1.15rem;
   font-weight: 600;
   color: #1a1a2e;
 }
@@ -75,15 +75,15 @@
 }
 
 .book-list-item-author {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: #666;
 }
 
 .book-list-item-summary {
   margin: 0;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: #555;
-  line-height: 1.45;
+  line-height: 1.5;
 }
 
 .book-list-item-delete {
