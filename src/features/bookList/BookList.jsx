@@ -1,27 +1,40 @@
-import './BookList.css';
+import './styles/BookList.css';
 
-function BookList({ books, onSelect, onDelete }) {
+const STATUS_LABELS = {
+  want: '読みたい',
+  reading: '読んでいる',
+  read: '読了',
+};
+
+function BookList({ books, onSelect, onDelete, emptyMessage }) {
   if (books.length === 0) {
     return (
-      <p className="book-list-empty">まだ本が登録されていません。上のフォームから追加してください。</p>
+      <p className="book-list-empty">
+        {emptyMessage ?? 'まだ本が登録されていません。上のフォームから追加してください。'}
+      </p>
     );
   }
 
   return (
     <ul className="book-list">
-      {books.map((book) => (
-        <li key={book.id} className="book-list-item">
-          <button
-            type="button"
-            className="book-list-item-content"
-            onClick={() => onSelect(book)}
-          >
-            <div className="book-list-item-header">
-              <span className="book-list-item-title">{book.title || '（タイトルなし）'}</span>
-              {book.author && (
-                <span className="book-list-item-author">{book.author}</span>
-              )}
-            </div>
+      {books.map((book) => {
+        const status = book.status === 'reading' || book.status === 'read' ? book.status : 'want';
+        return (
+          <li key={book.id} className="book-list-item">
+            <button
+              type="button"
+              className="book-list-item-content"
+              onClick={() => onSelect(book)}
+            >
+              <div className="book-list-item-header">
+                <span className="book-list-item-title">{book.title || '（タイトルなし）'}</span>
+                <span className={`book-list-item-status book-list-item-status--${status}`}>
+                  {STATUS_LABELS[status]}
+                </span>
+                {book.author && (
+                  <span className="book-list-item-author">{book.author}</span>
+                )}
+              </div>
             {book.summary && (
               <p className="book-list-item-summary">
                 {book.summary.length > 120
@@ -42,7 +55,8 @@ function BookList({ books, onSelect, onDelete }) {
             削除
           </button>
         </li>
-      ))}
+        );
+      })}
     </ul>
   );
 }

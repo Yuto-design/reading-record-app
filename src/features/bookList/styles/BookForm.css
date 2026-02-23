@@ -25,7 +25,8 @@
 }
 
 .book-form-field input,
-.book-form-field textarea {
+.book-form-field textarea,
+.book-form-field .book-form-select {
   width: 100%;
   padding: 0.6rem 0.75rem;
   border: 1px solid #ddd;
@@ -33,6 +34,11 @@
   font-size: 1rem;
   font-family: inherit;
   box-sizing: border-box;
+}
+
+.book-form-field .book-form-select {
+  cursor: pointer;
+  background: #fff;
 }
 
 .book-form-field input:focus,

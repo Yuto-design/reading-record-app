@@ -1,5 +1,5 @@
 import BookForm from './BookForm';
-import './BookDetail.css';
+import './styles/BookDetail.css';
 
 function BookDetail({ book, onSave, onClose, onDelete }) {
   if (!book) return null;

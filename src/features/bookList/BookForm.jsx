@@ -1,20 +1,29 @@
 import { useState, useEffect } from 'react';
-import './BookForm.css';
+import './styles/BookForm.css';
+
+const STATUS_OPTIONS = [
+  { value: 'want', label: '読みたい' },
+  { value: 'reading', label: '読んでいる' },
+  { value: 'read', label: '読了' },
+];
 
 function BookForm({ book = null, onSave, onCancel }) {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [summary, setSummary] = useState('');
+  const [status, setStatus] = useState('want');
 
   useEffect(() => {
     if (book) {
       setTitle(book.title || '');
       setAuthor(book.author || '');
       setSummary(book.summary || '');
+      setStatus(book.status === 'reading' || book.status === 'read' ? book.status : 'want');
     } else {
       setTitle('');
       setAuthor('');
       setSummary('');
+      setStatus('want');
     }
   }, [book]);
 
@@ -25,6 +34,7 @@ function BookForm({ book = null, onSave, onCancel }) {
       title: title.trim(),
       author: author.trim(),
       summary: summary.trim(),
+      status,
     });
   };
 
@@ -51,6 +61,21 @@ function BookForm({ book = null, onSave, onCancel }) {
           onChange={(e) => setAuthor(e.target.value)}
           placeholder="著者名"
         />
+      </div>
+      <div className="book-form-field">
+        <label htmlFor="book-status">ステータス</label>
+        <select
+          id="book-status"
+          value={status}
+          onChange={(e) => setStatus(e.target.value)}
+          className="book-form-select"
+        >
+          {STATUS_OPTIONS.map((opt) => (
+            <option key={opt.value} value={opt.value}>
+              {opt.label}
+            </option>
+          ))}
+        </select>
       </div>
       <div className="book-form-field">
         <label htmlFor="book-summary">概要</label>

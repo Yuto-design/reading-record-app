@@ -11,11 +11,19 @@ const BOOKS_KEY = 'reading_books';
  */
 
 /**
+ * @typedef {'want'|'reading'|'read'} BookStatus
+ *  - want: 読みたい
+ *  - reading: 読んでいる
+ *  - read: 読了
+ */
+
+/**
  * @typedef {Object} Book
  * @property {string} id
  * @property {string} title
  * @property {string} author
  * @property {string} summary
+ * @property {BookStatus} [status]
  * @property {string} [createdAt] - ISO string
  */
 
@@ -80,6 +88,7 @@ export function saveBook(book) {
     title: book.title || '',
     author: book.author || '',
     summary: book.summary || '',
+    status: book.status === 'reading' || book.status === 'read' ? book.status : 'want',
     createdAt: book.createdAt || new Date().toISOString(),
   };
   if (isEdit) {

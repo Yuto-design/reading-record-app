@@ -51,6 +51,29 @@
   color: #1a1a2e;
 }
 
+.book-list-item-status {
+  font-size: 0.75rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.book-list-item-status--want {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+.book-list-item-status--reading {
+  background: #fff3e0;
+  color: #e65100;
+}
+
+.book-list-item-status--read {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
 .book-list-item-author {
   font-size: 0.9rem;
   color: #666;
