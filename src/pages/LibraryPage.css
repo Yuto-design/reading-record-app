@@ -101,7 +101,6 @@
   background: linear-gradient(135deg, #5a9e6b 0%, #3d7d4a 100%);
 }
 
-/* --- メインコンテンツ --- */
 .library-page-main {
   flex: 1;
   min-width: 0;
@@ -109,11 +108,10 @@
 
 .library-page-heading {
   margin: 0 0 1rem;
-  font-size: 1.25rem;
+  font-size: 2rem;
   color: #333;
 }
 
-/* 検索・並び替えツールバー */
 .library-page-toolbar {
   display: flex;
   flex-wrap: wrap;

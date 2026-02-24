@@ -10,6 +10,7 @@ function ReadingTimePage() {
 
   return (
     <div className="reading-time-page">
+      <h2 className="reading-time-page-heading">Reading Time</h2>
       <div className="timer-row">
         <Timer onSessionSaved={() => setRefreshKey((k) => k + 1)} />
         <PomodoroTimer />
