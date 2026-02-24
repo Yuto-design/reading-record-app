@@ -55,7 +55,7 @@ function BookForm({ book = null, onSave, onCancel }) {
       summary: summary.trim(),
       status,
       ...(imageUrl.trim() && { imageUrl: imageUrl.trim() }),
-      ...(rating >= 1 && rating <= 5 && { rating }),
+      ...(status === 'read' && rating >= 1 && rating <= 5 && { rating }),
       ...(tags.length > 0 && { tags }),
     });
   };
@@ -126,37 +126,39 @@ function BookForm({ book = null, onSave, onCancel }) {
           ))}
         </select>
       </div>
-      <div className="book-form-field">
-        <span className="book-form-field-label">評価</span>
-        <div className="book-form-rating" role="group" aria-label="5段階評価">
-          {[1, 2, 3, 4, 5].map((value) => (
-            <button
-              key={value}
-              type="button"
-              className={`book-form-rating-star ${rating >= value ? 'filled' : ''}`}
-              onClick={() => setRating(value)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') e.preventDefault();
-              }}
-              aria-label={`${value}つ星`}
-              aria-pressed={rating >= value}
-              tabIndex={0}
-            >
-              ★
-            </button>
-          ))}
-          {rating > 0 && (
-            <button
-              type="button"
-              className="book-form-rating-clear"
-              onClick={() => setRating(0)}
-              aria-label="評価を解除"
-            >
-              解除
-            </button>
-          )}
+      {status === 'read' && (
+        <div className="book-form-field">
+          <span className="book-form-field-label">評価（読了した本のみ）</span>
+          <div className="book-form-rating" role="group" aria-label="5段階評価">
+            {[1, 2, 3, 4, 5].map((value) => (
+              <button
+                key={value}
+                type="button"
+                className={`book-form-rating-star ${rating >= value ? 'filled' : ''}`}
+                onClick={() => setRating(value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') e.preventDefault();
+                }}
+                aria-label={`${value}つ星`}
+                aria-pressed={rating >= value}
+                tabIndex={0}
+              >
+                ★
+              </button>
+            ))}
+            {rating > 0 && (
+              <button
+                type="button"
+                className="book-form-rating-clear"
+                onClick={() => setRating(0)}
+                aria-label="評価を解除"
+              >
+                解除
+              </button>
+            )}
+          </div>
         </div>
-      </div>
+      )}
       <div className="book-form-field">
         <label htmlFor="book-tags">タグ</label>
         <input

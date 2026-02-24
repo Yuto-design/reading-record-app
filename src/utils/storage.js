@@ -86,8 +86,9 @@ export function getBookById(id) {
 export function saveBook(book) {
   const books = getBooks();
   const isEdit = book.id && books.some((b) => b.id === book.id);
+  const status = book.status === 'reading' || book.status === 'read' ? book.status : 'want';
   const ratingNum = Number(book.rating);
-  const rating = (ratingNum >= 1 && ratingNum <= 5) ? Math.round(ratingNum) : undefined;
+  const rating = (status === 'read' && ratingNum >= 1 && ratingNum <= 5) ? Math.round(ratingNum) : undefined;
   const tagsRaw = Array.isArray(book.tags) ? book.tags : [];
   const tags = tagsRaw.map((t) => String(t).trim()).filter(Boolean);
 
@@ -96,7 +97,7 @@ export function saveBook(book) {
     title: book.title || '',
     author: book.author || '',
     summary: book.summary || '',
-    status: book.status === 'reading' || book.status === 'read' ? book.status : 'want',
+    status,
     imageUrl: (book.imageUrl != null && String(book.imageUrl).trim()) ? String(book.imageUrl).trim() : undefined,
     rating,
     ...(tags.length > 0 && { tags }),

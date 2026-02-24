@@ -101,6 +101,49 @@
   background: linear-gradient(135deg, #5a9e6b 0%, #3d7d4a 100%);
 }
 
+/* サイドバー内：タグで絞り込み */
+.library-page-sidebar-tags {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e8e8ec;
+}
+
+.library-page-sidebar-tags-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+
+.library-page-sidebar-tags-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.library-page-sidebar-tag-pill {
+  padding: 0.3rem 0.6rem;
+  border: 1px solid #ddd;
+  border-radius: 999px;
+  background: #fff;
+  font-size: 0.8rem;
+  color: #555;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.library-page-sidebar-tag-pill:hover {
+  background: #f5f5f8;
+  border-color: #ccc;
+}
+
+.library-page-sidebar-tag-pill.selected {
+  background: #1a1a2e;
+  border-color: #1a1a2e;
+  color: #fff;
+}
+
 .library-page-main {
   flex: 1;
   min-width: 0;

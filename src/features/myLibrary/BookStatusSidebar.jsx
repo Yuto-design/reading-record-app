@@ -39,9 +39,9 @@ export function useBookStatusFilter(books) {
 }
 
 /**
- * 本のステータスでフィルタするサイドバーUI
+ * 本のステータスでフィルタするサイドバーUI（ステータス＋タグ絞り込み）
  */
-function BookStatusSidebar({ statusFilter, onStatusChange, books }) {
+function BookStatusSidebar({ statusFilter, onStatusChange, books, allTags = [], selectedTags = [], onToggleTag }) {
   const statusCounts = useMemo(() => {
     const counts = { all: books.length, want: 0, reading: 0, read: 0 };
     books.forEach((book) => {
@@ -51,7 +51,7 @@ function BookStatusSidebar({ statusFilter, onStatusChange, books }) {
   }, [books]);
 
   return (
-    <aside className="library-page-sidebar" aria-label="本のステータス">
+    <aside className="library-page-sidebar" aria-label="本のフィルタ">
       <nav
         className="library-page-filters"
         role="tablist"
@@ -75,6 +75,29 @@ function BookStatusSidebar({ statusFilter, onStatusChange, books }) {
           </button>
         ))}
       </nav>
+
+      {allTags.length > 0 && (
+        <div className="library-page-sidebar-tags" role="group" aria-label="タグで絞り込み">
+          <span className="library-page-sidebar-tags-label">タグ</span>
+          <div className="library-page-sidebar-tags-pills">
+            {allTags.map((tag) => {
+              const isSelected = selectedTags.includes(tag);
+              return (
+                <button
+                  key={tag}
+                  type="button"
+                  className={`library-page-sidebar-tag-pill ${isSelected ? 'selected' : ''}`}
+                  onClick={() => onToggleTag?.(tag)}
+                  aria-pressed={isSelected}
+                  aria-label={`${tag}で絞り込む`}
+                >
+                  {tag}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
     </aside>
   );
 }

@@ -10,7 +10,6 @@ import BookStatusSidebar, {
 import {
   useLibrarySearchFilter,
   LibrarySearchToolbar,
-  LibraryTagFilter,
 } from '../features/home/LibrarySearchFilter';
 import './LibraryPage.css';
 
@@ -77,6 +76,9 @@ function LibraryPage() {
         statusFilter={statusFilter}
         onStatusChange={setStatusFilter}
         books={books}
+        allTags={allTags}
+        selectedTags={selectedTags}
+        onToggleTag={handleToggleTag}
       />
 
       <main className="library-page-main">
@@ -89,11 +91,6 @@ function LibraryPage() {
               onSearchChange={setSearchQuery}
               sortBy={sortBy}
               onSortChange={setSortBy}
-            />
-            <LibraryTagFilter
-              allTags={allTags}
-              selectedTags={selectedTags}
-              onToggleTag={handleToggleTag}
             />
             <button
               type="button"

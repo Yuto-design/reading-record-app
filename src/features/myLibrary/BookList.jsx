@@ -41,7 +41,7 @@ function BookList({ books, onSelect, onDelete, emptyMessage }) {
                 {book.author && (
                   <p className="book-list-item-author">{book.author}</p>
                 )}
-                {(() => {
+                {status === 'read' && (() => {
                   const r = Number(book.rating);
                   const rating = (r >= 1 && r <= 5) ? Math.round(r) : 0;
                   return rating > 0 ? (
