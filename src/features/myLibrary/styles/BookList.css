@@ -92,7 +92,6 @@
   line-height: 1.35;
   color: #1a1a2e;
   letter-spacing: 0.02em;
-  /* タグの枠の高さと揃える（1.2rem × 1.35 = 1.62rem） */
   min-height: 1.62rem;
   display: flex;
   align-items: center;
@@ -127,7 +126,6 @@
   align-items: center;
 }
 
-/* 枠の高さをタイトル（1.2rem × 1.35 = 1.62rem）と同じにし、文字サイズはそのまま */
 .book-list-item-tag {
   display: inline-flex;
   align-items: center;
