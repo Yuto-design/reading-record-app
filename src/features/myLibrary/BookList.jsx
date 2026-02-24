@@ -33,7 +33,23 @@ function BookList({ books, onSelect, onDelete, emptyMessage }) {
             >
               <div className="book-list-item-body">
                 <div className="book-list-item-header-row">
-                  <h3 className="book-list-item-title">{book.title || '（タイトルなし）'}</h3>
+                  <div className="book-list-item-title-tags">
+                    <h3 className="book-list-item-title">{book.title || '（タイトルなし）'}</h3>
+                    {Array.isArray(book.tags) && book.tags.length > 0 && (
+                      <div className="book-list-item-tags">
+                        {book.tags.slice(0, 5).map((tag) => (
+                          <span key={tag} className="book-list-item-tag">
+                            {tag}
+                          </span>
+                        ))}
+                        {book.tags.length > 5 && (
+                          <span className="book-list-item-tag book-list-item-tag-more">
+                            +{book.tags.length - 5}
+                          </span>
+                        )}
+                      </div>
+                    )}
+                  </div>
                   <span className={`book-list-item-status book-list-item-status--${status}`}>
                     {STATUS_LABELS[status]}
                   </span>
@@ -54,20 +70,6 @@ function BookList({ books, onSelect, onDelete, emptyMessage }) {
                     </p>
                   ) : null;
                 })()}
-                {Array.isArray(book.tags) && book.tags.length > 0 && (
-                  <div className="book-list-item-tags">
-                    {book.tags.slice(0, 5).map((tag) => (
-                      <span key={tag} className="book-list-item-tag">
-                        {tag}
-                      </span>
-                    ))}
-                    {book.tags.length > 5 && (
-                      <span className="book-list-item-tag book-list-item-tag-more">
-                        +{book.tags.length - 5}
-                      </span>
-                    )}
-                  </div>
-                )}
                 {book.summary && (
                   <p className="book-list-item-summary">
                     {book.summary.length > 120

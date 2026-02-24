@@ -76,6 +76,15 @@
   min-width: 0;
 }
 
+.book-list-item-title-tags {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+}
+
 .book-list-item-title {
   margin: 0;
   font-size: 1.2rem;
@@ -83,8 +92,10 @@
   line-height: 1.35;
   color: #1a1a2e;
   letter-spacing: 0.02em;
-  flex: 1;
-  min-width: 0;
+  /* タグの枠の高さと揃える（1.2rem × 1.35 = 1.62rem） */
+  min-height: 1.62rem;
+  display: flex;
+  align-items: center;
 }
 
 .book-list-item-author {
@@ -110,17 +121,23 @@
 }
 
 .book-list-item-tags {
-  display: flex;
+  display: inline-flex;
   flex-wrap: wrap;
   gap: 0.35rem;
-  margin-top: 0.15rem;
+  align-items: center;
 }
 
+/* 枠の高さをタイトル（1.2rem × 1.35 = 1.62rem）と同じにし、文字サイズはそのまま */
 .book-list-item-tag {
-  display: inline-block;
-  padding: 0.2rem 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.62rem;
+  padding: 0 0.5rem;
+  box-sizing: border-box;
   border-radius: 4px;
   font-size: 0.75rem;
+  line-height: 1;
   background: #eee;
   color: #555;
 }

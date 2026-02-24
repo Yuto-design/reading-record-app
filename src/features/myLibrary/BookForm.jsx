@@ -61,7 +61,7 @@ function BookForm({ book = null, onSave, onCancel }) {
   };
 
   return (
-    <form className="book-form card" onSubmit={handleSubmit}>
+    <form className="book-form card" onSubmit={handleSubmit} autoComplete="off">
       <h2 className="book-form-title">{book ? '本を編集' : '本を追加'}</h2>
       <div className="book-form-field">
         <label htmlFor="book-title">タイトル</label>
@@ -72,6 +72,7 @@ function BookForm({ book = null, onSave, onCancel }) {
           onChange={(e) => setTitle(e.target.value)}
           placeholder="本のタイトル"
           required
+          autoComplete="off"
         />
       </div>
       <div className="book-form-field">
@@ -82,6 +83,7 @@ function BookForm({ book = null, onSave, onCancel }) {
           value={author}
           onChange={(e) => setAuthor(e.target.value)}
           placeholder="著者名"
+          autoComplete="off"
         />
       </div>
       <div className="book-form-field">
@@ -94,6 +96,7 @@ function BookForm({ book = null, onSave, onCancel }) {
             onChange={(e) => setImageUrl(e.target.value)}
             placeholder="画像URL または下でファイルを選択"
             className="book-form-input"
+            autoComplete="off"
           />
           <label className="book-form-file-label">
             <span className="book-form-file-btn">ファイルを選択</span>
