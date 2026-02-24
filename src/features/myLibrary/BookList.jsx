@@ -31,23 +31,25 @@ function BookList({ books, onSelect, onDelete, emptyMessage }) {
               className="book-list-item-content"
               onClick={() => onSelect(book)}
             >
-              <div className="book-list-item-header">
-                <span className="book-list-item-title">{book.title || '（タイトルなし）'}</span>
-                <span className={`book-list-item-status book-list-item-status--${status}`}>
-                  {STATUS_LABELS[status]}
-                </span>
+              <div className="book-list-item-body">
+                <div className="book-list-item-header-row">
+                  <h3 className="book-list-item-title">{book.title || '（タイトルなし）'}</h3>
+                  <span className={`book-list-item-status book-list-item-status--${status}`}>
+                    {STATUS_LABELS[status]}
+                  </span>
+                </div>
                 {book.author && (
-                  <span className="book-list-item-author">{book.author}</span>
+                  <p className="book-list-item-author">{book.author}</p>
+                )}
+                {book.summary && (
+                  <p className="book-list-item-summary">
+                    {book.summary.length > 120
+                      ? `${book.summary.slice(0, 120)}...`
+                      : book.summary}
+                  </p>
                 )}
               </div>
-            {book.summary && (
-              <p className="book-list-item-summary">
-                {book.summary.length > 120
-                  ? `${book.summary.slice(0, 120)}...`
-                  : book.summary}
-              </p>
-            )}
-          </button>
+            </button>
           <button
             type="button"
             className="book-list-item-delete"
