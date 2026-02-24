@@ -41,6 +41,33 @@ function BookList({ books, onSelect, onDelete, emptyMessage }) {
                 {book.author && (
                   <p className="book-list-item-author">{book.author}</p>
                 )}
+                {(() => {
+                  const r = Number(book.rating);
+                  const rating = (r >= 1 && r <= 5) ? Math.round(r) : 0;
+                  return rating > 0 ? (
+                    <p className="book-list-item-rating" aria-label={`評価 ${rating}つ星`}>
+                      {[1, 2, 3, 4, 5].map((v) => (
+                        <span key={v} className={rating >= v ? 'book-list-item-star filled' : 'book-list-item-star'}>
+                          ★
+                        </span>
+                      ))}
+                    </p>
+                  ) : null;
+                })()}
+                {Array.isArray(book.tags) && book.tags.length > 0 && (
+                  <div className="book-list-item-tags">
+                    {book.tags.slice(0, 5).map((tag) => (
+                      <span key={tag} className="book-list-item-tag">
+                        {tag}
+                      </span>
+                    ))}
+                    {book.tags.length > 5 && (
+                      <span className="book-list-item-tag book-list-item-tag-more">
+                        +{book.tags.length - 5}
+                      </span>
+                    )}
+                  </div>
+                )}
                 {book.summary && (
                   <p className="book-list-item-summary">
                     {book.summary.length > 120

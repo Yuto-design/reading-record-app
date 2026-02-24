@@ -95,6 +95,41 @@
   line-height: 1.4;
 }
 
+.book-list-item-rating {
+  margin: 0;
+  line-height: 1;
+}
+
+.book-list-item-star {
+  color: #ddd;
+  font-size: 0.95rem;
+}
+
+.book-list-item-star.filled {
+  color: #f5c518;
+}
+
+.book-list-item-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.15rem;
+}
+
+.book-list-item-tag {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  background: #eee;
+  color: #555;
+}
+
+.book-list-item-tag-more {
+  background: #e0e0e0;
+  color: #888;
+}
+
 .book-list-item-status {
   display: inline-flex;
   align-items: center;

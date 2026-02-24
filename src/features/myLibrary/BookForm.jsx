@@ -13,6 +13,8 @@ function BookForm({ book = null, onSave, onCancel }) {
   const [summary, setSummary] = useState('');
   const [status, setStatus] = useState('want');
   const [imageUrl, setImageUrl] = useState('');
+  const [rating, setRating] = useState(0);
+  const [tagsText, setTagsText] = useState('');
 
   useEffect(() => {
     if (book) {
@@ -21,12 +23,17 @@ function BookForm({ book = null, onSave, onCancel }) {
       setSummary(book.summary || '');
       setStatus(book.status === 'reading' || book.status === 'read' ? book.status : 'want');
       setImageUrl(book.imageUrl || '');
+      const r = Number(book.rating);
+      setRating((r >= 1 && r <= 5) ? Math.round(r) : 0);
+      setTagsText(Array.isArray(book.tags) ? book.tags.join(', ') : '');
     } else {
       setTitle('');
       setAuthor('');
       setSummary('');
       setStatus('want');
       setImageUrl('');
+      setRating(0);
+      setTagsText('');
     }
   }, [book]);
 
@@ -40,6 +47,7 @@ function BookForm({ book = null, onSave, onCancel }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const tags = tagsText.split(/[,、]/).map((t) => t.trim()).filter(Boolean);
     onSave({
       ...(book && { id: book.id, createdAt: book.createdAt }),
       title: title.trim(),
@@ -47,6 +55,8 @@ function BookForm({ book = null, onSave, onCancel }) {
       summary: summary.trim(),
       status,
       ...(imageUrl.trim() && { imageUrl: imageUrl.trim() }),
+      ...(rating >= 1 && rating <= 5 && { rating }),
+      ...(tags.length > 0 && { tags }),
     });
   };
 
@@ -115,6 +125,48 @@ function BookForm({ book = null, onSave, onCancel }) {
             </option>
           ))}
         </select>
+      </div>
+      <div className="book-form-field">
+        <span className="book-form-field-label">評価</span>
+        <div className="book-form-rating" role="group" aria-label="5段階評価">
+          {[1, 2, 3, 4, 5].map((value) => (
+            <button
+              key={value}
+              type="button"
+              className={`book-form-rating-star ${rating >= value ? 'filled' : ''}`}
+              onClick={() => setRating(value)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') e.preventDefault();
+              }}
+              aria-label={`${value}つ星`}
+              aria-pressed={rating >= value}
+              tabIndex={0}
+            >
+              ★
+            </button>
+          ))}
+          {rating > 0 && (
+            <button
+              type="button"
+              className="book-form-rating-clear"
+              onClick={() => setRating(0)}
+              aria-label="評価を解除"
+            >
+              解除
+            </button>
+          )}
+        </div>
+      </div>
+      <div className="book-form-field">
+        <label htmlFor="book-tags">タグ</label>
+        <input
+          id="book-tags"
+          type="text"
+          value={tagsText}
+          onChange={(e) => setTagsText(e.target.value)}
+          placeholder="カンマまたは読点で区切って入力（例: 小説, 自己啓発）"
+          className="book-form-input"
+        />
       </div>
       <div className="book-form-field">
         <label htmlFor="book-summary">概要</label>

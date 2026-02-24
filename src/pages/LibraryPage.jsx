@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import { getBooks, saveBook, getBookById, deleteBook } from '../utils/storage';
 import BookForm from '../features/myLibrary/BookForm';
 import BookList from '../features/myLibrary/BookList';
@@ -10,6 +10,7 @@ import BookStatusSidebar, {
 import {
   useLibrarySearchFilter,
   LibrarySearchToolbar,
+  LibraryTagFilter,
 } from '../features/home/LibrarySearchFilter';
 import './LibraryPage.css';
 
@@ -17,8 +18,25 @@ function LibraryPage() {
   const [books, setBooks] = useState(getBooks());
   const [selectedBookId, setSelectedBookId] = useState(null);
   const [showAddForm, setShowAddForm] = useState(false);
+  const [selectedTags, setSelectedTags] = useState([]);
 
   const { statusFilter, setStatusFilter, filteredBooks } = useBookStatusFilter(books);
+
+  const allTags = useMemo(() => {
+    const set = new Set();
+    books.forEach((book) => {
+      (book.tags || []).forEach((tag) => set.add(tag));
+    });
+    return [...set].sort((a, b) => a.localeCompare(b, 'ja'));
+  }, [books]);
+
+  const filteredByTags = useMemo(() => {
+    if (selectedTags.length === 0) return filteredBooks;
+    return filteredBooks.filter((book) =>
+      (book.tags || []).some((tag) => selectedTags.includes(tag))
+    );
+  }, [filteredBooks, selectedTags]);
+
   const {
     searchQuery,
     setSearchQuery,
@@ -26,7 +44,13 @@ function LibraryPage() {
     setSortBy,
     searchFilteredBooks,
     sortedBooks,
-  } = useLibrarySearchFilter(filteredBooks);
+  } = useLibrarySearchFilter(filteredByTags);
+
+  const handleToggleTag = useCallback((tag) => {
+    setSelectedTags((prev) =>
+      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
+    );
+  }, []);
 
   const refreshBooks = useCallback(() => {
     setBooks(getBooks());
@@ -66,6 +90,11 @@ function LibraryPage() {
               sortBy={sortBy}
               onSortChange={setSortBy}
             />
+            <LibraryTagFilter
+              allTags={allTags}
+              selectedTags={selectedTags}
+              onToggleTag={handleToggleTag}
+            />
             <button
               type="button"
               className="library-page-add-btn"
@@ -100,11 +129,13 @@ function LibraryPage() {
               if (window.confirm('この本を削除しますか？')) handleDeleteBook(id);
             }}
             emptyMessage={
-              searchFilteredBooks.length === 0 && filteredBooks.length > 0
-                ? '検索条件に該当する本はありません。'
-                : statusFilter !== STATUS_FILTER_ALL
-                  ? 'このステータスに該当する本はありません。'
-                  : undefined
+              selectedTags.length > 0 && filteredByTags.length === 0
+                ? '選択したタグに該当する本はありません。'
+                : searchFilteredBooks.length === 0 && filteredByTags.length > 0
+                  ? '検索条件に該当する本はありません。'
+                  : statusFilter !== STATUS_FILTER_ALL
+                    ? 'このステータスに該当する本はありません。'
+                    : undefined
             }
           />
         )}

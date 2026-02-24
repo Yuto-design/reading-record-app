@@ -67,3 +67,47 @@
   outline: none;
   border-color: #1a1a2e;
 }
+
+/* タグで絞り込み */
+.library-tag-filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.library-tag-filter-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #555;
+  flex-shrink: 0;
+}
+
+.library-tag-filter-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.library-tag-filter-pill {
+  padding: 0.35rem 0.65rem;
+  border: 1px solid #ddd;
+  border-radius: 999px;
+  background: #fff;
+  font-size: 0.85rem;
+  color: #555;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.library-tag-filter-pill:hover {
+  background: #f5f5f5;
+  border-color: #ccc;
+}
+
+.library-tag-filter-pill.selected {
+  background: #1a1a2e;
+  border-color: #1a1a2e;
+  color: #fff;
+}

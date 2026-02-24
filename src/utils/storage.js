@@ -25,6 +25,8 @@ const BOOKS_KEY = 'reading_books';
  * @property {string} summary
  * @property {BookStatus} [status]
  * @property {string} [imageUrl] - 画像URL または Data URL
+ * @property {number} [rating] - 評価 1〜5（0 は未設定）
+ * @property {string[]} [tags] - タグ（ジャンル・テーマ）
  * @property {string} [createdAt] - ISO string
  */
 
@@ -84,6 +86,11 @@ export function getBookById(id) {
 export function saveBook(book) {
   const books = getBooks();
   const isEdit = book.id && books.some((b) => b.id === book.id);
+  const ratingNum = Number(book.rating);
+  const rating = (ratingNum >= 1 && ratingNum <= 5) ? Math.round(ratingNum) : undefined;
+  const tagsRaw = Array.isArray(book.tags) ? book.tags : [];
+  const tags = tagsRaw.map((t) => String(t).trim()).filter(Boolean);
+
   const newBook = {
     id: book.id || generateId(),
     title: book.title || '',
@@ -91,6 +98,8 @@ export function saveBook(book) {
     summary: book.summary || '',
     status: book.status === 'reading' || book.status === 'read' ? book.status : 'want',
     imageUrl: (book.imageUrl != null && String(book.imageUrl).trim()) ? String(book.imageUrl).trim() : undefined,
+    rating,
+    ...(tags.length > 0 && { tags }),
     createdAt: book.createdAt || new Date().toISOString(),
   };
   if (isEdit) {

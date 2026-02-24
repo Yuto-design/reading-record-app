@@ -60,6 +60,36 @@ export function useLibrarySearchFilter(filteredBooks) {
 }
 
 /**
+ * タグで絞り込むためのピル一覧（クリックで選択/解除）
+ */
+export function LibraryTagFilter({ allTags, selectedTags, onToggleTag }) {
+  if (!allTags || allTags.length === 0) return null;
+
+  return (
+    <div className="library-tag-filter" role="group" aria-label="タグで絞り込み">
+      <span className="library-tag-filter-label">タグ：</span>
+      <div className="library-tag-filter-pills">
+        {allTags.map((tag) => {
+          const isSelected = selectedTags.includes(tag);
+          return (
+            <button
+              key={tag}
+              type="button"
+              className={`library-tag-filter-pill ${isSelected ? 'selected' : ''}`}
+              onClick={() => onToggleTag(tag)}
+              aria-pressed={isSelected}
+              aria-label={`${tag}で絞り込む`}
+            >
+              {tag}
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+/**
  * 検索入力と並び替えセレクトを表示するツールバー
  */
 export function LibrarySearchToolbar({ searchQuery, onSearchChange, sortBy, onSortChange }) {
