@@ -145,6 +145,77 @@
   border: 1px solid #eee;
 }
 
+.book-form-tags-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.book-form-tags-row .book-form-input {
+  flex: 1;
+  min-width: 0;
+}
+
+.book-form-tag-add-btn {
+  flex-shrink: 0;
+  padding: 0.5rem 1rem;
+  border: 1px solid #1a1a2e;
+  border-radius: 6px;
+  background: #1a1a2e;
+  color: #fff;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.book-form-tag-add-btn:hover {
+  opacity: 0.9;
+}
+
+.book-form-tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+}
+
+.book-form-tag-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  background: #eee;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.book-form-tag-label {
+  max-width: 12rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.book-form-tag-remove {
+  padding: 0 0.15rem;
+  border: none;
+  background: none;
+  color: #666;
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.book-form-tag-remove:hover {
+  background: #ddd;
+  color: #333;
+}
+
 .book-form-memo-attachments {
   margin-top: 0.5rem;
 }

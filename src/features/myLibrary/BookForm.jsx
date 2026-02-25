@@ -15,7 +15,8 @@ function BookForm({ book = null, onSave, onCancel }) {
   const [status, setStatus] = useState('want');
   const [imageUrl, setImageUrl] = useState('');
   const [rating, setRating] = useState(0);
-  const [tagsText, setTagsText] = useState('');
+  const [tags, setTags] = useState([]);
+  const [tagInput, setTagInput] = useState('');
   const [finishedAt, setFinishedAt] = useState('');
   const [memo, setMemo] = useState('');
   const [memoAttachments, setMemoAttachments] = useState([]);
@@ -31,7 +32,8 @@ function BookForm({ book = null, onSave, onCancel }) {
       setImageUrl(book.imageUrl || '');
       const r = Number(book.rating);
       setRating((r >= 1 && r <= 5) ? Math.round(r) : 0);
-      setTagsText(Array.isArray(book.tags) ? book.tags.join(', ') : '');
+      setTags(Array.isArray(book.tags) ? [...book.tags] : []);
+      setTagInput('');
       setFinishedAt(book.finishedAt ? String(book.finishedAt).slice(0, 10) : '');
       setMemo(book.memo || '');
       setMemoAttachments(Array.isArray(book.memoAttachments) ? [...book.memoAttachments] : []);
@@ -44,7 +46,8 @@ function BookForm({ book = null, onSave, onCancel }) {
       setStatus('want');
       setImageUrl('');
       setRating(0);
-      setTagsText('');
+      setTags([]);
+      setTagInput('');
       setFinishedAt('');
       setMemo('');
       setMemoAttachments([]);
@@ -91,9 +94,27 @@ function BookForm({ book = null, onSave, onCancel }) {
     setMemoAttachments((prev) => prev.filter((_, i) => i !== index));
   };
 
+  const handleAddTag = (e) => {
+    e?.preventDefault();
+    const raw = tagInput.trim();
+    const toAdd = raw.split(/[,、]/).map((t) => t.trim()).filter(Boolean);
+    if (toAdd.length === 0) return;
+    setTags((prev) => {
+      const next = [...prev];
+      toAdd.forEach((t) => {
+        if (t && !next.includes(t)) next.push(t);
+      });
+      return next;
+    });
+    setTagInput('');
+  };
+
+  const handleRemoveTag = (index) => {
+    setTags((prev) => prev.filter((_, i) => i !== index));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const tags = tagsText.split(/[,、]/).map((t) => t.trim()).filter(Boolean);
     const pageNum = pageCount.trim() ? parseInt(pageCount, 10) : undefined;
     onSave({
       ...(book && { id: book.id, createdAt: book.createdAt }),
@@ -103,7 +124,7 @@ function BookForm({ book = null, onSave, onCancel }) {
       status,
       ...(imageUrl.trim() && { imageUrl: imageUrl.trim() }),
       ...(status === 'read' && rating >= 1 && rating <= 5 && { rating }),
-      ...(tags.length > 0 && { tags }),
+      ...(tags.length > 0 && { tags: [...tags] }),
       ...(status === 'read' && finishedAt.trim() && { finishedAt: finishedAt.trim().slice(0, 10) }),
       ...(memo.trim() && { memo: memo.trim() }),
       ...(memoAttachments.length > 0 && { memoAttachments }),
@@ -250,15 +271,49 @@ function BookForm({ book = null, onSave, onCancel }) {
         </div>
       )}
       <div className="book-form-field">
-        <label htmlFor="book-tags">タグ</label>
-        <input
-          id="book-tags"
-          type="text"
-          value={tagsText}
-          onChange={(e) => setTagsText(e.target.value)}
-          placeholder="カンマまたは読点で区切って入力（例: 小説, 自己啓発）"
-          className="book-form-input"
-        />
+        <label htmlFor="book-tag-input">タグ（複数可）</label>
+        <div className="book-form-tags-row">
+          <input
+            id="book-tag-input"
+            type="text"
+            value={tagInput}
+            onChange={(e) => setTagInput(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                e.preventDefault();
+                handleAddTag();
+              }
+            }}
+            placeholder="タグを入力して Enter または追加"
+            className="book-form-input"
+            autoComplete="off"
+          />
+          <button
+            type="button"
+            className="book-form-tag-add-btn"
+            onClick={handleAddTag}
+            aria-label="タグを追加"
+          >
+            追加
+          </button>
+        </div>
+        {tags.length > 0 && (
+          <ul className="book-form-tags-list">
+            {tags.map((tag, index) => (
+              <li key={`${tag}-${index}`} className="book-form-tag-item">
+                <span className="book-form-tag-label">{tag}</span>
+                <button
+                  type="button"
+                  className="book-form-tag-remove"
+                  onClick={() => handleRemoveTag(index)}
+                  aria-label={`タグ「${tag}」を削除`}
+                >
+                  ×
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
       <div className="book-form-field">
         <label htmlFor="book-summary">概要</label>
