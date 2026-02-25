@@ -85,15 +85,24 @@ function BookDetail({ book, onSave, onClose, onDelete, initialEditMode = false }
             <img src={book.imageUrl} alt="" className="book-detail-cover-img" />
           </div>
         )}
-        <h3 className="book-detail-view-title">{book.title || '（タイトルなし）'}</h3>
-        {book.author && (
-          <p className="book-detail-view-author">{book.author}</p>
-        )}
-        <p className="book-detail-view-meta">
+        <div className="book-detail-view-title-row">
+          <h3 className="book-detail-view-title">{book.title || '（タイトルなし）'}</h3>
           <span className={`book-detail-view-status book-detail-view-status--${status}`}>
             {STATUS_LABELS[status]}
           </span>
-          {book.status === 'read' && rating > 0 && (
+          {Array.isArray(book.tags) && book.tags.length > 0 && (
+            <div className="book-detail-view-tags">
+              {book.tags.map((tag) => (
+                <span key={tag} className="book-detail-view-tag">{tag}</span>
+              ))}
+            </div>
+          )}
+        </div>
+        {book.author && (
+          <p className="book-detail-view-author">{book.author}</p>
+        )}
+        {book.status === 'read' && rating > 0 && (
+          <p className="book-detail-view-meta">
             <span className="book-detail-view-rating" aria-label={`評価 ${rating}つ星`}>
               {[1, 2, 3, 4, 5].map((v) => (
                 <span key={v} className={rating >= v ? 'book-detail-star filled' : 'book-detail-star'}>
@@ -101,14 +110,7 @@ function BookDetail({ book, onSave, onClose, onDelete, initialEditMode = false }
                 </span>
               ))}
             </span>
-          )}
-        </p>
-        {Array.isArray(book.tags) && book.tags.length > 0 && (
-          <div className="book-detail-view-tags">
-            {book.tags.map((tag) => (
-              <span key={tag} className="book-detail-view-tag">{tag}</span>
-            ))}
-          </div>
+          </p>
         )}
         {book.summary && (
           <div className="book-detail-view-summary-wrap">

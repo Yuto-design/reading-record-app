@@ -63,8 +63,16 @@
   margin-bottom: 0.5rem;
 }
 
+.book-detail-view-title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  margin-bottom: 0.35rem;
+}
+
 .book-detail-view-title {
-  margin: 0 0 0.35rem;
+  margin: 0;
   font-size: 1.35rem;
   font-weight: 700;
   color: #1a1a2e;
@@ -125,7 +133,6 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.35rem;
-  margin-bottom: 0.75rem;
 }
 
 .book-detail-view-tag {
