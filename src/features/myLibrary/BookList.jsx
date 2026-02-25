@@ -6,7 +6,7 @@ const STATUS_LABELS = {
   read: '読了',
 };
 
-function BookList({ books, onSelect, onDelete, emptyMessage }) {
+function BookList({ books, onSelect, onEdit, onDelete, emptyMessage }) {
   if (books.length === 0) {
     return (
       <p className="book-list-empty">
@@ -70,26 +70,32 @@ function BookList({ books, onSelect, onDelete, emptyMessage }) {
                     </p>
                   ) : null;
                 })()}
-                {book.summary && (
-                  <p className="book-list-item-summary">
-                    {book.summary.length > 120
-                      ? `${book.summary.slice(0, 120)}...`
-                      : book.summary}
-                  </p>
-                )}
               </div>
             </button>
-          <button
-            type="button"
-            className="book-list-item-delete"
-            onClick={(e) => {
-              e.stopPropagation();
-              onDelete(book.id);
-            }}
-            title="削除"
-          >
-            削除
-          </button>
+          <div className="book-list-item-actions">
+            <button
+              type="button"
+              className="book-list-item-edit"
+              onClick={(e) => {
+                e.stopPropagation();
+                onEdit?.(book);
+              }}
+              title="編集"
+            >
+              編集
+            </button>
+            <button
+              type="button"
+              className="book-list-item-delete"
+              onClick={(e) => {
+                e.stopPropagation();
+                onDelete(book.id);
+              }}
+              title="削除"
+            >
+              削除
+            </button>
+          </div>
         </li>
         );
       })}

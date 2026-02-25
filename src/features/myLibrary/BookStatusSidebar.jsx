@@ -1,6 +1,5 @@
 import { useState, useMemo } from 'react';
 
-/** 本のステータスを正規化（未設定は 'want'） */
 export function getBookStatus(book) {
   return book.status === 'reading' || book.status === 'read' ? book.status : 'want';
 }
@@ -38,9 +37,6 @@ export function useBookStatusFilter(books) {
   return { statusFilter, setStatusFilter, filteredBooks, statusCounts };
 }
 
-/**
- * 本のステータスでフィルタするサイドバーUI（ステータス＋タグ絞り込み）
- */
 function BookStatusSidebar({ statusFilter, onStatusChange, books, allTags = [], selectedTags = [], onToggleTag }) {
   const statusCounts = useMemo(() => {
     const counts = { all: books.length, want: 0, reading: 0, read: 0 };

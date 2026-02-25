@@ -181,6 +181,30 @@
   overflow: hidden;
 }
 
+.book-list-item-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  align-self: center;
+  margin-right: 0.75rem;
+}
+
+.book-list-item-edit {
+  padding: 0.5rem 1rem;
+  border: none;
+  background: #1a1a2e;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: opacity 0.2s;
+}
+
+.book-list-item-edit:hover {
+  opacity: 0.9;
+}
+
 .book-list-item-delete {
   padding: 0.5rem 1rem;
   border: none;
@@ -189,8 +213,6 @@
   font-size: 0.85rem;
   font-weight: 500;
   cursor: pointer;
-  align-self: center;
-  margin-right: 0.75rem;
   border-radius: 8px;
   transition: background 0.2s;
 }

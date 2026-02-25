@@ -89,9 +89,6 @@ export function LibraryTagFilter({ allTags, selectedTags, onToggleTag }) {
   );
 }
 
-/**
- * 検索入力と並び替えセレクトを表示するツールバー
- */
 export function LibrarySearchToolbar({ searchQuery, onSearchChange, sortBy, onSortChange }) {
   return (
     <div className="library-page-toolbar">

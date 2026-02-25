@@ -1,8 +1,8 @@
 import { useState, useCallback, useMemo } from 'react';
-import { getBooks, saveBook, getBookById, deleteBook } from '../utils/storage';
+import { getBooks, saveBook, deleteBook } from '../utils/storage';
 import BookForm from '../features/myLibrary/BookForm';
 import BookList from '../features/myLibrary/BookList';
-import BookDetail from '../features/myLibrary/BookDetail';
+import BookDetailPage from '../features/myLibrary/BookDetailPage';
 import BookStatusSidebar, {
   useBookStatusFilter,
   STATUS_FILTER_ALL,
@@ -16,6 +16,7 @@ import './LibraryPage.css';
 function LibraryPage() {
   const [books, setBooks] = useState(getBooks());
   const [selectedBookId, setSelectedBookId] = useState(null);
+  const [openInEditMode, setOpenInEditMode] = useState(false);
   const [showAddForm, setShowAddForm] = useState(false);
   const [selectedTags, setSelectedTags] = useState([]);
 
@@ -55,11 +56,16 @@ function LibraryPage() {
     setBooks(getBooks());
   }, []);
 
-  const handleSaveBook = (bookData) => {
+  const handleSaveNewBook = (bookData) => {
     saveBook(bookData);
     refreshBooks();
     setShowAddForm(false);
     setSelectedBookId(null);
+  };
+
+  const handleUpdateBook = (bookData) => {
+    saveBook(bookData);
+    refreshBooks();
   };
 
   const handleDeleteBook = (id) => {
@@ -68,7 +74,7 @@ function LibraryPage() {
     setSelectedBookId(null);
   };
 
-  const selectedBook = selectedBookId ? getBookById(selectedBookId) : null;
+  const showingDetail = !!selectedBookId;
 
   return (
     <div className="library-page">
@@ -84,7 +90,7 @@ function LibraryPage() {
       <main className="library-page-main">
         <h2 className="library-page-heading">My Library</h2>
 
-        {!showAddForm && !selectedBook && (
+        {!showAddForm && !showingDetail && (
           <>
             <LibrarySearchToolbar
               searchQuery={searchQuery}
@@ -102,26 +108,37 @@ function LibraryPage() {
           </>
         )}
 
-        {showAddForm && !selectedBook && (
+        {showAddForm && !showingDetail && (
           <BookForm
-            onSave={handleSaveBook}
+            onSave={handleSaveNewBook}
             onCancel={() => setShowAddForm(false)}
           />
         )}
 
-        {selectedBook && (
-          <BookDetail
-            book={selectedBook}
-            onSave={handleSaveBook}
-            onClose={() => setSelectedBookId(null)}
+        {showingDetail && (
+          <BookDetailPage
+            bookId={selectedBookId}
+            onSave={handleUpdateBook}
+            onClose={() => {
+              setSelectedBookId(null);
+              setOpenInEditMode(false);
+            }}
             onDelete={handleDeleteBook}
+            initialEditMode={openInEditMode}
           />
         )}
 
-        {!selectedBook && (
+        {!showingDetail && (
           <BookList
             books={sortedBooks}
-            onSelect={(book) => setSelectedBookId(book.id)}
+            onSelect={(book) => {
+              setSelectedBookId(book.id);
+              setOpenInEditMode(false);
+            }}
+            onEdit={(book) => {
+              setSelectedBookId(book.id);
+              setOpenInEditMode(true);
+            }}
             onDelete={(id) => {
               if (window.confirm('この本を削除しますか？')) handleDeleteBook(id);
             }}
