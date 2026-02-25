@@ -6,6 +6,8 @@ export const SORT_OPTIONS = [
   { value: 'author', label: '著者順' },
   { value: 'createdAtDesc', label: '登録日（新しい順）' },
   { value: 'createdAtAsc', label: '登録日（古い順）' },
+  { value: 'finishedAtDesc', label: '読了日（新しい順）' },
+  { value: 'finishedAtAsc', label: '読了日（古い順）' },
 ];
 
 /**
@@ -24,7 +26,15 @@ export function useLibrarySearchFilter(filteredBooks) {
       const title = (book.title || '').toLowerCase();
       const author = (book.author || '').toLowerCase();
       const summary = (book.summary || '').toLowerCase();
-      return title.includes(q) || author.includes(q) || summary.includes(q);
+      const memo = (book.memo || '').toLowerCase();
+      const publisher = (book.publisher || '').toLowerCase();
+      return (
+        title.includes(q) ||
+        author.includes(q) ||
+        summary.includes(q) ||
+        memo.includes(q) ||
+        publisher.includes(q)
+      );
     });
   }, [filteredBooks, searchQuery]);
 
@@ -42,6 +52,12 @@ export function useLibrarySearchFilter(filteredBooks) {
         break;
       case 'createdAtAsc':
         list.sort((a, b) => (a.createdAt || '').localeCompare(b.createdAt || ''));
+        break;
+      case 'finishedAtDesc':
+        list.sort((a, b) => (b.finishedAt || '').localeCompare(a.finishedAt || ''));
+        break;
+      case 'finishedAtAsc':
+        list.sort((a, b) => (a.finishedAt || '').localeCompare(b.finishedAt || ''));
         break;
       default:
         break;
@@ -100,7 +116,7 @@ export function LibrarySearchToolbar({ searchQuery, onSearchChange, sortBy, onSo
           type="search"
           value={searchQuery}
           onChange={(e) => onSearchChange(e.target.value)}
-          placeholder="タイトル・著者・概要で検索"
+          placeholder="タイトル・著者・概要・メモ・出版社で検索"
           className="library-page-search-input"
           aria-label="本を検索"
         />

@@ -9,6 +9,13 @@ const STATUS_LABELS = {
   read: '読了',
 };
 
+function formatDateYMD(isoOrYMD) {
+  const s = String(isoOrYMD).slice(0, 10);
+  const [y, m, d] = s.split('-').map((n) => parseInt(n, 10));
+  if (y == null || m == null || d == null) return s;
+  return `${y}年${m}月${d}日`;
+}
+
 function BookDetail({ book, onSave, onClose, onDelete, initialEditMode = false }) {
   const [isEditing, setIsEditing] = useState(initialEditMode);
 
@@ -101,21 +108,39 @@ function BookDetail({ book, onSave, onClose, onDelete, initialEditMode = false }
         {book.author && (
           <p className="book-detail-view-author">{book.author}</p>
         )}
-        {book.status === 'read' && rating > 0 && (
-          <p className="book-detail-view-meta">
-            <span className="book-detail-view-rating" aria-label={`評価 ${rating}つ星`}>
-              {[1, 2, 3, 4, 5].map((v) => (
-                <span key={v} className={rating >= v ? 'book-detail-star filled' : 'book-detail-star'}>
-                  ★
-                </span>
-              ))}
-            </span>
+        {(book.publisher || book.pageCount != null) && (
+          <p className="book-detail-view-publisher-isbn">
+            {[book.publisher, book.pageCount != null ? `${book.pageCount}ページ` : null].filter(Boolean).join('　')}
           </p>
         )}
+        {(book.status === 'read' && book.finishedAt) || (book.status === 'read' && rating > 0) ? (
+          <p className="book-detail-view-meta">
+            {book.status === 'read' && book.finishedAt && (
+              <span className="book-detail-view-finished-at">
+                読了日: {formatDateYMD(book.finishedAt)}
+              </span>
+            )}
+            {book.status === 'read' && rating > 0 && (
+              <span className="book-detail-view-rating" aria-label={`評価 ${rating}つ星`}>
+                {[1, 2, 3, 4, 5].map((v) => (
+                  <span key={v} className={rating >= v ? 'book-detail-star filled' : 'book-detail-star'}>
+                    ★
+                  </span>
+                ))}
+              </span>
+            )}
+          </p>
+        ) : null}
         {book.summary && (
           <div className="book-detail-view-summary-wrap">
             <h4 className="book-detail-view-summary-label">概要</h4>
             <p className="book-detail-view-summary">{book.summary}</p>
+          </div>
+        )}
+        {book.memo && (
+          <div className="book-detail-view-memo-wrap">
+            <h4 className="book-detail-view-memo-label">読書メモ・感想</h4>
+            <p className="book-detail-view-memo">{book.memo}</p>
           </div>
         )}
       </div>

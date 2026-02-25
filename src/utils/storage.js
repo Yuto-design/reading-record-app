@@ -28,6 +28,10 @@ const BOOKS_KEY = 'reading_books';
  * @property {number} [rating] - 評価 1〜5（0 は未設定）
  * @property {string[]} [tags] - タグ（ジャンル・テーマ）
  * @property {string} [createdAt] - ISO string
+ * @property {string} [finishedAt] - 読了日 YYYY-MM-DD（読了時のみ）
+ * @property {string} [memo] - 読書メモ・感想
+ * @property {number} [pageCount] - ページ数
+ * @property {string} [publisher] - 出版社
  */
 
 function generateId() {
@@ -92,6 +96,13 @@ export function saveBook(book) {
   const tagsRaw = Array.isArray(book.tags) ? book.tags : [];
   const tags = tagsRaw.map((t) => String(t).trim()).filter(Boolean);
 
+  const finishedAtRaw = book.finishedAt != null ? String(book.finishedAt).trim() : '';
+  const finishedAt = (status === 'read' && finishedAtRaw) ? finishedAtRaw.slice(0, 10) : undefined;
+  const memo = (book.memo != null && String(book.memo).trim()) ? String(book.memo).trim() : undefined;
+  const pageNum = Number(book.pageCount);
+  const pageCount = (Number.isInteger(pageNum) && pageNum > 0) ? pageNum : undefined;
+  const publisher = (book.publisher != null && String(book.publisher).trim()) ? String(book.publisher).trim() : undefined;
+
   const newBook = {
     id: book.id || generateId(),
     title: book.title || '',
@@ -102,6 +113,10 @@ export function saveBook(book) {
     rating,
     ...(tags.length > 0 && { tags }),
     createdAt: book.createdAt || new Date().toISOString(),
+    ...(finishedAt && { finishedAt }),
+    ...(memo && { memo }),
+    ...(pageCount != null && { pageCount }),
+    ...(publisher && { publisher }),
   };
   if (isEdit) {
     const index = books.findIndex((b) => b.id === book.id);

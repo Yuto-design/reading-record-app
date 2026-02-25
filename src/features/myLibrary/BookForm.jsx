@@ -15,6 +15,10 @@ function BookForm({ book = null, onSave, onCancel }) {
   const [imageUrl, setImageUrl] = useState('');
   const [rating, setRating] = useState(0);
   const [tagsText, setTagsText] = useState('');
+  const [finishedAt, setFinishedAt] = useState('');
+  const [memo, setMemo] = useState('');
+  const [pageCount, setPageCount] = useState('');
+  const [publisher, setPublisher] = useState('');
 
   useEffect(() => {
     if (book) {
@@ -26,6 +30,10 @@ function BookForm({ book = null, onSave, onCancel }) {
       const r = Number(book.rating);
       setRating((r >= 1 && r <= 5) ? Math.round(r) : 0);
       setTagsText(Array.isArray(book.tags) ? book.tags.join(', ') : '');
+      setFinishedAt(book.finishedAt ? String(book.finishedAt).slice(0, 10) : '');
+      setMemo(book.memo || '');
+      setPageCount(book.pageCount != null ? String(book.pageCount) : '');
+      setPublisher(book.publisher || '');
     } else {
       setTitle('');
       setAuthor('');
@@ -34,6 +42,10 @@ function BookForm({ book = null, onSave, onCancel }) {
       setImageUrl('');
       setRating(0);
       setTagsText('');
+      setFinishedAt('');
+      setMemo('');
+      setPageCount('');
+      setPublisher('');
     }
   }, [book]);
 
@@ -48,6 +60,7 @@ function BookForm({ book = null, onSave, onCancel }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const tags = tagsText.split(/[,、]/).map((t) => t.trim()).filter(Boolean);
+    const pageNum = pageCount.trim() ? parseInt(pageCount, 10) : undefined;
     onSave({
       ...(book && { id: book.id, createdAt: book.createdAt }),
       title: title.trim(),
@@ -57,6 +70,10 @@ function BookForm({ book = null, onSave, onCancel }) {
       ...(imageUrl.trim() && { imageUrl: imageUrl.trim() }),
       ...(status === 'read' && rating >= 1 && rating <= 5 && { rating }),
       ...(tags.length > 0 && { tags }),
+      ...(status === 'read' && finishedAt.trim() && { finishedAt: finishedAt.trim().slice(0, 10) }),
+      ...(memo.trim() && { memo: memo.trim() }),
+      ...(Number.isInteger(pageNum) && pageNum > 0 && { pageCount: pageNum }),
+      ...(publisher.trim() && { publisher: publisher.trim() }),
     });
   };
 
@@ -83,6 +100,29 @@ function BookForm({ book = null, onSave, onCancel }) {
           value={author}
           onChange={(e) => setAuthor(e.target.value)}
           placeholder="著者名"
+          autoComplete="off"
+        />
+      </div>
+      <div className="book-form-field">
+        <label htmlFor="book-publisher">出版社</label>
+        <input
+          id="book-publisher"
+          type="text"
+          value={publisher}
+          onChange={(e) => setPublisher(e.target.value)}
+          placeholder="出版社名"
+          autoComplete="off"
+        />
+      </div>
+      <div className="book-form-field">
+        <label htmlFor="book-pageCount">ページ数</label>
+        <input
+          id="book-pageCount"
+          type="number"
+          min="1"
+          value={pageCount}
+          onChange={(e) => setPageCount(e.target.value)}
+          placeholder="例: 320"
           autoComplete="off"
         />
       </div>
@@ -162,6 +202,18 @@ function BookForm({ book = null, onSave, onCancel }) {
           </div>
         </div>
       )}
+      {status === 'read' && (
+        <div className="book-form-field">
+          <label htmlFor="book-finishedAt">読了日</label>
+          <input
+            id="book-finishedAt"
+            type="date"
+            value={finishedAt}
+            onChange={(e) => setFinishedAt(e.target.value)}
+            className="book-form-input"
+          />
+        </div>
+      )}
       <div className="book-form-field">
         <label htmlFor="book-tags">タグ</label>
         <input
@@ -179,7 +231,17 @@ function BookForm({ book = null, onSave, onCancel }) {
           id="book-summary"
           value={summary}
           onChange={(e) => setSummary(e.target.value)}
-          placeholder="本の概要やメモ"
+          placeholder="本の概要（内容紹介など）"
+          rows={4}
+        />
+      </div>
+      <div className="book-form-field">
+        <label htmlFor="book-memo">読書メモ・感想</label>
+        <textarea
+          id="book-memo"
+          value={memo}
+          onChange={(e) => setMemo(e.target.value)}
+          placeholder="自分のメモや感想を自由に"
           rows={4}
         />
       </div>

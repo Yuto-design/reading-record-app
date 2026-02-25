@@ -85,12 +85,24 @@
   color: #555;
 }
 
+.book-detail-view-publisher-isbn {
+  margin: 0 0 0.5rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
 .book-detail-view-meta {
   margin: 0 0 0.5rem;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.5rem 1rem;
+}
+
+.book-detail-view-page-count,
+.book-detail-view-finished-at {
+  font-size: 0.9rem;
+  color: #555;
 }
 
 .book-detail-view-status {
@@ -158,6 +170,27 @@
 }
 
 .book-detail-view-summary {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #333;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.book-detail-view-memo-wrap {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #eee;
+}
+
+.book-detail-view-memo-label {
+  margin: 0 0 0.35rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #555;
+}
+
+.book-detail-view-memo {
   margin: 0;
   font-size: 0.95rem;
   color: #333;
