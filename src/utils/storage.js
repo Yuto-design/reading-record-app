@@ -49,7 +49,16 @@ function getJson(key, defaultValue = []) {
 }
 
 function setJson(key, value) {
-  localStorage.setItem(key, JSON.stringify(value));
+  try {
+    localStorage.setItem(key, JSON.stringify(value));
+  } catch (e) {
+    if (e.name === 'QuotaExceededError' || e.code === 22) {
+      throw new Error(
+        '保存容量を超えました。読書メモの添付画像を減らすか、小さな画像をご利用ください。'
+      );
+    }
+    throw e;
+  }
 }
 
 export function getReadingSessions() {

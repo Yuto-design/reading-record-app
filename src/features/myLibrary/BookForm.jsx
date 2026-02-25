@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { compressImageDataUrl } from '../../utils/imageCompress';
 import './styles/BookForm.css';
 
 const STATUS_OPTIONS = [
@@ -60,28 +61,30 @@ function BookForm({ book = null, onSave, onCancel }) {
     reader.readAsDataURL(file);
   };
 
-  const handleMemoAttachmentAdd = (e) => {
+  const handleMemoAttachmentAdd = async (e) => {
     const files = Array.from(e.target.files || []);
     e.target.value = '';
     if (!files.length) return;
-    const process = (index, acc) => {
-      if (index >= files.length || acc.length >= 10) {
-        if (acc.length > 0) setMemoAttachments((prev) => [...prev, ...acc].slice(0, 10));
-        return;
+    const acc = [];
+    for (let i = 0; i < files.length && acc.length < 10; i++) {
+      const file = files[i];
+      if (!file.type.startsWith('image/')) continue;
+      try {
+        const dataUrl = await new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = () => reject(new Error('読み込み失敗'));
+          reader.readAsDataURL(file);
+        });
+        const compressed = await compressImageDataUrl(dataUrl);
+        acc.push(compressed);
+      } catch {
+        // 圧縮失敗時はスキップ
       }
-      const file = files[index];
-      if (!file.type.startsWith('image/')) {
-        process(index + 1, acc);
-        return;
-      }
-      const reader = new FileReader();
-      reader.onload = () => {
-        const next = [...acc, reader.result].slice(0, 10);
-        process(index + 1, next);
-      };
-      reader.readAsDataURL(file);
-    };
-    process(0, []);
+    }
+    if (acc.length > 0) {
+      setMemoAttachments((prev) => [...prev, ...acc].slice(0, 10));
+    }
   };
 
   const handleMemoAttachmentRemove = (index) => {

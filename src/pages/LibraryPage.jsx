@@ -57,15 +57,23 @@ function LibraryPage() {
   }, []);
 
   const handleSaveNewBook = (bookData) => {
-    saveBook(bookData);
-    refreshBooks();
-    setShowAddForm(false);
-    setSelectedBookId(null);
+    try {
+      saveBook(bookData);
+      refreshBooks();
+      setShowAddForm(false);
+      setSelectedBookId(null);
+    } catch (err) {
+      alert(err.message || '保存に失敗しました。');
+    }
   };
 
   const handleUpdateBook = (bookData) => {
-    saveBook(bookData);
-    refreshBooks();
+    try {
+      saveBook(bookData);
+      refreshBooks();
+    } catch (err) {
+      alert(err.message || '保存に失敗しました。');
+    }
   };
 
   const handleDeleteBook = (id) => {

@@ -279,6 +279,41 @@
   background: rgba(255, 255, 255, 0.35);
 }
 
+.book-detail-lightbox-prev,
+.book-detail-lightbox-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1001;
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.book-detail-lightbox-prev:hover,
+.book-detail-lightbox-next:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.book-detail-lightbox-prev {
+  left: 1rem;
+}
+
+.book-detail-lightbox-next {
+  right: 1rem;
+}
+
 .book-detail-lightbox-content {
   position: relative;
   z-index: 1001;
@@ -297,6 +332,20 @@
   object-fit: contain;
   border-radius: 8px;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+.book-detail-lightbox-counter {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1001;
+  margin: 0;
+  padding: 0.35rem 0.75rem;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 0.9rem;
+  border-radius: 999px;
 }
 
 .book-detail-footer {

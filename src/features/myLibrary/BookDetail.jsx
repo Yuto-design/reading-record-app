@@ -18,16 +18,21 @@ function formatDateYMD(isoOrYMD) {
 
 function BookDetail({ book, onSave, onClose, onDelete, initialEditMode = false }) {
   const [isEditing, setIsEditing] = useState(initialEditMode);
-  const [enlargedAttachment, setEnlargedAttachment] = useState(null);
+  const [enlargedIndex, setEnlargedIndex] = useState(null);
+
+  const memoAttachments = Array.isArray(book.memoAttachments) ? book.memoAttachments : [];
+  const enlargedAttachment = enlargedIndex != null ? memoAttachments[enlargedIndex] : null;
 
   useEffect(() => {
-    if (!enlargedAttachment) return;
+    if (enlargedIndex == null) return;
     const onKeyDown = (e) => {
-      if (e.key === 'Escape') setEnlargedAttachment(null);
+      if (e.key === 'Escape') setEnlargedIndex(null);
+      if (e.key === 'ArrowLeft') setEnlargedIndex((i) => (i != null && i > 0 ? i - 1 : i));
+      if (e.key === 'ArrowRight') setEnlargedIndex((i) => (i != null && i < memoAttachments.length - 1 ? i + 1 : i));
     };
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
-  }, [enlargedAttachment]);
+  }, [enlargedIndex, memoAttachments.length]);
 
   if (!book) return null;
 
@@ -158,7 +163,7 @@ function BookDetail({ book, onSave, onClose, onDelete, initialEditMode = false }
                     <button
                       type="button"
                       className="book-detail-view-memo-attachment-btn"
-                      onClick={() => setEnlargedAttachment(dataUrl)}
+                      onClick={() => setEnlargedIndex(index)}
                       aria-label="画像を大きく表示"
                     >
                       <img src={dataUrl} alt="" className="book-detail-view-memo-attachment-img" />
@@ -177,23 +182,46 @@ function BookDetail({ book, onSave, onClose, onDelete, initialEditMode = false }
           role="dialog"
           aria-modal="true"
           aria-label="画像を拡大表示"
-          onClick={() => setEnlargedAttachment(null)}
+          onClick={() => setEnlargedIndex(null)}
         >
           <div className="book-detail-lightbox-backdrop" />
           <button
             type="button"
             className="book-detail-lightbox-close"
-            onClick={() => setEnlargedAttachment(null)}
+            onClick={() => setEnlargedIndex(null)}
             aria-label="閉じる"
           >
             ×
           </button>
+          {enlargedIndex > 0 && (
+            <button
+              type="button"
+              className="book-detail-lightbox-prev"
+              onClick={(e) => { e.stopPropagation(); setEnlargedIndex((i) => i - 1); }}
+              aria-label="前の画像"
+            >
+              ‹
+            </button>
+          )}
+          {enlargedIndex < memoAttachments.length - 1 && (
+            <button
+              type="button"
+              className="book-detail-lightbox-next"
+              onClick={(e) => { e.stopPropagation(); setEnlargedIndex((i) => i + 1); }}
+              aria-label="次の画像"
+            >
+              ›
+            </button>
+          )}
           <div
             className="book-detail-lightbox-content"
             onClick={(e) => e.stopPropagation()}
           >
             <img src={enlargedAttachment} alt="" className="book-detail-lightbox-img" />
           </div>
+          <p className="book-detail-lightbox-counter" aria-live="polite">
+            {enlargedIndex + 1} / {memoAttachments.length}
+          </p>
         </div>
       )}
     </div>
