@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import BookForm from './BookForm';
 import { getBookStatus } from './BookStatusSidebar';
 import './styles/BookDetail.css';
@@ -18,6 +18,16 @@ function formatDateYMD(isoOrYMD) {
 
 function BookDetail({ book, onSave, onClose, onDelete, initialEditMode = false }) {
   const [isEditing, setIsEditing] = useState(initialEditMode);
+  const [enlargedAttachment, setEnlargedAttachment] = useState(null);
+
+  useEffect(() => {
+    if (!enlargedAttachment) return;
+    const onKeyDown = (e) => {
+      if (e.key === 'Escape') setEnlargedAttachment(null);
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [enlargedAttachment]);
 
   if (!book) return null;
 
@@ -145,7 +155,14 @@ function BookDetail({ book, onSave, onClose, onDelete, initialEditMode = false }
               <ul className="book-detail-view-memo-attachments">
                 {book.memoAttachments.map((dataUrl, index) => (
                   <li key={index} className="book-detail-view-memo-attachment-item">
-                    <img src={dataUrl} alt="" className="book-detail-view-memo-attachment-img" />
+                    <button
+                      type="button"
+                      className="book-detail-view-memo-attachment-btn"
+                      onClick={() => setEnlargedAttachment(dataUrl)}
+                      aria-label="画像を大きく表示"
+                    >
+                      <img src={dataUrl} alt="" className="book-detail-view-memo-attachment-img" />
+                    </button>
                   </li>
                 ))}
               </ul>
@@ -153,6 +170,32 @@ function BookDetail({ book, onSave, onClose, onDelete, initialEditMode = false }
           </div>
         )}
       </div>
+
+      {enlargedAttachment && (
+        <div
+          className="book-detail-lightbox"
+          role="dialog"
+          aria-modal="true"
+          aria-label="画像を拡大表示"
+          onClick={() => setEnlargedAttachment(null)}
+        >
+          <div className="book-detail-lightbox-backdrop" />
+          <button
+            type="button"
+            className="book-detail-lightbox-close"
+            onClick={() => setEnlargedAttachment(null)}
+            aria-label="閉じる"
+          >
+            ×
+          </button>
+          <div
+            className="book-detail-lightbox-content"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img src={enlargedAttachment} alt="" className="book-detail-lightbox-img" />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

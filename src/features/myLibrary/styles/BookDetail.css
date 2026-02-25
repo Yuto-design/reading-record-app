@@ -211,6 +211,21 @@
   margin: 0;
 }
 
+.book-detail-view-memo-attachment-btn {
+  display: block;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.book-detail-view-memo-attachment-btn:hover .book-detail-view-memo-attachment-img {
+  border-color: #1a1a2e;
+  opacity: 0.95;
+}
+
 .book-detail-view-memo-attachment-img {
   display: block;
   max-width: 120px;
@@ -218,6 +233,70 @@
   object-fit: cover;
   border-radius: 6px;
   border: 1px solid #eee;
+  transition: border-color 0.2s, opacity 0.2s;
+}
+
+/* 画像拡大表示（ライトボックス） */
+.book-detail-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.book-detail-lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+}
+
+.book-detail-lightbox-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1001;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.book-detail-lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.book-detail-lightbox-content {
+  position: relative;
+  z-index: 1001;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.book-detail-lightbox-img {
+  max-width: 100%;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
 }
 
 .book-detail-footer {
