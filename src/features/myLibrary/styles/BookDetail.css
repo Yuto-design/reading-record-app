@@ -198,6 +198,28 @@
   white-space: pre-wrap;
 }
 
+.book-detail-view-memo-attachments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+}
+
+.book-detail-view-memo-attachment-item {
+  margin: 0;
+}
+
+.book-detail-view-memo-attachment-img {
+  display: block;
+  max-width: 120px;
+  max-height: 160px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #eee;
+}
+
 .book-detail-footer {
   margin-top: 1rem;
   padding-top: 1rem;

@@ -137,10 +137,19 @@ function BookDetail({ book, onSave, onClose, onDelete, initialEditMode = false }
             <p className="book-detail-view-summary">{book.summary}</p>
           </div>
         )}
-        {book.memo && (
+        {(book.memo || (Array.isArray(book.memoAttachments) && book.memoAttachments.length > 0)) && (
           <div className="book-detail-view-memo-wrap">
             <h4 className="book-detail-view-memo-label">読書メモ・感想</h4>
-            <p className="book-detail-view-memo">{book.memo}</p>
+            {book.memo && <p className="book-detail-view-memo">{book.memo}</p>}
+            {Array.isArray(book.memoAttachments) && book.memoAttachments.length > 0 && (
+              <ul className="book-detail-view-memo-attachments">
+                {book.memoAttachments.map((dataUrl, index) => (
+                  <li key={index} className="book-detail-view-memo-attachment-item">
+                    <img src={dataUrl} alt="" className="book-detail-view-memo-attachment-img" />
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         )}
       </div>

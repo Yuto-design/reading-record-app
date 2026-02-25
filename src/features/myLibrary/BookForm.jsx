@@ -17,6 +17,7 @@ function BookForm({ book = null, onSave, onCancel }) {
   const [tagsText, setTagsText] = useState('');
   const [finishedAt, setFinishedAt] = useState('');
   const [memo, setMemo] = useState('');
+  const [memoAttachments, setMemoAttachments] = useState([]);
   const [pageCount, setPageCount] = useState('');
   const [publisher, setPublisher] = useState('');
 
@@ -32,6 +33,7 @@ function BookForm({ book = null, onSave, onCancel }) {
       setTagsText(Array.isArray(book.tags) ? book.tags.join(', ') : '');
       setFinishedAt(book.finishedAt ? String(book.finishedAt).slice(0, 10) : '');
       setMemo(book.memo || '');
+      setMemoAttachments(Array.isArray(book.memoAttachments) ? [...book.memoAttachments] : []);
       setPageCount(book.pageCount != null ? String(book.pageCount) : '');
       setPublisher(book.publisher || '');
     } else {
@@ -44,6 +46,7 @@ function BookForm({ book = null, onSave, onCancel }) {
       setTagsText('');
       setFinishedAt('');
       setMemo('');
+      setMemoAttachments([]);
       setPageCount('');
       setPublisher('');
     }
@@ -55,6 +58,34 @@ function BookForm({ book = null, onSave, onCancel }) {
     const reader = new FileReader();
     reader.onload = () => setImageUrl(reader.result);
     reader.readAsDataURL(file);
+  };
+
+  const handleMemoAttachmentAdd = (e) => {
+    const files = Array.from(e.target.files || []);
+    e.target.value = '';
+    if (!files.length) return;
+    const process = (index, acc) => {
+      if (index >= files.length || acc.length >= 10) {
+        if (acc.length > 0) setMemoAttachments((prev) => [...prev, ...acc].slice(0, 10));
+        return;
+      }
+      const file = files[index];
+      if (!file.type.startsWith('image/')) {
+        process(index + 1, acc);
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = () => {
+        const next = [...acc, reader.result].slice(0, 10);
+        process(index + 1, next);
+      };
+      reader.readAsDataURL(file);
+    };
+    process(0, []);
+  };
+
+  const handleMemoAttachmentRemove = (index) => {
+    setMemoAttachments((prev) => prev.filter((_, i) => i !== index));
   };
 
   const handleSubmit = (e) => {
@@ -72,6 +103,7 @@ function BookForm({ book = null, onSave, onCancel }) {
       ...(tags.length > 0 && { tags }),
       ...(status === 'read' && finishedAt.trim() && { finishedAt: finishedAt.trim().slice(0, 10) }),
       ...(memo.trim() && { memo: memo.trim() }),
+      ...(memoAttachments.length > 0 && { memoAttachments }),
       ...(Number.isInteger(pageNum) && pageNum > 0 && { pageCount: pageNum }),
       ...(publisher.trim() && { publisher: publisher.trim() }),
     });
@@ -244,6 +276,41 @@ function BookForm({ book = null, onSave, onCancel }) {
           placeholder="自分のメモや感想を自由に"
           rows={4}
         />
+        <div className="book-form-memo-attachments">
+          <label className="book-form-file-label">
+            <span className="book-form-file-btn">画像を添付</span>
+            <input
+              type="file"
+              accept="image/*"
+              multiple
+              onChange={handleMemoAttachmentAdd}
+              className="book-form-file-input"
+              aria-label="読書メモに画像を添付"
+            />
+          </label>
+          {memoAttachments.length > 0 && (
+            <p className="book-form-memo-attachments-note">
+              {memoAttachments.length}件の画像（最大10件）
+            </p>
+          )}
+          {memoAttachments.length > 0 && (
+            <ul className="book-form-memo-attachments-list">
+              {memoAttachments.map((dataUrl, index) => (
+                <li key={`${index}-${dataUrl.slice(0, 50)}`} className="book-form-memo-attachment-item">
+                  <img src={dataUrl} alt="" className="book-form-memo-attachment-thumb" />
+                  <button
+                    type="button"
+                    className="book-form-memo-attachment-remove"
+                    onClick={() => handleMemoAttachmentRemove(index)}
+                    aria-label="この画像を削除"
+                  >
+                    ×
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       </div>
       <div className="book-form-actions">
         <button type="submit" className="book-form-btn primary">

@@ -30,6 +30,7 @@ const BOOKS_KEY = 'reading_books';
  * @property {string} [createdAt] - ISO string
  * @property {string} [finishedAt] - 読了日 YYYY-MM-DD（読了時のみ）
  * @property {string} [memo] - 読書メモ・感想
+ * @property {string[]} [memoAttachments] - 読書メモに添付した画像の Data URL 配列
  * @property {number} [pageCount] - ページ数
  * @property {string} [publisher] - 出版社
  */
@@ -99,6 +100,10 @@ export function saveBook(book) {
   const finishedAtRaw = book.finishedAt != null ? String(book.finishedAt).trim() : '';
   const finishedAt = (status === 'read' && finishedAtRaw) ? finishedAtRaw.slice(0, 10) : undefined;
   const memo = (book.memo != null && String(book.memo).trim()) ? String(book.memo).trim() : undefined;
+  const memoAttachmentsRaw = Array.isArray(book.memoAttachments) ? book.memoAttachments : [];
+  const memoAttachments = memoAttachmentsRaw
+    .filter((url) => typeof url === 'string' && url.startsWith('data:image/'))
+    .slice(0, 10);
   const pageNum = Number(book.pageCount);
   const pageCount = (Number.isInteger(pageNum) && pageNum > 0) ? pageNum : undefined;
   const publisher = (book.publisher != null && String(book.publisher).trim()) ? String(book.publisher).trim() : undefined;
@@ -115,6 +120,7 @@ export function saveBook(book) {
     createdAt: book.createdAt || new Date().toISOString(),
     ...(finishedAt && { finishedAt }),
     ...(memo && { memo }),
+    ...(memoAttachments.length > 0 && { memoAttachments }),
     ...(pageCount != null && { pageCount }),
     ...(publisher && { publisher }),
   };
