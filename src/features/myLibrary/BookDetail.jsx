@@ -1,13 +1,8 @@
 import { useState, useEffect } from 'react';
 import BookForm from './BookForm';
 import { getBookStatus } from './BookStatusSidebar';
+import { STATUS_LABELS } from './constants';
 import './styles/BookDetail.css';
-
-const STATUS_LABELS = {
-  want: '読みたい',
-  reading: '読んでいる',
-  read: '読了',
-};
 
 function formatDateYMD(isoOrYMD) {
   const s = String(isoOrYMD).slice(0, 10);

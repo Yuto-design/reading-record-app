@@ -21,7 +21,7 @@ function LibraryPage() {
   const [selectedTags, setSelectedTags] = useState([]);
   const [authorFilter, setAuthorFilter] = useState('');
 
-  const { statusFilter, setStatusFilter, filteredBooks } = useBookStatusFilter(books);
+  const { statusFilter, setStatusFilter, filteredBooks, statusCounts } = useBookStatusFilter(books);
 
   const allAuthors = useMemo(() => {
     const set = new Set();
@@ -104,7 +104,7 @@ function LibraryPage() {
       <BookStatusSidebar
         statusFilter={statusFilter}
         onStatusChange={setStatusFilter}
-        books={books}
+        statusCounts={statusCounts}
         authorFilter={authorFilter}
         allAuthors={allAuthors}
         onAuthorChange={setAuthorFilter}

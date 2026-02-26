@@ -40,7 +40,7 @@ export function useBookStatusFilter(books) {
 function BookStatusSidebar({
   statusFilter,
   onStatusChange,
-  books,
+  statusCounts = { all: 0, want: 0, reading: 0, read: 0 },
   authorFilter = '',
   allAuthors = [],
   onAuthorChange,
@@ -48,14 +48,6 @@ function BookStatusSidebar({
   selectedTags = [],
   onToggleTag,
 }) {
-  const statusCounts = useMemo(() => {
-    const counts = { all: books.length, want: 0, reading: 0, read: 0 };
-    books.forEach((book) => {
-      counts[getBookStatus(book)]++;
-    });
-    return counts;
-  }, [books]);
-
   return (
     <aside className="library-page-sidebar" aria-label="本のフィルタ">
       <div className="library-page-sidebar-status-heading">

@@ -1,10 +1,6 @@
+import { getBookStatus } from './BookStatusSidebar';
+import { STATUS_LABELS } from './constants';
 import './styles/BookList.css';
-
-const STATUS_LABELS = {
-  want: '読みたい',
-  reading: '読んでいる',
-  read: '読了',
-};
 
 function BookList({ books, onSelect, onEdit, onDelete, emptyMessage }) {
   if (books.length === 0) {
@@ -18,7 +14,7 @@ function BookList({ books, onSelect, onEdit, onDelete, emptyMessage }) {
   return (
     <ul className="book-list">
       {books.map((book) => {
-        const status = book.status === 'reading' || book.status === 'read' ? book.status : 'want';
+        const status = getBookStatus(book);
         return (
           <li key={book.id} className="book-list-item">
             {book.imageUrl && (
