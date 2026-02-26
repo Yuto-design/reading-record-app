@@ -1,0 +1,30 @@
+.home {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.home-main {
+  width: 100%;
+}
+
+.home-top-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  align-items: start;
+}
+
+.home-top-row #home-today .home-today-highlight {
+  margin-bottom: 0;
+}
+
+.home-top-row #home-stats .home-stats {
+  margin-bottom: 0;
+}
+
+@media (max-width: 640px) {
+  .home-top-row {
+    grid-template-columns: 1fr;
+  }
+}

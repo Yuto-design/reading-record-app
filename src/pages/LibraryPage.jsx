@@ -1,4 +1,5 @@
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { getBooks, saveBook, deleteBook } from '../utils/storage';
 import BookForm from '../features/myLibrary/BookForm';
 import BookList from '../features/myLibrary/BookList';
@@ -14,12 +15,20 @@ import {
 import './LibraryPage.css';
 
 function LibraryPage() {
+  const [searchParams] = useSearchParams();
   const [books, setBooks] = useState(getBooks());
   const [selectedBookId, setSelectedBookId] = useState(null);
   const [openInEditMode, setOpenInEditMode] = useState(false);
   const [showAddForm, setShowAddForm] = useState(false);
   const [selectedTags, setSelectedTags] = useState([]);
   const [authorFilter, setAuthorFilter] = useState('');
+
+  const bookIdFromUrl = searchParams.get('book');
+  useEffect(() => {
+    if (bookIdFromUrl && getBooks().some((b) => b.id === bookIdFromUrl)) {
+      setSelectedBookId(bookIdFromUrl);
+    }
+  }, [bookIdFromUrl]);
 
   const { statusFilter, setStatusFilter, filteredBooks, statusCounts } = useBookStatusFilter(books);
 

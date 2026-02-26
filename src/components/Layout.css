@@ -62,6 +62,10 @@
   box-sizing: border-box;
 }
 
+.layout-main--home {
+  padding-left: 0.5rem;
+}
+
 .layout-main--library {
   max-width: 1100px;
 }

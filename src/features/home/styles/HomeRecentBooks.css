@@ -1,0 +1,130 @@
+.home-recent-books {
+  margin-bottom: 2rem;
+}
+
+.home-recent-books-title {
+  margin: 0 0 1rem;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.home-recent-books-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.home-recent-books-item {
+  margin: 0;
+  padding: 0;
+}
+
+.home-recent-books-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow 0.2s, background 0.2s;
+}
+
+.home-recent-books-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background: #fafafa;
+}
+
+.home-recent-books-thumb {
+  flex-shrink: 0;
+  width: 48px;
+  height: 66px;
+  background: #f0f0f0;
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-recent-books-thumb-img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.home-recent-books-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.home-recent-books-book-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.home-recent-books-author {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #555;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.home-recent-books-status {
+  display: inline-flex;
+  align-self: flex-start;
+  font-size: 0.7rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  font-weight: 600;
+  margin-top: 0.15rem;
+}
+
+.home-recent-books-status--want {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+.home-recent-books-status--reading {
+  background: #fff3e0;
+  color: #e65100;
+}
+
+.home-recent-books-status--read {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.home-recent-books-more {
+  display: inline-block;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #4a6fa5;
+  text-decoration: none;
+}
+
+.home-recent-books-more:hover {
+  text-decoration: underline;
+}

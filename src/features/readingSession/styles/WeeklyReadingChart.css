@@ -6,13 +6,46 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
+.weekly-reading-chart--compact {
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.weekly-reading-chart-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
 .weekly-reading-chart-title {
   margin: 0 0 1rem;
   font-size: 1.1rem;
   color: #333;
 }
 
+.weekly-reading-chart--compact .weekly-reading-chart-title {
+  margin: 0 0 0.5rem;
+  font-size: 0.95rem;
+}
+
+.weekly-reading-chart-link {
+  font-size: 0.8rem;
+  color: #4a6fa5;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.weekly-reading-chart-link:hover {
+  text-decoration: underline;
+}
+
 .weekly-reading-chart-container {
   width: 100%;
   min-height: 260px;
+}
+
+.weekly-reading-chart--compact .weekly-reading-chart-container {
+  min-height: 120px;
 }

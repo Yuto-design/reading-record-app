@@ -34,7 +34,7 @@ function Layout() {
           </Link>
         </nav>
       </header>
-      <main className={`layout-main ${isLibrary ? 'layout-main--library' : ''}`}>
+      <main className={`layout-main ${isHome ? 'layout-main--home' : ''} ${isLibrary ? 'layout-main--library' : ''}`}>
         <Outlet />
       </main>
     </div>
