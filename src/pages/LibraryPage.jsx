@@ -19,8 +19,18 @@ function LibraryPage() {
   const [openInEditMode, setOpenInEditMode] = useState(false);
   const [showAddForm, setShowAddForm] = useState(false);
   const [selectedTags, setSelectedTags] = useState([]);
+  const [authorFilter, setAuthorFilter] = useState('');
 
   const { statusFilter, setStatusFilter, filteredBooks } = useBookStatusFilter(books);
+
+  const allAuthors = useMemo(() => {
+    const set = new Set();
+    books.forEach((book) => {
+      const a = (book.author || '').trim();
+      if (a) set.add(a);
+    });
+    return [...set].sort((a, b) => a.localeCompare(b, 'ja'));
+  }, [books]);
 
   const allTags = useMemo(() => {
     const set = new Set();
@@ -30,12 +40,17 @@ function LibraryPage() {
     return [...set].sort((a, b) => a.localeCompare(b, 'ja'));
   }, [books]);
 
+  const filteredByAuthor = useMemo(() => {
+    if (!authorFilter) return filteredBooks;
+    return filteredBooks.filter((book) => (book.author || '').trim() === authorFilter);
+  }, [filteredBooks, authorFilter]);
+
   const filteredByTags = useMemo(() => {
-    if (selectedTags.length === 0) return filteredBooks;
-    return filteredBooks.filter((book) =>
+    if (selectedTags.length === 0) return filteredByAuthor;
+    return filteredByAuthor.filter((book) =>
       (book.tags || []).some((tag) => selectedTags.includes(tag))
     );
-  }, [filteredBooks, selectedTags]);
+  }, [filteredByAuthor, selectedTags]);
 
   const {
     searchQuery,
@@ -90,6 +105,9 @@ function LibraryPage() {
         statusFilter={statusFilter}
         onStatusChange={setStatusFilter}
         books={books}
+        authorFilter={authorFilter}
+        allAuthors={allAuthors}
+        onAuthorChange={setAuthorFilter}
         allTags={allTags}
         selectedTags={selectedTags}
         onToggleTag={handleToggleTag}
@@ -153,11 +171,13 @@ function LibraryPage() {
             emptyMessage={
               selectedTags.length > 0 && filteredByTags.length === 0
                 ? '選択したタグに該当する本はありません。'
-                : searchFilteredBooks.length === 0 && filteredByTags.length > 0
-                  ? '検索条件に該当する本はありません。'
-                  : statusFilter !== STATUS_FILTER_ALL
-                    ? 'このステータスに該当する本はありません。'
-                    : undefined
+                : authorFilter && filteredByAuthor.length === 0
+                  ? '選択した著者に該当する本はありません。'
+                  : searchFilteredBooks.length === 0 && filteredByTags.length > 0
+                    ? '検索条件に該当する本はありません。'
+                    : statusFilter !== STATUS_FILTER_ALL
+                      ? 'このステータスに該当する本はありません。'
+                      : undefined
             }
           />
         )}

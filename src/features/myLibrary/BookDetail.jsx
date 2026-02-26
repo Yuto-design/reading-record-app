@@ -112,14 +112,16 @@ function BookDetail({ book, onSave, onClose, onDelete, initialEditMode = false }
           <span className={`book-detail-view-status book-detail-view-status--${status}`}>
             {STATUS_LABELS[status]}
           </span>
-          {Array.isArray(book.tags) && book.tags.length > 0 && (
+        </div>
+        {Array.isArray(book.tags) && book.tags.length > 0 && (
+          <div className="book-detail-view-tags-wrap">
             <div className="book-detail-view-tags">
               {book.tags.map((tag) => (
                 <span key={tag} className="book-detail-view-tag">{tag}</span>
               ))}
             </div>
-          )}
-        </div>
+          </div>
+        )}
         {book.author && (
           <p className="book-detail-view-author">{book.author}</p>
         )}

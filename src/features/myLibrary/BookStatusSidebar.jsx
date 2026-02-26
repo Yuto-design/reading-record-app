@@ -37,7 +37,17 @@ export function useBookStatusFilter(books) {
   return { statusFilter, setStatusFilter, filteredBooks, statusCounts };
 }
 
-function BookStatusSidebar({ statusFilter, onStatusChange, books, allTags = [], selectedTags = [], onToggleTag }) {
+function BookStatusSidebar({
+  statusFilter,
+  onStatusChange,
+  books,
+  authorFilter = '',
+  allAuthors = [],
+  onAuthorChange,
+  allTags = [],
+  selectedTags = [],
+  onToggleTag,
+}) {
   const statusCounts = useMemo(() => {
     const counts = { all: books.length, want: 0, reading: 0, read: 0 };
     books.forEach((book) => {
@@ -48,6 +58,12 @@ function BookStatusSidebar({ statusFilter, onStatusChange, books, allTags = [], 
 
   return (
     <aside className="library-page-sidebar" aria-label="本のフィルタ">
+      <div className="library-page-sidebar-status-heading">
+        <span className="library-page-sidebar-section-icon" aria-hidden>
+          <i className="fa-solid fa-layer-group" />
+        </span>
+        <span>ステータス</span>
+      </div>
       <nav
         className="library-page-filters"
         role="tablist"
@@ -72,9 +88,39 @@ function BookStatusSidebar({ statusFilter, onStatusChange, books, allTags = [], 
         ))}
       </nav>
 
+      {allAuthors.length > 0 && (
+        <div className="library-page-sidebar-author" role="group" aria-label="著者で絞り込み">
+          <label htmlFor="library-author-filter" className="library-page-sidebar-author-label">
+            <span className="library-page-sidebar-section-icon" aria-hidden>
+              <i className="fa-solid fa-user-pen" />
+            </span>
+            著者
+          </label>
+          <select
+            id="library-author-filter"
+            value={authorFilter}
+            onChange={(e) => onAuthorChange?.(e.target.value)}
+            className="library-page-sidebar-author-select"
+            aria-label="著者で絞り込み"
+          >
+            <option value="">すべて</option>
+            {allAuthors.map((author) => (
+              <option key={author} value={author}>
+                {author}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
+
       {allTags.length > 0 && (
         <div className="library-page-sidebar-tags" role="group" aria-label="タグで絞り込み">
-          <span className="library-page-sidebar-tags-label">タグ</span>
+          <span className="library-page-sidebar-tags-label">
+            <span className="library-page-sidebar-section-icon" aria-hidden>
+              <i className="fa-solid fa-tags" />
+            </span>
+            タグ
+          </span>
           <div className="library-page-sidebar-tags-pills">
             {allTags.map((tag) => {
               const isSelected = selectedTags.includes(tag);

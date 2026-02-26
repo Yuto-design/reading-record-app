@@ -13,6 +13,16 @@
   top: 1.5rem;
 }
 
+.library-page-sidebar-status-heading {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+
 .library-page-filters {
   display: flex;
   flex-direction: column;
@@ -99,6 +109,50 @@
 
 .library-page-filter-btn--read.active {
   background: linear-gradient(135deg, #5a9e6b 0%, #3d7d4a 100%);
+}
+
+/* サイドバー内：著者で絞り込み */
+.library-page-sidebar-author {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e8e8ec;
+}
+
+.library-page-sidebar-author-label,
+.library-page-sidebar-tags-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+
+.library-page-sidebar-section-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.1rem;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.library-page-sidebar-author-select {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 0.85rem;
+  color: #333;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.library-page-sidebar-author-select:focus {
+  outline: none;
+  border-color: #1a1a2e;
 }
 
 /* サイドバー内：タグで絞り込み */
