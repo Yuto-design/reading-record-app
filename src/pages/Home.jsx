@@ -1,4 +1,4 @@
-import { HomeHero, HomeTodayHighlight, HomeStats, HomeRecentBooks } from '../features/home';
+import { HomeHero, HomeOverview, HomeRecentBooks } from '../features/home';
 import WeeklyReadingChart from '../features/readingSession/WeeklyReadingChart';
 import './Home.css';
 
@@ -7,13 +7,8 @@ function Home() {
     <div className="home">
       <main className="home-main">
         <HomeHero />
-        <div className="home-top-row">
-          <div id="home-today" aria-label="今日の読書">
-            <HomeTodayHighlight />
-          </div>
-        </div>
-        <div id="home-stats" aria-label="統計">
-          <HomeStats />
+        <div id="home-today" aria-label="今日の読書と統計">
+          <HomeOverview />
         </div>
         <div id="home-weekly-chart" aria-label="今週の読書">
           <WeeklyReadingChart compact />
