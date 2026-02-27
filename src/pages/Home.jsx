@@ -12,9 +12,9 @@ function Home() {
           <div id="home-today" aria-label="今日の読書">
             <HomeTodayHighlight />
           </div>
-          <div id="home-stats" aria-label="統計">
-            <HomeStats />
-          </div>
+        </div>
+        <div id="home-stats" aria-label="統計">
+          <HomeStats />
         </div>
         <div id="home-weekly-chart" aria-label="今週の読書">
           <WeeklyReadingChart compact />
