@@ -83,7 +83,6 @@ function HomeOverview() {
   return (
     <section className="home-today-overview">
       <div className="home-today-highlight home-today-overview-main">
-        <h1 className="home-today-highlight-title">読書の統計</h1>
         <div className="home-today-highlight-inner">
           <div className="home-today-circle-block">
             <div
@@ -142,33 +141,31 @@ function HomeOverview() {
               目標 {formatMinutes(MONTHLY_GOAL_MINUTES)}
             </span>
           </div>
-        </div>
-      </div>
-      <div className="home-today-overview-stats">
-        <section className="home-stats">
-          <div className="home-stat-card">
+          <div className="home-today-circle-block">
             <div
-              className="home-stat-circle"
+              className="home-today-clock"
               style={{ '--progress': `${totalProgressDeg}deg` }}
             >
               <span className="home-stat-circle-text">
                 {Math.round(totalProgress * 100)}%
               </span>
             </div>
-            <span className="home-stat-value">総 {formatMinutes(stats.totalMinutes)}</span>
-            <span className="home-stat-label">読書時間</span>
+            <span className="home-today-label">
+              総 {formatMinutes(stats.totalMinutes)}
+            </span>
+            <span className="home-today-goal">読書時間</span>
           </div>
-          <div className="home-stat-card">
+          <div className="home-today-circle-block">
             <div
-              className="home-stat-circle"
+              className="home-today-clock"
               style={{ '--progress': `${bookProgressDeg}deg` }}
             >
               <span className="home-stat-circle-text">{stats.bookCount}冊</span>
             </div>
-            <span className="home-stat-value">登録書籍</span>
-            <span className="home-stat-label">目標 {BOOK_GOAL_COUNT}冊</span>
+            <span className="home-today-label">登録書籍</span>
+            <span className="home-today-goal">目標 {BOOK_GOAL_COUNT}冊</span>
           </div>
-        </section>
+        </div>
       </div>
     </section>
   );

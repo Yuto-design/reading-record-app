@@ -12,7 +12,7 @@ import {
   useLibrarySearchFilter,
   LibrarySearchToolbar,
 } from '../features/home/LibrarySearchFilter';
-import './LibraryPage.css';
+import './styles/LibraryPage.css';
 
 function LibraryPage() {
   const [searchParams] = useSearchParams();

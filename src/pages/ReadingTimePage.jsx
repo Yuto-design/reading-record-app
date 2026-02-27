@@ -3,7 +3,7 @@ import Timer from '../features/readingSession/Timer';
 import PomodoroTimer from '../features/readingSession/PomodoroTimer';
 import ReadingCalendar from '../features/readingSession/ReadingCalendar';
 import WeeklyReadingChart from '../features/readingSession/WeeklyReadingChart';
-import './ReadingTimePage.css';
+import './styles/ReadingTimePage.css';
 
 function ReadingTimePage() {
   const [refreshKey, setRefreshKey] = useState(0);
