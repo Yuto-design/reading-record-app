@@ -65,6 +65,7 @@ function HomeTodayHighlight() {
 
   return (
     <section className="home-today-highlight">
+      <h1 className="home-today-highlight-title">読書の統計</h1>
       <div className="home-today-highlight-inner">
         <div className="home-today-circle-block">
           <div

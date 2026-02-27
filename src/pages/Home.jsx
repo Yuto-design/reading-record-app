@@ -1,4 +1,4 @@
-import { HomeHero, HomeTodayHighlight, HomeStats, HomeRecentBooks, HomeSidebar } from '../features/home';
+import { HomeHero, HomeTodayHighlight, HomeStats, HomeRecentBooks } from '../features/home';
 import WeeklyReadingChart from '../features/readingSession/WeeklyReadingChart';
 import './Home.css';
 
@@ -6,7 +6,6 @@ function Home() {
   return (
     <div className="home">
       <main className="home-main">
-        <HomeSidebar />
         <HomeHero />
         <div className="home-top-row">
           <div id="home-today" aria-label="今日の読書">

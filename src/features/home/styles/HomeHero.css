@@ -1,52 +1,264 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap');
+
 .home-hero {
-  text-align: center;
-  padding: 2rem 0 1.5rem;
+  position: relative;
+  margin: 0 -2.5rem 2.5rem;
+  padding: 2.25rem 2rem 1.75rem;
+  border-radius: 0;
+  background: radial-gradient(circle at 0% 0%, #fef3e7 0, #f5f4ff 40%, #e8f3ff 100%);
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.15);
 }
 
-.home-title {
-  margin: 0 0 0.5rem;
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: #1a1a2e;
+@media (max-width: 768px) {
+  .home-hero {
+    margin: 0 -1rem 2rem;
+    padding: 2rem 1.25rem 1.5rem;
+  }
 }
 
-.home-subtitle {
-  margin: 0 0 1.25rem;
-  font-size: 1rem;
-  color: #555;
+.home-hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.4fr);
+  gap: 1.75rem;
+  align-items: center;
 }
 
-.home-hero-nav {
+@media (max-width: 720px) {
+  .home-hero-inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.home-hero-copy {
+  position: relative;
+  z-index: 1;
+}
+
+.home-hero-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.65rem;
+  margin-bottom: 0.7rem;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.06);
+  color: #475569;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.home-hero-label::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #22c55e;
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.3);
+}
+
+.home-hero-title {
+  margin: 0 0 0.8rem;
+  font-family: 'Playfair Display', 'Times New Roman', Georgia, serif;
+  font-size: 2.1rem;
+  line-height: 1.15;
+  color: #020617;
+}
+
+.home-hero-title span {
+  display: inline-block;
+  margin: 0 0.1em;
+  padding: 0 0.2em;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .home-hero-title {
+    font-size: 1.7rem;
+  }
+}
+
+.home-hero-text {
+  margin: 0 0 1.3rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #334155;
+}
+
+.home-hero-actions {
   display: flex;
-  justify-content: center;
-  gap: 0.75rem;
   flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-bottom: 0.9rem;
 }
 
-.home-hero-nav-link {
+.home-hero-btn {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.6rem 1.1rem;
-  font-size: 0.95rem;
+  padding: 0.7rem 1.2rem;
+  font-size: 0.9rem;
   font-weight: 600;
-  color: #1a1a2e;
-  background: #fff;
-  border: 1px solid rgba(26, 26, 46, 0.15);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
   border-radius: 999px;
   text-decoration: none;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  border: 1px solid transparent;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease,
+    border-color 0.18s ease, color 0.18s ease;
 }
 
-.home-hero-nav-link:hover {
-  border-color: rgba(26, 26, 46, 0.25);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  background: #fafafa;
-}
-
-.home-hero-nav-link i {
+.home-hero-btn i {
   font-size: 1rem;
-  opacity: 0.85;
 }
 
+.home-hero-btn--primary {
+  background: linear-gradient(135deg, #2563eb, #4f46e5);
+  color: #f9fafb;
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.35);
+}
+
+.home-hero-btn--primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 30px rgba(37, 99, 235, 0.45);
+}
+
+.home-hero-btn--ghost {
+  background: rgba(255, 255, 255, 0.9);
+  color: #0f172a;
+  border-color: rgba(15, 23, 42, 0.14);
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+}
+
+.home-hero-btn--ghost:hover {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.22);
+  transform: translateY(-1px);
+}
+
+.home-hero-meta {
+  margin: 0;
+  font-size: 0.78rem;
+  color: #64748b;
+}
+
+.home-hero-features {
+  margin-top: 1.8rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.35);
+}
+
+.home-hero-features-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.home-hero-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+}
+
+.home-hero-feature-icon {
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #f9fafb;
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+}
+
+.home-hero-feature-icon i {
+  font-size: 1rem;
+}
+
+.home-hero-feature-icon--timer {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+}
+
+.home-hero-feature-icon--shelf {
+  background: linear-gradient(135deg, #f97316, #ea580c);
+}
+
+.home-hero-feature-icon--memo {
+  background: linear-gradient(135deg, #ec4899, #db2777);
+}
+
+.home-hero-feature-icon--graph {
+  background: linear-gradient(135deg, #0ea5e9, #2563eb);
+}
+
+.home-hero-feature-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.home-hero-feature-title {
+  margin: 0 0 0.1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.home-hero-feature-text {
+  margin: 0;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: #64748b;
+}
+
+.home-hero-visual {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.6rem;
+}
+
+@media (max-width: 720px) {
+  .home-hero-visual {
+    align-items: center;
+  }
+}
+
+.home-hero-photo-frame {
+  position: relative;
+  width: 320px;
+  height: 210px;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.home-hero-photo {
+  width: 100%;
+  height: 100%;
+  border-radius: 18px;
+  background-image: url('https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=1200&q=80');
+  background-size: cover;
+  background-position: center;
+  transform-origin: center;
+  transform: scale(1.03);
+}
+
+.home-hero-visual-caption {
+  margin: 0;
+  font-size: 0.78rem;
+  color: #475569;
+}
+
+@media (max-width: 480px) {
+  .home-hero-photo-frame {
+    width: 220px;
+    height: 180px;
+  }
+}

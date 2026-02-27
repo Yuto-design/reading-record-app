@@ -4,6 +4,12 @@
   color: #1a1a2e;
 }
 
+.home-today-highlight-title {
+  margin: 0 0 1rem;
+  font-size: 1.1rem;
+  color: #333;
+}
+
 .home-today-highlight-inner {
   display: flex;
   align-items: flex-start;
