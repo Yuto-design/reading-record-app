@@ -1,0 +1,213 @@
+.library-page-sidebar {
+  flex-shrink: 0;
+  width: 180px;
+  padding: 1rem;
+  position: sticky;
+  top: 1.5rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.library-page-sidebar-status-heading {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-muted, #555);
+  margin-bottom: 0.5rem;
+}
+
+.library-page-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.5rem 0;
+}
+
+.library-page-filter-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  border: none;
+  border-radius: 10px;
+  background: #f5f5f8;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #555;
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.2s, background 0.25s ease, box-shadow 0.2s ease;
+}
+
+.library-page-filter-btn:hover {
+  color: var(--color-dark);
+  background: #ebebf0;
+}
+
+.library-page-filter-btn:focus-visible {
+  outline: 2px solid var(--color-dark);
+  outline-offset: 2px;
+}
+
+.library-page-filter-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  font-size: 0.85rem;
+  opacity: 0.85;
+  flex-shrink: 0;
+}
+
+.library-page-filter-label {
+  flex: 1;
+  min-width: 0;
+  white-space: normal;
+  word-break: keep-all;
+}
+
+.library-page-filter-count {
+  min-width: 1.5rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: rgba(0, 0, 0, 0.08);
+  color: inherit;
+  transition: background 0.2s, color 0.2s;
+  flex-shrink: 0;
+}
+
+.library-page-filter-btn.active .library-page-filter-count {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.library-page-filter-btn.active {
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.library-page-filter-btn--all.active {
+  background: linear-gradient(135deg, #4a4a6a 0%, #2d2d44 100%);
+}
+
+.library-page-filter-btn--want.active {
+  background: linear-gradient(135deg, #5c9ead 0%, #3d7a8a 100%);
+}
+
+.library-page-filter-btn--reading.active {
+  background: linear-gradient(135deg, #d4a853 0%, #b8860b 100%);
+}
+
+.library-page-filter-btn--read.active {
+  background: linear-gradient(135deg, #5a9e6b 0%, #3d7d4a 100%);
+}
+
+.library-page-sidebar-author {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e8e8ec;
+}
+
+.library-page-sidebar-author-label,
+.library-page-sidebar-tags-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-muted, #555);
+  margin-bottom: 0.5rem;
+}
+
+.library-page-sidebar-section-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.1rem;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.library-page-sidebar-author-select {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: var(--color-surface, #fff);
+  font-size: 0.85rem;
+  color: var(--color-text, #333);
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.library-page-sidebar-author-select:focus {
+  outline: none;
+  border-color: var(--color-dark);
+}
+
+.library-page-sidebar-tags {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e8e8ec;
+}
+
+.library-page-sidebar-tags-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-muted, #555);
+  margin-bottom: 0.5rem;
+}
+
+.library-page-sidebar-tags-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.library-page-sidebar-tag-pill {
+  padding: 0.3rem 0.6rem;
+  border: 1px solid #ddd;
+  border-radius: 999px;
+  background: var(--color-surface, #fff);
+  font-size: 0.8rem;
+  color: #555;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.library-page-sidebar-tag-pill:hover {
+  background: #f5f5f8;
+  border-color: #ccc;
+}
+
+.library-page-sidebar-tag-pill.selected {
+  background: var(--color-dark);
+  border-color: var(--color-dark);
+  color: #fff;
+}
+
+@media (max-width: 640px) {
+  .library-page-sidebar {
+    position: static;
+    width: 100%;
+  }
+
+  .library-page-filters {
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0;
+  }
+
+  .library-page-filter-btn {
+    flex: 1;
+    min-width: calc(50% - 0.2rem);
+  }
+}

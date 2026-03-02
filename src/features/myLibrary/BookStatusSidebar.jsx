@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import './styles/BookStatusSidebar.css';
 
 export function getBookStatus(book) {
   return book.status === 'reading' || book.status === 'read' ? book.status : 'want';
