@@ -1,6 +1,6 @@
 import { HomeHero, HomeOverview, HomeRecentBooks } from '../features/home';
 import WeeklyReadingChart from '../features/readingSession/WeeklyReadingChart';
-import './Home.css';
+import './styles/Home.css';
 
 function Home() {
   return (
