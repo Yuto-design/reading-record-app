@@ -14,8 +14,12 @@ import { ja } from 'date-fns/locale';
 import { getReadingSessions } from '../../utils/storage';
 import './styles/WeeklyReadingChart.css';
 
-function WeeklyReadingChart({ compact = false }) {
+function WeeklyReadingChart({ compact = false, theme = 'light', fullHeight = false }) {
   const sessions = getReadingSessions();
+  const isDark = theme === 'dark';
+  const gridStroke = isDark ? 'rgba(255,255,255,0.08)' : '#eee';
+  const axisStroke = isDark ? 'rgba(255,255,255,0.4)' : '#666';
+  const lineStroke = isDark ? '#93c5fd' : '#1a1a2e';
 
   const chartData = useMemo(() => {
     const last7 = [];
@@ -37,16 +41,16 @@ function WeeklyReadingChart({ compact = false }) {
     return last7;
   }, [sessions]);
 
-  const chartHeight = compact ? 120 : 260;
+  const chartHeight = fullHeight ? '100%' : (compact ? 120 : 260);
   const margin = compact ? { top: 4, right: 4, left: 0, bottom: 0 } : { top: 8, right: 8, left: 0, bottom: 8 };
 
   return (
-    <section className={`weekly-reading-chart card ${compact ? 'weekly-reading-chart--compact' : ''}`}>
+    <section className={`weekly-reading-chart card ${compact ? 'weekly-reading-chart--compact' : ''} ${fullHeight ? 'weekly-reading-chart--full-height' : ''} ${theme === 'dark' ? 'weekly-reading-chart--dark' : ''}`}>
       <div className="weekly-reading-chart-header">
         <h2 className="weekly-reading-chart-title">
           {compact ? '今週の読書' : '直近1週間の読書時間'}
         </h2>
-        {compact && (
+        {compact && !fullHeight && (
           <Link to="/reading" className="weekly-reading-chart-link">
             詳細は Reading Time へ →
           </Link>
@@ -55,15 +59,15 @@ function WeeklyReadingChart({ compact = false }) {
       <div className="weekly-reading-chart-container">
         <ResponsiveContainer width="100%" height={chartHeight}>
           <LineChart data={chartData} margin={margin}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#eee" />
+            <CartesianGrid strokeDasharray="3 3" stroke={gridStroke} />
             <XAxis
               dataKey="label"
-              tick={{ fontSize: compact ? 10 : 12 }}
-              stroke="#666"
+              tick={{ fontSize: compact ? 10 : 12, fill: axisStroke }}
+              stroke={axisStroke}
             />
             <YAxis
-              tick={{ fontSize: compact ? 10 : 12 }}
-              stroke="#666"
+              tick={{ fontSize: compact ? 10 : 12, fill: axisStroke }}
+              stroke={axisStroke}
               tickFormatter={(v) => (compact ? `${v}` : `${v}分`)}
               width={compact ? 24 : undefined}
             />
@@ -76,13 +80,23 @@ function WeeklyReadingChart({ compact = false }) {
                     })
                   : ''
               }
+              contentStyle={
+                isDark
+                  ? {
+                      background: '#1a1a1d',
+                      border: '1px solid rgba(255,255,255,0.1)',
+                      borderRadius: '8px',
+                      color: '#fafafa',
+                    }
+                  : undefined
+              }
             />
             <Line
               type="monotone"
               dataKey="minutes"
-              stroke="#1a1a2e"
+              stroke={lineStroke}
               strokeWidth={compact ? 1.5 : 2}
-              dot={{ fill: '#1a1a2e', r: compact ? 2 : 4 }}
+              dot={{ fill: lineStroke, r: compact ? 2 : 4 }}
               activeDot={{ r: compact ? 4 : 6 }}
             />
           </LineChart>

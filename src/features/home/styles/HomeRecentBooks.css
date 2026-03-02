@@ -26,19 +26,21 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 0.75rem 1rem;
-  border-radius: 12px;
-  background: var(--color-surface);
-  box-shadow: var(--shadow-md);
+  padding: 0.7rem 0;
+  border-radius: 8px;
+  background: transparent;
+  border-bottom: 1px solid var(--color-border);
   text-decoration: none;
   color: inherit;
-  transition: box-shadow 0.25s ease, background 0.2s, transform 0.2s ease;
+  transition: background 0.2s ease;
+}
+
+.home-recent-books-item:last-child .home-recent-books-card {
+  border-bottom: none;
 }
 
 .home-recent-books-card:hover {
-  box-shadow: var(--shadow-card-hover);
-  background: #fafafa;
-  transform: translateY(-2px);
+  background: rgba(0, 0, 0, 0.03);
 }
 
 .home-recent-books-thumb {

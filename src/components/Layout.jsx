@@ -8,7 +8,7 @@ function Layout() {
   const isLibrary = location.pathname === '/library';
 
   return (
-    <div className="layout">
+    <div className={`layout ${isHome ? 'layout--home' : ''}`}>
       <header className="layout-header">
         <h1 className="layout-title">
           <Link to="/">Reading Record</Link>

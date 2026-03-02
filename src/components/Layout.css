@@ -4,6 +4,10 @@
   flex-direction: column;
 }
 
+.layout--home {
+  background: #000000;
+}
+
 .layout-header {
   background: rgba(26, 26, 46, 0.85);
   backdrop-filter: blur(12px);
@@ -68,6 +72,10 @@
 
 .layout-main--home {
   padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  background: #000000;
+  max-width: none;
+  width: 100%;
 }
 
 .layout-main--library {

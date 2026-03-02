@@ -8,9 +8,8 @@ function HomeHero() {
         <div className="home-hero-copy">
           <p className="home-hero-label">For your reading life</p>
           <h1 className="home-hero-title">
-            毎日の読書を、
-            <span>美しく記録</span>
-            しよう。
+            <span className="home-hero-title-line">毎日の読書を、</span>
+            <span className="home-hero-title-line">美しく記録しよう。</span>
           </h1>
           <p className="home-hero-text">
             Reading Record は、読書時間や読んだ本、積読本をやさしい UI でまとめて管理できるシンプルな読書ログアプリです。
