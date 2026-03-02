@@ -1,27 +1,48 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
-
 .home-today-overview {
   margin-bottom: 2rem;
   padding: 1.25rem 1.5rem 1.5rem;
   border-radius: 16px;
-  background: linear-gradient(135deg, #f5f7ff, #fef6f3);
-  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.14);
+  background: linear-gradient(135deg, rgba(245, 247, 255, 0.75), rgba(254, 246, 243, 0.8));
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-lg), 0 0 0 1px rgba(255, 255, 255, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 光の筋（弱いグラデーション） */
+.home-today-overview::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60%;
+  background: linear-gradient(
+    165deg,
+    rgba(255, 255, 255, 0.35) 0%,
+    rgba(255, 255, 255, 0.08) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
 }
 
 .home-today-overview-title {
   margin: 0 0 1rem;
   font-size: 1.1rem;
-  color: #333;
+  color: var(--color-text);
+  position: relative;
 }
 
 .home-today-overview-main {
   padding: 0;
+  position: relative;
 }
 
 .home-today-highlight-title {
   margin: 0 0 1rem;
   font-size: 1.1rem;
-  color: #333;
+  color: var(--color-text);
 }
 
 .home-today-highlight-inner {
@@ -58,6 +79,11 @@
   align-items: center;
   text-align: center;
   gap: 0.2rem;
+  transition: transform 0.2s ease;
+}
+
+.home-today-circle-block:hover {
+  transform: translateY(-2px);
 }
 
 .home-today-clock {
@@ -67,8 +93,8 @@
   flex-shrink: 0;
   border-radius: 50%;
   background: conic-gradient(
-    #4f9dff var(--progress, 0deg),
-    rgba(79, 157, 255, 0.12) 0deg
+    var(--color-accent) var(--progress, 0deg),
+    var(--color-accent-soft) 0deg
   );
   display: flex;
   align-items: center;
@@ -81,7 +107,7 @@
   width: 105px;
   height: 105px;
   border-radius: 50%;
-  background: #fff;
+  background: var(--color-surface);
   box-shadow: 0 0 0 1px rgba(79, 157, 255, 0.08);
 }
 
@@ -133,7 +159,7 @@
   position: relative;
   font-size: 1.1rem;
   font-weight: 700;
-  color: #4f9dff;
+  color: var(--color-accent);
 }
 
 @media (max-width: 480px) {

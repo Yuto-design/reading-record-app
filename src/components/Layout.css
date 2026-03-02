@@ -5,7 +5,9 @@
 }
 
 .layout-header {
-  background: #1a1a2e;
+  background: rgba(26, 26, 46, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   color: #eee;
   padding: 1rem 1.5rem;
   display: flex;
@@ -13,6 +15,7 @@
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 1rem;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
 }
 
 .layout-title {
@@ -40,12 +43,13 @@
   color: #aaa;
   text-decoration: none;
   border-radius: 6px;
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.2s, color 0.2s, transform 0.2s ease;
 }
 
 .layout-nav-link:hover {
   color: #fff;
   background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
 }
 
 .layout-nav-link.active {

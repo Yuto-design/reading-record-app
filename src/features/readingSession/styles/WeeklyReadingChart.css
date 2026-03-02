@@ -2,8 +2,14 @@
   padding: 1.5rem;
   margin-bottom: 1.5rem;
   border-radius: 10px;
-  background: #fff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-md);
+  transition: box-shadow 0.25s ease, transform 0.2s ease;
+}
+
+.weekly-reading-chart.card:hover {
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-2px);
 }
 
 .weekly-reading-chart--compact {
@@ -22,7 +28,7 @@
 .weekly-reading-chart-title {
   margin: 0 0 1rem;
   font-size: 1.1rem;
-  color: #333;
+  color: var(--color-text);
 }
 
 .weekly-reading-chart--compact .weekly-reading-chart-title {

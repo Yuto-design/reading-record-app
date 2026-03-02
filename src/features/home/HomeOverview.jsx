@@ -8,6 +8,7 @@ import {
 } from 'date-fns';
 import { getReadingSessions, getBooks } from '../../utils/storage';
 import { formatMinutes } from '../../utils/changeTime';
+import CountUp, { useAnimatedValue } from '../../components/CountUp';
 import './styles/HomeOverview.css';
 
 const DAILY_GOAL_MINUTES = 30;
@@ -66,10 +67,6 @@ function HomeOverview() {
     ? Math.min(stats.monthMinutes / MONTHLY_GOAL_MINUTES, 1)
     : 0;
 
-  const todayProgressDeg = todayProgress * 360;
-  const weekProgressDeg = weekProgress * 360;
-  const monthProgressDeg = monthProgress * 360;
-
   const totalProgress = TOTAL_GOAL_MINUTES
     ? Math.min(stats.totalMinutes / TOTAL_GOAL_MINUTES, 1)
     : 0;
@@ -77,8 +74,12 @@ function HomeOverview() {
     ? Math.min(stats.bookCount / BOOK_GOAL_COUNT, 1)
     : 0;
 
-  const totalProgressDeg = totalProgress * 360;
-  const bookProgressDeg = bookProgress * 360;
+  const CIRCLE_DURATION = 1200;
+  const todayProgressAnimated = useAnimatedValue(todayProgress, CIRCLE_DURATION);
+  const weekProgressAnimated = useAnimatedValue(weekProgress, CIRCLE_DURATION);
+  const monthProgressAnimated = useAnimatedValue(monthProgress, CIRCLE_DURATION);
+  const totalProgressAnimated = useAnimatedValue(totalProgress, CIRCLE_DURATION);
+  const bookProgressAnimated = useAnimatedValue(bookProgress, CIRCLE_DURATION);
 
   return (
     <>
@@ -89,14 +90,22 @@ function HomeOverview() {
             <div className="home-today-circle-block">
               <div
                 className="home-today-clock"
-                style={{ '--progress': `${todayProgressDeg}deg` }}
+                style={{ '--progress': `${todayProgressAnimated * 360}deg` }}
               >
                 <div className="home-today-clock-inner">
                   <span className="home-today-value">
-                    {formatMinutes(stats.todayMinutes)}
+                    <CountUp
+                      value={stats.todayMinutes}
+                      duration={1200}
+                      formatter={formatMinutes}
+                    />
                   </span>
                   <span className="home-today-percent">
-                    {Math.round(todayProgress * 100)}%
+                    <CountUp
+                      value={Math.round(todayProgress * 100)}
+                      duration={1000}
+                      suffix="%"
+                    />
                   </span>
                 </div>
               </div>
@@ -108,14 +117,22 @@ function HomeOverview() {
             <div className="home-today-circle-block">
               <div
                 className="home-today-clock"
-                style={{ '--progress': `${weekProgressDeg}deg` }}
+                style={{ '--progress': `${weekProgressAnimated * 360}deg` }}
               >
                 <div className="home-today-clock-inner">
                   <span className="home-today-value">
-                    {formatMinutes(stats.weekMinutes)}
+                    <CountUp
+                      value={stats.weekMinutes}
+                      duration={1200}
+                      formatter={formatMinutes}
+                    />
                   </span>
                   <span className="home-today-percent">
-                    {Math.round(weekProgress * 100)}%
+                    <CountUp
+                      value={Math.round(weekProgress * 100)}
+                      duration={1000}
+                      suffix="%"
+                    />
                   </span>
                 </div>
               </div>
@@ -127,14 +144,22 @@ function HomeOverview() {
             <div className="home-today-circle-block">
               <div
                 className="home-today-clock"
-                style={{ '--progress': `${monthProgressDeg}deg` }}
+                style={{ '--progress': `${monthProgressAnimated * 360}deg` }}
               >
                 <div className="home-today-clock-inner">
                   <span className="home-today-value">
-                    {formatMinutes(stats.monthMinutes)}
+                    <CountUp
+                      value={stats.monthMinutes}
+                      duration={1200}
+                      formatter={formatMinutes}
+                    />
                   </span>
                   <span className="home-today-percent">
-                    {Math.round(monthProgress * 100)}%
+                    <CountUp
+                      value={Math.round(monthProgress * 100)}
+                      duration={1000}
+                      suffix="%"
+                    />
                   </span>
                 </div>
               </div>
@@ -144,25 +169,40 @@ function HomeOverview() {
               </span>
             </div>
             <div className="home-today-circle-block">
-              <div
+                <div
                 className="home-today-clock"
-                style={{ '--progress': `${totalProgressDeg}deg` }}
+                style={{ '--progress': `${totalProgressAnimated * 360}deg` }}
               >
                 <span className="home-stat-circle-text">
-                  {Math.round(totalProgress * 100)}%
+                  <CountUp
+                    value={Math.round(totalProgress * 100)}
+                    duration={1000}
+                    suffix="%"
+                  />
                 </span>
               </div>
               <span className="home-today-label">
-                総 {formatMinutes(stats.totalMinutes)}
+                総{' '}
+                <CountUp
+                  value={stats.totalMinutes}
+                  duration={1200}
+                  formatter={formatMinutes}
+                />
               </span>
               <span className="home-today-goal">読書時間</span>
             </div>
             <div className="home-today-circle-block">
               <div
                 className="home-today-clock"
-                style={{ '--progress': `${bookProgressDeg}deg` }}
+                style={{ '--progress': `${bookProgressAnimated * 360}deg` }}
               >
-                <span className="home-stat-circle-text">{stats.bookCount}冊</span>
+                <span className="home-stat-circle-text">
+                  <CountUp
+                    value={stats.bookCount}
+                    duration={1000}
+                    suffix="冊"
+                  />
+                </span>
               </div>
               <span className="home-today-label">登録書籍</span>
               <span className="home-today-goal">目標 {BOOK_GOAL_COUNT}冊</span>
