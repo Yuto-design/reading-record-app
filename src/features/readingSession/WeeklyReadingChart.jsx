@@ -17,8 +17,8 @@ import './styles/WeeklyReadingChart.css';
 function WeeklyReadingChart({ compact = false, theme = 'light', fullHeight = false }) {
   const sessions = getReadingSessions();
   const isDark = theme === 'dark';
-  const gridStroke = isDark ? 'rgba(255,255,255,0.08)' : '#eee';
-  const axisStroke = isDark ? 'rgba(255,255,255,0.4)' : '#666';
+  const gridStroke = isDark ? 'rgba(255,255,255,0.14)' : '#eee';
+  const axisStroke = isDark ? 'rgba(255,255,255,0.65)' : '#666';
   const lineStroke = isDark ? '#93c5fd' : '#1a1a2e';
 
   const chartData = useMemo(() => {

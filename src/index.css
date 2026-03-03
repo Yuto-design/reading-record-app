@@ -23,6 +23,28 @@
   --glass-border: rgba(255, 255, 255, 0.4);
 }
 
+/* ===== ダークテーマ（3ページ共通） ===== */
+.layout--dark {
+  --color-bg: #000000;
+  --color-surface: #1a1a1a;
+  --color-dark: #2d2d44;
+  --color-dark-soft: #3d3d5c;
+  --color-text: #fafafa;
+  --color-text-muted: #b0b0b0;
+  --color-text-light: #888888;
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-accent: #6ba3ff;
+  --color-accent-soft: rgba(107, 163, 255, 0.2);
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.35), 0 2px 4px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.4), 0 4px 10px rgba(0, 0, 0, 0.25);
+  --shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.2);
+
+  --glass-bg: rgba(26, 26, 26, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.1);
+}
+
 /* ===== フォント・余白（全体） ===== */
 body {
   margin: 0;

@@ -2,14 +2,14 @@
   padding: 1.5rem;
   margin-bottom: 1.5rem;
   border-radius: 10px;
-  background: #fff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-md);
 }
 
 .book-form-title {
   margin: 0 0 1rem;
   font-size: 1.1rem;
-  color: #333;
+  color: var(--color-text);
 }
 
 .book-form-field {
@@ -21,7 +21,7 @@
   display: block;
   font-size: 0.9rem;
   font-weight: 500;
-  color: #555;
+  color: var(--color-text-muted);
   margin-bottom: 0.35rem;
 }
 
@@ -37,7 +37,7 @@
   border: none;
   background: none;
   font-size: 1.5rem;
-  color: #ddd;
+  color: var(--color-border);
   cursor: pointer;
   line-height: 1;
   transition: color 0.2s;
@@ -54,17 +54,17 @@
 .book-form-rating-clear {
   margin-left: 0.5rem;
   padding: 0.25rem 0.5rem;
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-border);
   border-radius: 4px;
-  background: #fff;
+  background: var(--color-surface);
+  color: var(--color-text-muted);
   font-size: 0.8rem;
-  color: #666;
   cursor: pointer;
   transition: background 0.2s;
 }
 
 .book-form-rating-clear:hover {
-  background: #f5f5f5;
+  background: var(--color-dark-soft);
 }
 
 .book-form-field input,
@@ -72,22 +72,24 @@
 .book-form-field .book-form-select {
   width: 100%;
   padding: 0.6rem 0.75rem;
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-border);
   border-radius: 6px;
   font-size: 1rem;
   font-family: inherit;
   box-sizing: border-box;
+  background: var(--color-bg);
+  color: var(--color-text);
 }
 
 .book-form-field .book-form-select {
   cursor: pointer;
-  background: #fff;
+  background: var(--color-bg);
 }
 
 .book-form-field input:focus,
 .book-form-field textarea:focus {
   outline: none;
-  border-color: #1a1a2e;
+  border-color: var(--color-accent);
 }
 
 .book-form-field textarea {
@@ -115,15 +117,16 @@
 .book-form-file-btn {
   display: inline-block;
   padding: 0.5rem 1rem;
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-border);
   border-radius: 6px;
-  background: #f8f9fa;
+  background: var(--color-dark-soft);
+  color: var(--color-text);
   font-size: 0.9rem;
   transition: background 0.2s;
 }
 
 .book-form-file-label:hover .book-form-file-btn {
-  background: #eee;
+  background: var(--color-border);
 }
 
 .book-form-file-input {
@@ -142,7 +145,7 @@
   max-height: 160px;
   object-fit: cover;
   border-radius: 6px;
-  border: 1px solid #eee;
+  border: 1px solid var(--color-border);
 }
 
 .book-form-tags-row {
@@ -159,9 +162,9 @@
 .book-form-tag-add-btn {
   flex-shrink: 0;
   padding: 0.5rem 1rem;
-  border: 1px solid #1a1a2e;
+  border: 1px solid var(--color-accent);
   border-radius: 6px;
-  background: #1a1a2e;
+  background: var(--color-accent);
   color: #fff;
   font-size: 0.9rem;
   cursor: pointer;
@@ -187,8 +190,8 @@
   gap: 0.25rem;
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
-  background: #eee;
-  color: #555;
+  background: var(--color-dark-soft);
+  color: var(--color-text-muted);
   font-size: 0.9rem;
 }
 
@@ -203,7 +206,7 @@
   padding: 0 0.15rem;
   border: none;
   background: none;
-  color: #666;
+  color: var(--color-text-muted);
   font-size: 1.1rem;
   line-height: 1;
   cursor: pointer;
@@ -212,8 +215,8 @@
 }
 
 .book-form-tag-remove:hover {
-  background: #ddd;
-  color: #333;
+  background: var(--color-border);
+  color: var(--color-text);
 }
 
 .book-form-memo-attachments {
@@ -223,7 +226,7 @@
 .book-form-memo-attachments-note {
   margin: 0.35rem 0 0;
   font-size: 0.85rem;
-  color: #666;
+  color: var(--color-text-muted);
 }
 
 .book-form-memo-attachments-list {
@@ -245,7 +248,7 @@
   height: 64px;
   object-fit: cover;
   border-radius: 6px;
-  border: 1px solid #eee;
+  border: 1px solid var(--color-border);
 }
 
 .book-form-memo-attachment-remove {
@@ -280,22 +283,23 @@
 
 .book-form-btn {
   padding: 0.6rem 1.2rem;
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-border);
   border-radius: 8px;
-  background: #fff;
+  background: var(--color-surface);
+  color: var(--color-text);
   font-size: 1rem;
   cursor: pointer;
   transition: background 0.2s, color 0.2s;
 }
 
 .book-form-btn:hover {
-  background: #f5f5f5;
+  background: var(--color-dark-soft);
 }
 
 .book-form-btn.primary {
-  background: #1a1a2e;
+  background: var(--color-accent);
   color: #fff;
-  border-color: #1a1a2e;
+  border-color: var(--color-accent);
 }
 
 .book-form-btn.primary:hover {

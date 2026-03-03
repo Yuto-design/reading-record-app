@@ -3,11 +3,6 @@
   flex-direction: column;
   gap: 0;
 }
-.reading-time-page-heading {
-  margin: 0 0 1rem;
-  font-size: 2rem;
-  color: #333;
-}
 
 .timer-row {
   display: flex;

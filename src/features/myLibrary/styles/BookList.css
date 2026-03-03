@@ -5,7 +5,7 @@
 }
 
 .book-list-empty {
-  color: #666;
+  color: var(--color-text-muted);
   text-align: center;
   padding: 2rem;
   margin: 0;
@@ -18,8 +18,8 @@
   margin-bottom: 1.25rem;
   padding: 1rem 0 1rem 1rem;
   border-radius: 12px;
-  background: #fff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-md);
   overflow: hidden;
 }
 
@@ -28,7 +28,7 @@
   width: 64px;
   height: 88px;
   margin-left: 0.25rem;
-  background: #f0f0f0;
+  background: var(--color-dark-soft);
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -58,7 +58,7 @@
 }
 
 .book-list-item-content:hover {
-  background: #f8f9fa;
+  background: var(--color-dark-soft);
 }
 
 .book-list-item-body {
@@ -90,7 +90,7 @@
   font-size: 1.2rem;
   font-weight: 700;
   line-height: 1.35;
-  color: #1a1a2e;
+  color: var(--color-text);
   letter-spacing: 0.02em;
   min-height: 1.62rem;
   display: flex;
@@ -101,7 +101,7 @@
   margin: 0;
   font-size: 0.9rem;
   font-weight: 500;
-  color: #555;
+  color: var(--color-text-muted);
   line-height: 1.4;
 }
 
@@ -111,7 +111,7 @@
 }
 
 .book-list-item-star {
-  color: #ddd;
+  color: var(--color-border);
   font-size: 0.95rem;
 }
 
@@ -136,13 +136,13 @@
   border-radius: 4px;
   font-size: 0.75rem;
   line-height: 1;
-  background: #eee;
-  color: #555;
+  background: var(--color-dark-soft);
+  color: var(--color-text-muted);
 }
 
 .book-list-item-tag-more {
-  background: #e0e0e0;
-  color: #888;
+  background: var(--color-border);
+  color: var(--color-text-light);
 }
 
 .book-list-item-status {
@@ -156,24 +156,24 @@
 }
 
 .book-list-item-status--want {
-  background: #e3f2fd;
-  color: #1565c0;
+  background: rgba(79, 157, 255, 0.25);
+  color: #93c5fd;
 }
 
 .book-list-item-status--reading {
-  background: #fff3e0;
-  color: #e65100;
+  background: rgba(251, 191, 36, 0.25);
+  color: #fcd34d;
 }
 
 .book-list-item-status--read {
-  background: #e8f5e9;
-  color: #2e7d32;
+  background: rgba(34, 197, 94, 0.25);
+  color: #86efac;
 }
 
 .book-list-item-summary {
   margin: 0.4rem 0 0;
   font-size: 0.875rem;
-  color: #666;
+  color: var(--color-text-muted);
   line-height: 1.55;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -192,7 +192,7 @@
 .book-list-item-edit {
   padding: 0.5rem 1rem;
   border: none;
-  background: #1a1a2e;
+  background: var(--color-accent);
   color: #fff;
   font-size: 0.85rem;
   font-weight: 500;
@@ -208,8 +208,8 @@
 .book-list-item-delete {
   padding: 0.5rem 1rem;
   border: none;
-  background: #f8f9fa;
-  color: #c0392b;
+  background: var(--color-dark-soft);
+  color: #f87171;
   font-size: 0.85rem;
   font-weight: 500;
   cursor: pointer;
@@ -218,5 +218,5 @@
 }
 
 .book-list-item-delete:hover {
-  background: #ffebee;
+  background: rgba(248, 113, 113, 0.2);
 }

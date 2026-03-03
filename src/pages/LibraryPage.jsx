@@ -12,6 +12,7 @@ import {
   useLibrarySearchFilter,
   LibrarySearchToolbar,
 } from '../features/home/LibrarySearchFilter';
+import './styles/PageCommon.css';
 import './styles/LibraryPage.css';
 
 function LibraryPage() {
@@ -109,7 +110,7 @@ function LibraryPage() {
   const showingDetail = !!selectedBookId;
 
   return (
-    <div className="library-page">
+    <div className="page-wrapper library-page">
       <BookStatusSidebar
         statusFilter={statusFilter}
         onStatusChange={setStatusFilter}
@@ -123,7 +124,7 @@ function LibraryPage() {
       />
 
       <main className="library-page-main">
-        <h2 className="library-page-heading">My Library</h2>
+        <h2 className="page-heading">My Library</h2>
 
         {!showAddForm && !showingDetail && (
           <>

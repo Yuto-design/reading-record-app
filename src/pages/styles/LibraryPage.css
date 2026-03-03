@@ -1,3 +1,7 @@
+.library-page.page-wrapper {
+  max-width: 1200px;
+}
+
 .library-page {
   display: flex;
   gap: 5rem;
@@ -10,18 +14,12 @@
   min-width: 0;
 }
 
-.library-page-heading {
-  margin: 0 0 1rem;
-  font-size: 2rem;
-  color: var(--color-text, #333);
-}
-
 .library-page-add-btn {
   padding: 0.6rem 1.2rem;
   margin-bottom: 1rem;
   border: none;
   border-radius: 8px;
-  background: var(--color-dark);
+  background: var(--color-accent);
   color: #fff;
   font-size: 1rem;
   cursor: pointer;

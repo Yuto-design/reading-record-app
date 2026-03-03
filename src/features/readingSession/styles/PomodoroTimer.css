@@ -1,11 +1,11 @@
 .pomodoro.card {
-  --pomodoro-trail: #e0e7ff;
+  --pomodoro-trail: var(--color-border);
   padding: 1.75rem;
   margin-bottom: 1.5rem;
   border-radius: 16px;
-  background: #fff;
-  box-shadow: 0 4px 24px rgba(99, 102, 241, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
-  border: 1px solid rgba(99, 102, 241, 0.12);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-border);
   display: flex;
   flex-direction: column;
   min-width: 280px;
@@ -20,7 +20,7 @@
   font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0.02em;
-  color: #374151;
+  color: var(--color-text);
 }
 
 .pomodoro-inner {
@@ -83,24 +83,25 @@
   flex-direction: column;
   gap: 0.35rem;
   font-size: 0.8125rem;
-  color: #6b7280;
+  color: var(--color-text-muted);
 }
 
 .pomodoro-input {
   width: 4.5rem;
   padding: 0.5rem 0.6rem;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--color-border);
   border-radius: 10px;
   font-size: 1rem;
   text-align: center;
-  background: #fafafa;
+  background: var(--color-bg);
+  color: var(--color-text);
   transition: border-color 0.2s, background 0.2s;
 }
 
 .pomodoro-input:focus {
   outline: none;
   border-color: #6366f1;
-  background: #fff;
+  background: var(--color-surface);
 }
 
 .pomodoro-timer-wrapper {
@@ -109,7 +110,7 @@
   font-variant-numeric: tabular-nums;
   font-weight: 600;
   font-size: 1.5rem;
-  color: #1e1b4b;
+  color: var(--color-text);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -128,7 +129,7 @@
   min-width: 100px;
   height: 16px;
   border-radius: 8px;
-  background: #e5e7eb;
+  background: var(--color-border);
   transition: background 0.35s ease;
 }
 
@@ -137,7 +138,7 @@
 }
 
 .pomodoro-round-bar--next {
-  background: #d1d5db;
+  background: var(--color-text-muted);
   transition: background 0.35s ease;
 }
 
@@ -149,7 +150,7 @@
 .pomodoro-phase-label {
   font-size: 0.9375rem;
   font-weight: 500;
-  color: #6b7280;
+  color: var(--color-text-muted);
   margin-top: 10px;
 }
 
@@ -188,12 +189,12 @@
 }
 
 .pomodoro-btn.reset {
-  background: #f3f4f6;
-  color: #6b7280;
-  border: 1px solid #e5e7eb;
+  background: var(--color-dark-soft);
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
 }
 
 .pomodoro-btn.reset:hover {
-  background: #e5e7eb;
-  color: #374151;
+  background: var(--color-border);
+  color: var(--color-text);
 }

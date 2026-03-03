@@ -1,5 +1,5 @@
 .home {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
   padding-left: 2rem;
   padding-right: 2rem;
@@ -143,7 +143,6 @@
   }
 }
 
-/* 本の中：1ページ目用のコンテナ */
 .home-book #home-today {
   display: flex;
   flex-direction: column;
@@ -152,7 +151,6 @@
   overflow: hidden;
 }
 
-/* 本の中：1ページ目（今日の読書）・円グラフをページ全体に配置 */
 .home-book .home-today-overview {
   margin-bottom: 0;
   padding: 0.5rem 0.75rem 0.5rem;
@@ -261,7 +259,6 @@
   transform: translateY(-1px);
 }
 
-/* 本の中：3ページ目（最近追加した本） */
 .home-book__page--3 .home-book__page-content {
   background: rgba(15, 76, 92, 0.06);
   border: 1px solid #0f4c5c;
@@ -359,7 +356,6 @@
   text-decoration: underline;
 }
 
-/* 本の中：2ページ目（今週のグラフ）・ページ全体に表示 */
 .home-book__page--2 .home-book__page-content {
   min-height: 0;
   overflow: hidden;

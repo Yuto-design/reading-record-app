@@ -18,7 +18,7 @@
 .library-page-search-icon {
   position: absolute;
   left: 0.75rem;
-  color: #888;
+  color: var(--color-text-muted);
   font-size: 0.9rem;
   pointer-events: none;
 }
@@ -26,17 +26,19 @@
 .library-page-search-input {
   width: 100%;
   padding: 0.6rem 0.75rem 0.6rem 2.25rem;
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-border);
   border-radius: 8px;
   font-size: 1rem;
   font-family: inherit;
   box-sizing: border-box;
   transition: border-color 0.2s;
+  background: var(--color-surface);
+  color: var(--color-text);
 }
 
 .library-page-search-input:focus {
   outline: none;
-  border-color: #1a1a2e;
+  border-color: var(--color-accent);
 }
 
 .library-page-sort-wrap {
@@ -48,24 +50,25 @@
 .library-page-sort-label {
   font-size: 0.9rem;
   font-weight: 500;
-  color: #555;
+  color: var(--color-text-muted);
   white-space: nowrap;
 }
 
 .library-page-sort-select {
   padding: 0.5rem 0.75rem;
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-border);
   border-radius: 8px;
   font-size: 0.95rem;
   font-family: inherit;
-  background: #fff;
+  background: var(--color-surface);
+  color: var(--color-text);
   cursor: pointer;
   min-width: 160px;
 }
 
 .library-page-sort-select:focus {
   outline: none;
-  border-color: #1a1a2e;
+  border-color: var(--color-accent);
 }
 
 /* タグで絞り込み */
@@ -80,7 +83,7 @@
 .library-tag-filter-label {
   font-size: 0.9rem;
   font-weight: 500;
-  color: #555;
+  color: var(--color-text-muted);
   flex-shrink: 0;
 }
 
@@ -92,22 +95,22 @@
 
 .library-tag-filter-pill {
   padding: 0.35rem 0.65rem;
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-border);
   border-radius: 999px;
-  background: #fff;
+  background: var(--color-surface);
   font-size: 0.85rem;
-  color: #555;
+  color: var(--color-text-muted);
   cursor: pointer;
   transition: background 0.2s, border-color 0.2s, color 0.2s;
 }
 
 .library-tag-filter-pill:hover {
-  background: #f5f5f5;
-  border-color: #ccc;
+  background: var(--color-dark-soft);
+  border-color: var(--color-text-muted);
 }
 
 .library-tag-filter-pill.selected {
-  background: #1a1a2e;
-  border-color: #1a1a2e;
+  background: var(--color-accent);
+  border-color: var(--color-accent);
   color: #fff;
 }

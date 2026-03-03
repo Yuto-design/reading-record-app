@@ -38,7 +38,7 @@
 
 .weekly-reading-chart-link {
   font-size: 0.8rem;
-  color: #4a6fa5;
+  color: var(--color-accent);
   text-decoration: none;
   white-space: nowrap;
 }
