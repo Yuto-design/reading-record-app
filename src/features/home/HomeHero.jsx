@@ -1,12 +1,31 @@
+import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
+import { getBooks, getReadingSessions } from '../../utils/storage';
 import './styles/HomeHero.css';
 
+function getHeroLabel() {
+  const books = getBooks();
+  const sessions = getReadingSessions();
+  const hasAnyData = books.length > 0 || sessions.length > 0;
+
+  if (!hasAnyData) {
+    return 'はじめの一冊を登録してみよう';
+  }
+
+  const hour = new Date().getHours();
+  if (hour >= 5 && hour < 12) return 'おはよう';
+  if (hour >= 12 && hour < 18) return 'こんにちは';
+  return 'こんばんは';
+}
+
 function HomeHero() {
+  const heroLabel = useMemo(() => getHeroLabel(), []);
+
   return (
     <header className="home-hero">
       <div className="home-hero-inner">
         <div className="home-hero-copy">
-          <p className="home-hero-label">For your reading life</p>
+          <p className="home-hero-label">{heroLabel}</p>
           <h1 className="home-hero-title">
             <span className="home-hero-title-line">毎日の読書を、</span>
             <span className="home-hero-title-line">美しく記録しよう。</span>

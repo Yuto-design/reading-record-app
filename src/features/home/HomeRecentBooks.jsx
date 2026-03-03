@@ -19,11 +19,31 @@ function HomeRecentBooks() {
       .slice(0, RECENT_COUNT);
   }, []);
 
-  if (recentBooks.length === 0) return null;
-
   return (
-    <section className="home-recent-books">
+    <section className="home-recent-books" aria-label="最近追加した本">
       <h2 className="home-recent-books-title">最近追加した本</h2>
+      {recentBooks.length === 0 ? (
+        <div className="home-recent-books-empty">
+          <div className="home-recent-books-empty-icon" aria-hidden="true">
+            <i className="fa-solid fa-book-open-reader" />
+          </div>
+          <p className="home-recent-books-empty-text">
+            まだ本が登録されていません。
+          </p>
+          <p className="home-recent-books-empty-sub">
+            本棚で最初の1冊を追加してみよう。
+          </p>
+          <Link
+            to="/library"
+            className="home-recent-books-empty-link"
+            title="本棚をひらく"
+          >
+            <i className="fa-solid fa-warehouse" aria-hidden />
+            <span>本棚をひらく</span>
+          </Link>
+        </div>
+      ) : (
+        <>
       <ul className="home-recent-books-list">
         {recentBooks.map((book) => {
           const status = getBookStatus(book);
@@ -54,6 +74,8 @@ function HomeRecentBooks() {
       <Link to="/library" className="home-recent-books-more">
         もっと見る
       </Link>
+        </>
+      )}
     </section>
   );
 }

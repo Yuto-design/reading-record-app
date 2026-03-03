@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import {
   format,
   startOfWeek,
@@ -47,12 +48,21 @@ function HomeOverview() {
 
     const totalMinutes = sessions.reduce((sum, s) => sum + s.minutes, 0);
 
+    const weekDates = new Set();
+    sessions.forEach((s) => {
+      if (s.date >= format(weekStart, 'yyyy-MM-dd') && s.date <= format(weekEnd, 'yyyy-MM-dd')) {
+        weekDates.add(s.date);
+      }
+    });
+    const weekDaysRead = weekDates.size;
+
     return {
       todayMinutes,
       weekMinutes,
       monthMinutes,
       totalMinutes,
       bookCount: books.length,
+      weekDaysRead,
     };
   }, [sessions, books, todayStr]);
 
@@ -72,9 +82,30 @@ function HomeOverview() {
     ? Math.min(stats.bookCount / BOOK_GOAL_COUNT, 1)
     : 0;
 
+  const hasNoReadingData = stats.totalMinutes === 0;
+  const todayAchieved = todayProgress >= 1;
+  const weekDaysRead = stats.weekDaysRead ?? 0;
+
   return (
     <>
       <h2 className="home-today-overview-title">今日の読書と統計</h2>
+      {hasNoReadingData && (
+        <p className="home-today-overview-cta">
+          <Link to="/reading" className="home-today-overview-cta-link" title="読書タイマーを開く">
+            今日からタイマーで記録を始めよう
+          </Link>
+        </p>
+      )}
+      {!hasNoReadingData && todayAchieved && (
+        <p className="home-today-overview-encourage" role="status">
+          今日の目標、達成！
+        </p>
+      )}
+      {!hasNoReadingData && weekDaysRead > 0 && (
+        <p className="home-today-overview-encourage" role="status">
+          今週は{weekDaysRead}日読書しました
+        </p>
+      )}
       <section className="home-today-overview">
         <div className="home-today-highlight home-today-overview-main">
           <div className="home-today-highlight-inner">

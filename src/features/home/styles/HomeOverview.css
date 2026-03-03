@@ -1,4 +1,5 @@
 .home-today-overview {
+  margin-top: 0.5rem;
   margin-bottom: 0;
   padding: 1.5rem 1.5rem 1.6rem;
   border-radius: 12px;
@@ -8,12 +9,35 @@
 }
 
 .home-today-overview-title {
-  margin: 0 0 1.1rem;
+  margin: 0 0 0.5rem;
   font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   color: var(--color-text-muted);
   position: relative;
+}
+
+.home-today-overview-cta {
+  margin: 0 0 0.75rem;
+}
+
+.home-today-overview-cta-link {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #4a6fa5;
+  text-decoration: none;
+}
+
+.home-today-overview-cta-link:hover {
+  text-decoration: underline;
+}
+
+.home-today-overview-encourage {
+  margin: 0 0 0.6rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text);
+  opacity: 0.95;
 }
 
 .home-today-overview-main {

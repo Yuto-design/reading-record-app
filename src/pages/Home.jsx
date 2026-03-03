@@ -15,29 +15,34 @@ function Home() {
           </p>
           <RevealOnScroll>
             <div
-              className="home-book"
+              className="home-report"
               role="region"
               aria-label="読書レポート"
             >
-              <div className="home-book__inner">
-                <div className="home-book__pages-wrap">
-                  <div className="home-book__page home-book__page--1" aria-label="1ページ目 今日の読書と統計">
-                    <div id="home-today" className="home-book__page-content">
-                      <HomeOverview />
-                    </div>
-                  </div>
-                  <div className="home-book__page home-book__page--2" aria-label="2ページ目 今週の読書">
-                    <div id="home-weekly-chart" className="home-book__page-content">
-                      <WeeklyReadingChart compact theme="light" fullHeight />
-                    </div>
-                  </div>
-                  <div className="home-book__page home-book__page--3" aria-label="3ページ目 最近追加した本">
-                    <div id="home-recent-books" className="home-book__page-content">
-                      <HomeRecentBooks />
-                    </div>
-                  </div>
+              <section
+                className="home-report__card home-report__card--overview"
+                aria-label="今日の読書と統計"
+              >
+                <div id="home-today" className="home-report__card-content">
+                  <HomeOverview />
                 </div>
-              </div>
+              </section>
+              <section
+                className="home-report__card home-report__card--chart"
+                aria-label="今週の読書"
+              >
+                <div id="home-weekly-chart" className="home-report__card-content">
+                  <WeeklyReadingChart compact theme="light" fullHeight />
+                </div>
+              </section>
+              <section
+                className="home-report__card home-report__card--books"
+                aria-label="最近追加した本"
+              >
+                <div id="home-recent-books" className="home-report__card-content">
+                  <HomeRecentBooks />
+                </div>
+              </section>
             </div>
           </RevealOnScroll>
         </div>
