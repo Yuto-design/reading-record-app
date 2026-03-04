@@ -51,7 +51,6 @@
   align-items: start;
 }
 
-/* --- Left column: heading + TAG --- */
 .home-hero-features-left {
   padding: 0.5rem 0;
 }
@@ -107,7 +106,6 @@
   border-radius: 4px;
 }
 
-/* --- Right column: cards --- */
 .home-hero-features-right {
   position: relative;
   display: flex;
@@ -219,7 +217,6 @@
   line-height: 1;
 }
 
-/* FEATURES TOP circular button */
 .home-hero-features-top-btn {
   align-self: flex-end;
   display: flex;
@@ -255,7 +252,6 @@
   margin-top: 0.1rem;
 }
 
-/* --- Responsive --- */
 @media (max-width: 900px) {
   .home-hero-features {
     min-height: 0;
