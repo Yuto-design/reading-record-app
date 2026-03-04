@@ -45,6 +45,149 @@
   color: rgba(255, 255, 255, 0.5);
 }
 
+.home-report-layout {
+  width: 100%;
+  padding: 1.75rem 0;
+  position: relative;
+}
+
+.home-report__right {
+  position: relative;
+  overflow: hidden;
+  padding: 1.5rem;
+  min-height: 320px;
+  width: 100%;
+}
+
+.home-report__right::before {
+  content: '';
+  position: absolute;
+  width: 140%;
+  height: 120%;
+  top: -15%;
+  right: -60%;
+  background: #2F9FFD;
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.home-report__right > .home-report {
+  position: relative;
+  z-index: 1;
+}
+
+.home-report__right > .home-report__top-btn {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 2;
+}
+
+.home-report--grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  gap: 1.25rem;
+  padding: 0;
+}
+
+.home-report__card--pos-1 {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.home-report__card--pos-2 {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.home-report__card--pos-3 {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+.home-report--grid .home-report__card {
+  min-width: 0;
+}
+
+.home-report--grid .home-report__card--overview .home-report__card-visual {
+  min-height: 140px;
+}
+
+.home-report--grid .home-report__card--overview .home-today-clock {
+  width: 120px;
+  height: 120px;
+  min-width: 120px;
+  min-height: 120px;
+}
+
+.home-report--grid .home-report__card--overview .home-today-clock::before {
+  width: 78%;
+  height: 78%;
+}
+
+.home-report--grid .home-report__card--overview .home-today-value {
+  font-size: 0.85rem;
+}
+
+.home-report--grid .home-report__card--overview .home-today-percent {
+  font-size: 0.7rem;
+}
+
+.home-report--grid .home-report__card--overview .home-stat-circle-text {
+  font-size: 0.75rem;
+}
+
+.home-report--grid .home-report__card--overview .home-today-highlight-inner {
+  gap: 0.5rem 0.5rem;
+}
+
+.home-report--grid .home-report__card--overview .home-today-label,
+.home-report--grid .home-report__card--overview .home-today-goal {
+  font-size: 0.6rem;
+}
+
+.home-report--grid .home-report__card--chart .home-report__card-visual {
+  min-height: 160px;
+}
+
+.home-report--grid .home-report__card--books .home-report__card-visual {
+  min-height: 140px;
+}
+
+.home-report__top-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #1a1a1a;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.home-report__top-btn:hover {
+  background: #333;
+  transform: scale(1.05);
+}
+
+.home-report__top-btn-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+}
+
+.home-report__top-btn-sublabel {
+  font-size: 0.5rem;
+  opacity: 0.9;
+  margin-top: 0.1rem;
+}
+
 .home-report {
   position: relative;
   box-sizing: border-box;
@@ -59,14 +202,26 @@
   width: 100%;
   min-height: 0;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: 1fr auto;
   background: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-  padding: 1rem 1.25rem;
-  border: 1px solid rgba(148, 163, 184, 0.7);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  padding: 0;
+  border: none;
   transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.home-report--grid .home-report__card {
+  min-height: 280px;
+}
+
+.home-report__card-visual {
+  position: relative;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .home-report__card-content {
@@ -77,16 +232,122 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  padding: 1rem 1.25rem;
+}
+
+.home-report__card-body {
+  flex-shrink: 0;
+  padding: 1rem 1.25rem 1.25rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  background: #fff;
+}
+
+.home-report__card-title {
+  margin: 0 0 0.35rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.3;
+}
+
+.home-report__card-desc {
+  margin: 0 0 0.5rem;
+  font-size: 0.8rem;
+  color: #444;
+  line-height: 1.4;
+}
+
+.home-report__card-read-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #e53e3e;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.home-report__card-read-more:hover {
+  color: #c53030;
+}
+
+.home-report__card-read-more-dot {
+  color: #e53e3e;
+  font-size: 0.5rem;
+  line-height: 1;
+}
+
+@media (max-width: 900px) {
+  .home-report--grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .home-report__card--pos-1,
+  .home-report__card--pos-2,
+  .home-report__card--pos-3 {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .home-report__right {
+    min-height: 0;
+  }
+
+  .home-report__top-btn {
+    bottom: 1rem;
+    right: 1rem;
+    width: 56px;
+    height: 56px;
+  }
+
+  .home-report__top-btn-label {
+    font-size: 0.6rem;
+  }
 }
 
 @media (max-width: 768px) {
+  .home-report-layout {
+    padding: 1.25rem 0;
+  }
+
+  .home-report__right {
+    padding: 1.25rem;
+  }
+
   .home-report {
     padding: 1.25rem 0;
     gap: 1.1rem;
   }
 
-  .home-report__card {
+  .home-report--grid {
+    gap: 1rem;
+  }
+
+  .home-report__card-content {
     padding: 0.875rem 1rem;
+  }
+
+  .home-report__card-body {
+    padding: 0.875rem 1rem 1rem;
+  }
+
+  .home-report__card-tag {
+    font-size: 0.65rem;
+    padding: 0.2rem 0.4rem;
+  }
+
+  .home-report__card-title {
+    font-size: 0.9rem;
+  }
+
+  .home-report__card-desc {
+    font-size: 0.75rem;
+  }
+
+  .home-report__card-read-more {
+    font-size: 0.7rem;
   }
 }
 
@@ -112,13 +373,14 @@
 }
 
 .home-report .home-today-overview-title {
-  margin: 0 0 0.4rem;
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: #0f4c5c;
+  margin: 0;
+  padding: 0;
+  font-size: 0;
+  line-height: 0;
+  height: 0;
+  overflow: hidden;
   flex-shrink: 0;
+  /* 見出しは card-body 側で表示するため、ここでは非表示 */
 }
 
 .home-report .home-today-overview-cta {
@@ -156,8 +418,8 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: stretch;
-  gap: 1rem 1.5rem;
+  align-items: flex-end;
+  gap: 0.75rem 1rem;
 }
 
 .home-report .home-today-circle-block {
@@ -228,7 +490,7 @@
 
 @media (max-width: 640px) {
   .home-report .home-today-highlight-inner {
-    gap: 0.75rem 1rem;
+    gap: 0.5rem 0.75rem;
   }
 
   .home-report .home-today-clock {
@@ -236,6 +498,25 @@
     height: 88px;
     min-width: 88px;
     min-height: 88px;
+  }
+
+  .home-report--grid .home-report__card--overview .home-today-clock {
+    width: 78px;
+    height: 78px;
+    min-width: 78px;
+    min-height: 78px;
+  }
+
+  .home-report--grid .home-report__card--overview .home-today-value {
+    font-size: 0.75rem;
+  }
+
+  .home-report--grid .home-report__card--overview .home-stat-circle-text {
+    font-size: 0.65rem;
+  }
+
+  .home-report--grid .home-report__card--overview .home-today-highlight-inner {
+    gap: 0.4rem 0.4rem;
   }
 
   .home-report .home-today-value {
@@ -271,14 +552,14 @@
 }
 
 .home-report .home-recent-books-title {
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: #0f4c5c;
-  margin-bottom: 0.4rem;
-  padding-bottom: 0.35rem;
-  border-bottom: 1px solid rgba(15, 76, 92, 0.35);
+  margin: 0;
+  padding: 0;
+  font-size: 0;
+  line-height: 0;
+  height: 0;
+  overflow: hidden;
+  border: none;
+  /* 見出しは card-body 側で表示するため、ここでは非表示 */
 }
 
 .home-report .home-recent-books-list {
@@ -434,11 +715,17 @@
 }
 
 .home-report .weekly-reading-chart-title {
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: #0f4c5c;
+  margin: 0;
+  padding: 0;
+  font-size: 0;
+  line-height: 0;
+  height: 0;
+  overflow: hidden;
+  /* 見出しは card-body 側で表示するため、ここでは非表示 */
+}
+
+.home-report .weekly-reading-chart--compact .weekly-reading-chart-header {
+  min-height: 0;
 }
 
 .home-report .weekly-reading-chart-link {
