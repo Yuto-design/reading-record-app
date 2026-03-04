@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { HomeHero, HomeOverview, HomeRecentBooks } from '../features/home';
+import { HomeHero, HomeHeroFeatures, HomeOverview, HomeRecentBooks } from '../features/home';
 import WeeklyReadingChart from '../features/readingSession/WeeklyReadingChart';
 import RevealOnScroll from '../components/RevealOnScroll';
 import './styles/Home.css';
@@ -9,6 +9,7 @@ function Home() {
     <div className="home">
       <main className="home-main">
         <HomeHero />
+        <HomeHeroFeatures />
 
         <div className="home-content">
           <RevealOnScroll>
