@@ -111,22 +111,24 @@ function LibraryPage() {
 
   return (
     <div className="page-wrapper library-page">
-      <BookStatusSidebar
-        statusFilter={statusFilter}
-        onStatusChange={setStatusFilter}
-        statusCounts={statusCounts}
-        authorFilter={authorFilter}
-        allAuthors={allAuthors}
-        onAuthorChange={setAuthorFilter}
-        allTags={allTags}
-        selectedTags={selectedTags}
-        onToggleTag={handleToggleTag}
-      />
-
-      <main className="library-page-main">
-        <h2 className="page-heading">My Library</h2>
-
-        {!showAddForm && !showingDetail && (
+      <div className="library-page-card">
+        <div className="library-page-card-bg" aria-hidden="true" />
+        <div className="library-page-card-content">
+          <h2 className="page-heading library-page-heading">My Library</h2>
+          <div className="library-page-body">
+            <BookStatusSidebar
+              statusFilter={statusFilter}
+              onStatusChange={setStatusFilter}
+              statusCounts={statusCounts}
+              authorFilter={authorFilter}
+              allAuthors={allAuthors}
+              onAuthorChange={setAuthorFilter}
+              allTags={allTags}
+              selectedTags={selectedTags}
+              onToggleTag={handleToggleTag}
+            />
+            <main className="library-page-main">
+              {!showAddForm && !showingDetail && (
           <>
             <LibrarySearchToolbar
               searchQuery={searchQuery}
@@ -191,7 +193,10 @@ function LibraryPage() {
             }
           />
         )}
-      </main>
+            </main>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

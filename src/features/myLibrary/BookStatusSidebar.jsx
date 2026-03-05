@@ -108,12 +108,12 @@ function BookStatusSidebar({
 
       {allTags.length > 0 && (
         <div className="library-page-sidebar-tags" role="group" aria-label="タグで絞り込み">
-          <span className="library-page-sidebar-tags-label">
+          <label htmlFor="library-author-filter" className="library-page-sidebar-author-label">
             <span className="library-page-sidebar-section-icon" aria-hidden>
               <i className="fa-solid fa-tags" />
             </span>
             タグ
-          </span>
+          </label>
           <div className="library-page-sidebar-tags-pills">
             {allTags.map((tag) => {
               const isSelected = selectedTags.includes(tag);

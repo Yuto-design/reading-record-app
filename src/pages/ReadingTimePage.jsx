@@ -11,16 +11,21 @@ function ReadingTimePage() {
 
   return (
     <div className="page-wrapper reading-time-page">
-      <h2 className="page-heading">Reading Time</h2>
-      <div className="timer-row">
-        <Timer onSessionSaved={() => setRefreshKey((k) => k + 1)} />
-        <PomodoroTimer />
+      <div className="reading-time-card">
+        <div className="reading-time-card-bg" aria-hidden="true" />
+        <div className="reading-time-card-content">
+          <h2 className="reading-time-card-heading">Reading Time</h2>
+          <div className="timer-row">
+            <Timer onSessionSaved={() => setRefreshKey((k) => k + 1)} />
+            <PomodoroTimer />
+          </div>
+          <WeeklyReadingChart key={`chart-${refreshKey}`} theme="light" />
+          <ReadingCalendar
+            key={`cal-${refreshKey}`}
+            onSessionsChange={() => setRefreshKey((k) => k + 1)}
+          />
+        </div>
       </div>
-      <WeeklyReadingChart key={`chart-${refreshKey}`} theme="dark" />
-      <ReadingCalendar
-        key={`cal-${refreshKey}`}
-        onSessionsChange={() => setRefreshKey((k) => k + 1)}
-      />
     </div>
   );
 }

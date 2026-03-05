@@ -4,14 +4,177 @@
 
 .library-page {
   display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-height: 0;
+}
+
+.library-page-card {
+  position: relative;
+  z-index: 1;
+  padding: 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
+  background: #faf6f1;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.library-page-card-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.library-page-card-bg::before {
+  content: '';
+  position: absolute;
+  width: 140%;
+  height: 120%;
+  top: -30%;
+  left: -70%;
+  background: #f0e6dc;
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.library-page-card-bg::after {
+  content: '';
+  position: absolute;
+  width: 120%;
+  height: 110%;
+  top: -25%;
+  right: -55%;
+  background: #c2410c;
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.library-page-card-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-height: 0;
+}
+
+.library-page-heading {
+  position: relative;
+  margin: 0 0 1rem;
+  padding-left: 1rem;
+}
+
+.library-page-heading::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background: #c2410c;
+  border-radius: 3px;
+}
+
+.library-page-body {
+  display: flex;
   gap: 5rem;
   align-items: flex-start;
   min-height: 0;
+  flex: 1;
+}
+
+.library-page-card-content {
+  --color-surface: #ffffff;
+  --color-bg: #f5f6f8;
+  --color-text: #1a1a1a;
+  --color-text-muted: #555555;
+  --color-border: rgba(0, 0, 0, 0.1);
+  --color-dark-soft: #e8eaef;
+  --color-dark: #2d2d44;
+  --glass-bg: #ffffff;
+}
+
+.library-page-card-content .page-heading.library-page-heading {
+  color: #7c2d12;
+}
+
+.library-page-card-content .library-page-sidebar {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.library-page-card-content .library-page-filter-btn {
+  background: #f5f6f8;
+  color: #555555;
+}
+
+.library-page-card-content .library-page-filter-btn:hover {
+  background: #e8eaef;
+  color: #1a1a1a;
+}
+
+.library-page-card-content .library-page-filter-btn.active {
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.library-page-card-content .library-page-filter-btn.active .library-page-filter-count {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.library-page-card-content .library-page-filter-btn--all.active {
+  background: linear-gradient(135deg, #4a4a6a 0%, #2d2d44 100%);
+}
+
+.library-page-card-content .library-page-filter-btn--want.active {
+  background: linear-gradient(135deg, #5c9ead 0%, #3d7a8a 100%);
+}
+
+.library-page-card-content .library-page-filter-btn--reading.active {
+  background: linear-gradient(135deg, #d4a853 0%, #b8860b 100%);
+}
+
+.library-page-card-content .library-page-filter-btn--read.active {
+  background: linear-gradient(135deg, #5a9e6b 0%, #3d7d4a 100%);
+}
+
+.library-page-card-content .library-page-sidebar-author-select,
+.library-page-card-content .library-page-sidebar-tag-pill {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.12);
+  color: #1a1a1a;
+}
+
+.library-page-card-content .library-page-sidebar-tag-pill:hover {
+  background: #e8eaef;
+}
+
+.library-page-card-content .library-page-filter-count {
+  background: rgba(0, 0, 0, 0.08);
+  color: inherit;
+}
+
+.library-page-card-content .book-list-item {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.library-page-card-content .book-list-item-thumb {
+  background: #e8eaef;
+}
+
+.library-page-card-content .book-list-item-content:hover {
+  background: #f5f6f8;
 }
 
 .library-page-main {
   flex: 1;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .library-page-add-btn {
@@ -30,8 +193,19 @@
   opacity: 0.9;
 }
 
+@media (max-width: 768px) {
+  .library-page-card {
+    padding: 1.25rem;
+    border-radius: 12px;
+  }
+
+  .library-page-card-content .page-heading {
+    font-size: 1.5rem;
+  }
+}
+
 @media (max-width: 640px) {
-  .library-page {
+  .library-page-body {
     flex-direction: column;
     gap: 1rem;
   }
