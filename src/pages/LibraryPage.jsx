@@ -11,7 +11,7 @@ import BookStatusSidebar, {
 import {
   useLibrarySearchFilter,
   LibrarySearchToolbar,
-} from '../features/home/LibrarySearchFilter';
+} from '../features/myLibrary/LibrarySearchFilter';
 import './styles/PageCommon.css';
 import './styles/LibraryPage.css';
 

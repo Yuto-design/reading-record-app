@@ -8,10 +8,14 @@ function Home() {
   return (
     <div className="home">
       <main className="home-main">
-        <HomeHero />
-        <HomeHeroFeatures />
+        <div className="home-card">
+          <div className="home-card-bg" aria-hidden="true" />
+          <h2 className="home-card-heading">Home</h2>
+          <div className="home-card-content">
+            <HomeHero />
+            <HomeHeroFeatures />
 
-        <div className="home-content">
+            <div className="home-content">
           <RevealOnScroll>
             <div
               className="home-report-layout"
@@ -106,6 +110,8 @@ function Home() {
               </div>
             </div>
           </RevealOnScroll>
+            </div>
+          </div>
         </div>
       </main>
     </div>

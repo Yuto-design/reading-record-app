@@ -1,45 +1,21 @@
 .home-hero-features {
   position: relative;
   z-index: 1;
-  margin-top: 2.5rem;
+  margin-top: 0;
   padding: 1.5rem;
   width: 100%;
   min-height: 320px;
   box-sizing: border-box;
-  background: #f8f6f3;
+  background: transparent;
   color: #1a1a1a;
-  border-radius: 16px;
+  border-radius: 0;
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
   overflow: hidden;
 }
 
 .home-hero-features-bg {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-.home-hero-features-bg::before {
-  content: '';
-  position: absolute;
-  width: 140%;
-  height: 120%;
-  top: -30%;
-  left: -70%;
-  background: #ebe8e3;
-  border-radius: 50%;
-  z-index: 0;
-}
-
-.home-hero-features-bg::after {
-  content: '';
-  position: absolute;
-  width: 120%;
-  height: 110%;
-  top: -25%;
-  right: -55%;
-  background: #2F9FFD;
-  border-radius: 50%;
-  z-index: 0;
+  display: none;
 }
 
 .home-hero-features-inner {

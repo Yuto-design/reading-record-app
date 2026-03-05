@@ -1,8 +1,5 @@
 import { useInView } from '../hooks/useInView';
 
-/**
- * スクロールでビューポートに入ったときにフェードイン＋スライドアップするラッパー
- */
 function RevealOnScroll({ children, className = '', as: Component = 'div', ...props }) {
   const [ref, isInView] = useInView({ threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
   return (

@@ -1,8 +1,8 @@
 .home {
   max-width: 1200px;
   margin: 0 auto;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   background: #000000;
   color: #fafafa;
   box-sizing: border-box;
@@ -10,13 +10,102 @@
 
 @media (max-width: 768px) {
   .home {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .home-card {
+    padding: 1.25rem;
+    border-radius: 12px;
+  }
+
+  .home-card-content {
+    border-radius: 12px;
+  }
+
+  .home-card-heading {
+    font-size: 1.5rem;
   }
 }
 
 .home-main {
   width: 100%;
+}
+
+/* ホーム全体カード：reading-time-card 風・別カラー（紫系） */
+.home-card {
+  position: relative;
+  z-index: 1;
+  padding: 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
+  background: #f5f3ff;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-top: 0;
+}
+
+.home-card-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.home-card-bg::before {
+  content: '';
+  position: absolute;
+  width: 140%;
+  height: 120%;
+  top: -30%;
+  left: -70%;
+  background: #ede9fe;
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.home-card-bg::after {
+  content: '';
+  position: absolute;
+  width: 120%;
+  height: 110%;
+  top: -25%;
+  right: -55%;
+  background: #6d28d9;
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.home-card-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+
+/* カードタイトル（Reading Time と同じスタイル・色のみ変更） */
+.home-card-heading {
+  position: relative;
+  margin: 0 0 1rem;
+  padding-left: 1rem;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #5b21b6;
+}
+
+.home-card-heading::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background: #6d28d9;
+  border-radius: 3px;
 }
 
 .home-content {
@@ -34,6 +123,10 @@
   height: 120px;
   background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.98) 100%);
   pointer-events: none;
+}
+
+.home-card .home-content::before {
+  display: none;
 }
 
 .home-content-label {
@@ -58,34 +151,10 @@
   min-height: 320px;
   width: 100%;
   box-sizing: border-box;
-  background: #f8f6f3;
-  border-radius: 16px;
-}
-
-.home-report__right::before {
-  content: '';
-  position: absolute;
-  width: 140%;
-  height: 120%;
-  top: -30%;
-  left: -70%;
-  background: #ebe8e3;
-  border-radius: 50%;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.home-report__right::after {
-  content: '';
-  position: absolute;
-  width: 120%;
-  height: 110%;
-  top: -25%;
-  right: -55%;
-  background: #2F9FFD;
-  border-radius: 50%;
-  z-index: 0;
-  pointer-events: none;
+  background: transparent;
+  border-radius: 0;
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .home-report__header {

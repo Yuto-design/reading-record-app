@@ -3,9 +3,9 @@
 .home-hero {
   position: relative;
   margin: 0;
-  padding: 3.5rem 0 3rem;
-  background: #000000;
-  color: #fafafa;
+  padding: 0;
+  background: transparent;
+  color: #1a1a1a;
   overflow: hidden;
   width: 100%;
 }
@@ -14,13 +14,13 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(79, 157, 255, 0.15), transparent 50%);
+  background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(109, 40, 217, 0.08), transparent 50%);
   pointer-events: none;
 }
 
 @media (max-width: 768px) {
   .home-hero {
-    padding: 2.5rem 0 2.5rem;
+    padding: 0;
   }
 }
 
@@ -30,39 +30,14 @@
   padding: 1.5rem;
   width: 100%;
   box-sizing: border-box;
-  background: #f8f6f3;
-  border-radius: 16px;
+  background: transparent;
+  border-radius: 0;
+  border: none;
   overflow: hidden;
 }
 
 .home-hero-inner-bg {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-.home-hero-inner-bg::before {
-  content: '';
-  position: absolute;
-  width: 140%;
-  height: 120%;
-  top: -30%;
-  left: -70%;
-  background: #ebe8e3;
-  border-radius: 50%;
-  z-index: 0;
-}
-
-.home-hero-inner-bg::after {
-  content: '';
-  position: absolute;
-  width: 120%;
-  height: 110%;
-  top: -25%;
-  right: -55%;
-  background: #2F9FFD;
-  border-radius: 50%;
-  z-index: 0;
+  display: none;
 }
 
 .home-hero-inner-content {
