@@ -129,7 +129,7 @@ export function saveBook(book) {
     createdAt: book.createdAt || new Date().toISOString(),
     ...(finishedAt && { finishedAt }),
     ...(memo && { memo }),
-    ...(memoAttachments.length > 0 && { memoAttachments }),
+    memoAttachments,
     ...(pageCount != null && { pageCount }),
     ...(publisher && { publisher }),
   };

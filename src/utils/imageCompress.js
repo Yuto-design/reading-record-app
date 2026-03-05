@@ -2,12 +2,12 @@
  * 画像の Data URL をリサイズ・圧縮して localStorage の容量を抑える。
  * 長辺を maxSize ピクセルに収め、JPEG 品質 quality で圧縮する。
  * @param {string} dataUrl - 元画像の Data URL（image/*）
- * @param {{ maxSize?: number, quality?: number }} [opts] - maxSize: 長辺の最大px（既定 1200）, quality: 0〜1（既定 0.82）
+ * @param {{ maxSize?: number, quality?: number }} [opts] - maxSize: 長辺の最大px（既定 1200）, quality: 0〜1（既定 0.78, localStorage 容量対策のためやや強め）
  * @returns {Promise<string>} 圧縮後の Data URL（image/jpeg）
  */
 export function compressImageDataUrl(dataUrl, opts = {}) {
   const maxSize = opts.maxSize ?? 1200;
-  const quality = opts.quality ?? 0.82;
+  const quality = opts.quality ?? 0.78;
 
   return new Promise((resolve, reject) => {
     const img = new Image();

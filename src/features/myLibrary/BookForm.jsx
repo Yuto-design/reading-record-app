@@ -56,12 +56,21 @@ function BookForm({ book = null, onSave, onCancel }) {
     }
   }, [book]);
 
-  const handleImageFile = (e) => {
+  const handleImageFile = async (e) => {
     const file = e.target.files?.[0];
     if (!file || !file.type.startsWith('image/')) return;
-    const reader = new FileReader();
-    reader.onload = () => setImageUrl(reader.result);
-    reader.readAsDataURL(file);
+    try {
+      const dataUrl = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = () => reject(new Error('読み込み失敗'));
+        reader.readAsDataURL(file);
+      });
+      const compressed = await compressImageDataUrl(dataUrl);
+      setImageUrl(compressed);
+    } catch {
+      // 圧縮失敗時はスキップ（大きな原画のまま保存すると localStorage を超えるため）
+    }
   };
 
   const handleMemoAttachmentAdd = async (e) => {
