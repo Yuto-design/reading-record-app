@@ -75,9 +75,6 @@ export function useLibrarySearchFilter(filteredBooks) {
   };
 }
 
-/**
- * タグで絞り込むためのピル一覧（クリックで選択/解除）
- */
 export function LibraryTagFilter({ allTags, selectedTags, onToggleTag }) {
   if (!allTags || allTags.length === 0) return null;
 
