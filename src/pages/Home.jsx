@@ -19,6 +19,13 @@ function Home() {
               aria-label="読書レポート"
             >
               <div className="home-report__right">
+                <div className="home-report__header">
+                  <h2 className="home-report__heading">REPORT.</h2>
+                  <p className="home-report__sub">
+                    <span className="home-report__sub-dots" aria-hidden="true">●●</span>
+                    今日の読書と統計をまとめています。
+                  </p>
+                </div>
                 <div className="home-report home-report--grid">
                   <section
                     className="home-report__card home-report__card--overview home-report__card--pos-1"

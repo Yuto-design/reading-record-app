@@ -88,6 +88,37 @@
   pointer-events: none;
 }
 
+.home-report__header {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 1.25rem;
+}
+
+.home-report__heading {
+  margin: 0 0 0.35rem;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #1a1a1a;
+}
+
+.home-report__sub {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #444;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.home-report__sub-dots {
+  font-size: 0.4rem;
+  color: #1a1a1a;
+  letter-spacing: 0.15em;
+}
+
 .home-report__right > .home-report {
   position: relative;
   z-index: 1;
@@ -131,11 +162,19 @@
   min-height: 140px;
 }
 
+.home-report--grid .home-report__card--overview .home-today-highlight-inner {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.5rem 0.5rem;
+  flex: none;
+  min-height: 0;
+}
+
 .home-report--grid .home-report__card--overview .home-today-clock {
-  width: 120px;
-  height: 120px;
-  min-width: 120px;
-  min-height: 120px;
+  width: 110px;
+  height: 110px;
+  min-width: 110px;
+  min-height: 110px;
 }
 
 .home-report--grid .home-report__card--overview .home-today-clock::before {
@@ -155,9 +194,6 @@
   font-size: 0.75rem;
 }
 
-.home-report--grid .home-report__card--overview .home-today-highlight-inner {
-  gap: 0.5rem 0.5rem;
-}
 
 .home-report--grid .home-report__card--overview .home-today-label,
 .home-report--grid .home-report__card--overview .home-today-goal {
@@ -328,6 +364,10 @@
     padding: 1.25rem 0;
   }
 
+  .home-report__heading {
+    font-size: 1.25rem;
+  }
+
   .home-report__right {
     padding: 1.25rem;
     border-radius: 12px;
@@ -397,7 +437,6 @@
   height: 0;
   overflow: hidden;
   flex-shrink: 0;
-  /* 見出しは card-body 側で表示するため、ここでは非表示 */
 }
 
 .home-report .home-today-overview-cta {
@@ -518,10 +557,10 @@
   }
 
   .home-report--grid .home-report__card--overview .home-today-clock {
-    width: 78px;
-    height: 78px;
-    min-width: 78px;
-    min-height: 78px;
+    width: 92px;
+    height: 92px;
+    min-width: 92px;
+    min-height: 92px;
   }
 
   .home-report--grid .home-report__card--overview .home-today-value {
@@ -551,12 +590,14 @@
 
 .home-report__card--books .home-report__card-content {
   background: #f8f6f3;
-  border: 1px solid #0f4c5c;
+  border: none;
   border-radius: 8px;
   padding: 0.5rem 0.6rem;
-  border-left-width: 3px;
-  border-left-color: #0f4c5c;
   min-height: 0;
+}
+
+.home-report__card--books .home-report__card-body {
+  border-top: none;
 }
 
 .home-report__card--books #home-recent-books {
@@ -576,7 +617,6 @@
   height: 0;
   overflow: hidden;
   border: none;
-  /* 見出しは card-body 側で表示するため、ここでは非表示 */
 }
 
 .home-report .home-recent-books-list {
@@ -738,7 +778,6 @@
   line-height: 0;
   height: 0;
   overflow: hidden;
-  /* 見出しは card-body 側で表示するため、ここでは非表示 */
 }
 
 .home-report .weekly-reading-chart--compact .weekly-reading-chart-header {

@@ -53,7 +53,7 @@ function HomeHeroFeatures() {
           <h2 className="home-hero-features-heading">FEATURES.</h2>
           <p className="home-hero-features-sub">
             <span className="home-hero-features-dots" aria-hidden="true">●●</span>
-            こんな機能があります
+            こんな機能があります。
           </p>
           <h3 className="home-hero-features-tag-heading">TAG.</h3>
           <div className="home-hero-features-tags">
