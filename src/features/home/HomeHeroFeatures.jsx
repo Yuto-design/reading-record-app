@@ -94,15 +94,6 @@ function HomeHeroFeatures() {
               </article>
             ))}
           </div>
-          <Link
-            to="/"
-            className="home-hero-features-top-btn"
-            title="ホームへ戻る"
-            aria-label="ホームへ戻る"
-          >
-            <span className="home-hero-features-top-btn-label">FEATURES</span>
-            <span className="home-hero-features-top-btn-sublabel">TOP</span>
-          </Link>
         </div>
       </div>
     </div>

@@ -183,41 +183,6 @@
   line-height: 1;
 }
 
-.home-hero-features-top-btn {
-  align-self: flex-end;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  background: #1a1a1a;
-  color: #fff;
-  text-decoration: none;
-  font-weight: 700;
-  transition: transform 0.2s ease, background 0.2s ease;
-  margin-top: 0.5rem;
-}
-
-.home-hero-features-top-btn:hover {
-  background: #333;
-  transform: scale(1.05);
-  color: #fff;
-}
-
-.home-hero-features-top-btn-label {
-  font-size: 0.65rem;
-  letter-spacing: 0.05em;
-  line-height: 1.2;
-}
-
-.home-hero-features-top-btn-sublabel {
-  font-size: 0.5rem;
-  opacity: 0.9;
-  margin-top: 0.1rem;
-}
-
 @media (max-width: 900px) {
   .home-hero-features {
     min-height: 0;
@@ -278,15 +243,5 @@
 
   .home-hero-feature-card-visual {
     min-height: 90px;
-  }
-
-  .home-hero-features-top-btn {
-    width: 56px;
-    height: 56px;
-    margin-top: 0.25rem;
-  }
-
-  .home-hero-features-top-btn-label {
-    font-size: 0.6rem;
   }
 }

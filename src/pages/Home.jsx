@@ -98,15 +98,6 @@ function Home() {
                 </div>
               </section>
                 </div>
-                <Link
-                  to="/"
-                  className="home-report__top-btn"
-                  title="ホームへ戻る"
-                  aria-label="ホームへ戻る"
-                >
-                  <span className="home-report__top-btn-label">READING</span>
-                  <span className="home-report__top-btn-sublabel">TOP</span>
-                </Link>
               </div>
             </div>
           </RevealOnScroll>
