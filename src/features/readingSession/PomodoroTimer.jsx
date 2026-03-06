@@ -136,6 +136,43 @@ function PomodoroTimer() {
                   </button>
                 )}
               </div>
+              {!showRunningOrPaused && (
+                <div className="pomodoro-settings">
+                  <label className="pomodoro-label">
+                    <span>作業（分）</span>
+                    <input
+                      type="number"
+                      min={1}
+                      max={60}
+                      value={workMin}
+                      onChange={(e) => setWorkMin(Number(e.target.value) || DEFAULT_WORK_MIN)}
+                      className="pomodoro-input"
+                    />
+                  </label>
+                  <label className="pomodoro-label">
+                    <span>休憩（分）</span>
+                    <input
+                      type="number"
+                      min={1}
+                      max={30}
+                      value={breakMin}
+                      onChange={(e) => setBreakMin(Number(e.target.value) || DEFAULT_BREAK_MIN)}
+                      className="pomodoro-input"
+                    />
+                  </label>
+                  <label className="pomodoro-label">
+                    <span>繰り返し回数</span>
+                    <input
+                      type="number"
+                      min={1}
+                      max={10}
+                      value={rounds}
+                      onChange={(e) => setRounds(Number(e.target.value) || DEFAULT_ROUNDS)}
+                      className="pomodoro-input"
+                    />
+                  </label>
+                </div>
+              )}
             </div>
             {showRunningOrPaused && (
               <div className="pomodoro-status-wrap">
@@ -158,43 +195,6 @@ function PomodoroTimer() {
             )}
           </div>
         </div>
-        {!showRunningOrPaused && (
-          <div className="pomodoro-settings">
-            <label className="pomodoro-label">
-              <span>作業（分）</span>
-              <input
-                type="number"
-                min={1}
-                max={60}
-                value={workMin}
-                onChange={(e) => setWorkMin(Number(e.target.value) || DEFAULT_WORK_MIN)}
-                className="pomodoro-input"
-              />
-            </label>
-            <label className="pomodoro-label">
-              <span>休憩（分）</span>
-              <input
-                type="number"
-                min={1}
-                max={30}
-                value={breakMin}
-                onChange={(e) => setBreakMin(Number(e.target.value) || DEFAULT_BREAK_MIN)}
-                className="pomodoro-input"
-              />
-            </label>
-            <label className="pomodoro-label">
-              <span>繰り返し回数</span>
-              <input
-                type="number"
-                min={1}
-                max={10}
-                value={rounds}
-                onChange={(e) => setRounds(Number(e.target.value) || DEFAULT_ROUNDS)}
-                className="pomodoro-input"
-              />
-            </label>
-          </div>
-        )}
       </div>
     </section>
   );
