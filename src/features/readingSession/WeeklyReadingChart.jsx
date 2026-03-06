@@ -10,7 +10,6 @@ import {
   CartesianGrid,
 } from 'recharts';
 import { format, subDays, parseISO } from 'date-fns';
-import { ja } from 'date-fns/locale';
 import { getReadingSessions } from '../../utils/storage';
 import './styles/WeeklyReadingChart.css';
 
@@ -27,7 +26,7 @@ function WeeklyReadingChart({ compact = false, theme = 'light', fullHeight = fal
       const d = subDays(new Date(), i);
       last7.push({
         date: format(d, 'yyyy-MM-dd'),
-        label: format(d, 'M/d', { locale: ja }),
+        label: format(d, 'M/d'),
         minutes: 0,
       });
     }
@@ -75,9 +74,7 @@ function WeeklyReadingChart({ compact = false, theme = 'light', fullHeight = fal
               formatter={(value) => [`${value}分`, '読書時間']}
               labelFormatter={(_, payload) =>
                 payload?.[0]?.payload?.date
-                  ? format(parseISO(payload[0].payload.date), 'yyyy年M月d日', {
-                      locale: ja,
-                    })
+                  ? format(parseISO(payload[0].payload.date), 'yyyy年M月d日')
                   : ''
               }
               contentStyle={

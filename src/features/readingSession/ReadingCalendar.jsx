@@ -10,31 +10,37 @@ import {
   subMonths,
   isSameMonth,
 } from 'date-fns';
-import { ja } from 'date-fns/locale';
-import { getReadingSessions, saveReadingSession } from '../../utils/storage';
+import { getReadingSessions, saveReadingSession, getBooks, getBookById } from '../../utils/storage';
 import { updateReadingSession, deleteReadingSession } from '../../utils/changeRecord';
 import './styles/ReadingCalendar.css';
 
 function formatMinutes(m) {
   if (m === 0) return '';
-  if (m < 60) return `${m}m`;
+  if (m < 60) return `${m}分`;
   const h = Math.floor(m / 60);
   const rest = m % 60;
-  return rest ? `${h}h${rest}m` : `${h}h`;
+  return rest ? `${h}時間${rest}分` : `${h}時間`;
 }
 
 function DayDetailModal({ dateStr, onClose, onSessionsChange }) {
   const sessions = getReadingSessions().filter((s) => s.date === dateStr);
+  const books = getBooks();
   const [editingId, setEditingId] = useState(null);
   const [editMinutes, setEditMinutes] = useState('');
+  const [editBookId, setEditBookId] = useState('');
   const [addMinutes, setAddMinutes] = useState('');
 
   const handleSaveEdit = (session) => {
     const minutes = parseInt(editMinutes, 10);
     if (Number.isNaN(minutes) || minutes < 1) return;
-    updateReadingSession({ ...session, minutes });
+    updateReadingSession({
+      ...session,
+      minutes,
+      bookId: editBookId && editBookId.trim() ? editBookId.trim() : undefined,
+    });
     setEditingId(null);
     setEditMinutes('');
+    setEditBookId('');
     onSessionsChange?.();
   };
 
@@ -57,10 +63,11 @@ function DayDetailModal({ dateStr, onClose, onSessionsChange }) {
   const startEdit = (session) => {
     setEditingId(session.id);
     setEditMinutes(String(session.minutes));
+    setEditBookId(session.bookId || '');
   };
 
   const displayDate = dateStr
-    ? format(new Date(dateStr + 'T12:00:00'), 'yyyy年M月d日', { locale: ja })
+    ? format(new Date(dateStr + 'T12:00:00'), 'yyyy年M月d日')
     : '';
 
   return (
@@ -85,61 +92,83 @@ function DayDetailModal({ dateStr, onClose, onSessionsChange }) {
             <p className="reading-calendar-modal-empty">この日の記録はありません。</p>
           ) : (
             <ul className="reading-calendar-session-list">
-              {sessions.map((s) => (
-                <li key={s.id} className="reading-calendar-session-item">
-                  {editingId === s.id ? (
-                    <div className="reading-calendar-session-edit">
-                      <input
-                        type="number"
-                        min="1"
-                        value={editMinutes}
-                        onChange={(e) => setEditMinutes(e.target.value)}
-                        className="reading-calendar-session-input"
-                      />
-                      <span>分</span>
-                      <button
-                        type="button"
-                        className="reading-calendar-session-btn save"
-                        onClick={() => handleSaveEdit(s)}
-                      >
-                        保存
-                      </button>
-                      <button
-                        type="button"
-                        className="reading-calendar-session-btn"
-                        onClick={() => {
-                          setEditingId(null);
-                          setEditMinutes('');
-                        }}
-                      >
-                        キャンセル
-                      </button>
-                    </div>
-                  ) : (
-                    <>
-                      <span className="reading-calendar-session-minutes">
-                        {formatMinutes(s.minutes)}
-                      </span>
-                      <div className="reading-calendar-session-actions">
+              {sessions.map((s) => {
+                const book = s.bookId ? getBookById(s.bookId) : null;
+                return (
+                  <li key={s.id} className="reading-calendar-session-item">
+                    {editingId === s.id ? (
+                      <div className="reading-calendar-session-edit">
+                        <input
+                          type="number"
+                          min="1"
+                          value={editMinutes}
+                          onChange={(e) => setEditMinutes(e.target.value)}
+                          className="reading-calendar-session-input"
+                        />
+                        <span>分</span>
+                        <select
+                          className="reading-calendar-session-book-select"
+                          value={editBookId}
+                          onChange={(e) => setEditBookId(e.target.value)}
+                          aria-label="読んだ本"
+                        >
+                          <option value="">選択しない</option>
+                          {books.map((b) => (
+                            <option key={b.id} value={b.id}>
+                              {b.title || '（タイトルなし）'}
+                            </option>
+                          ))}
+                        </select>
+                        <button
+                          type="button"
+                          className="reading-calendar-session-btn save"
+                          onClick={() => handleSaveEdit(s)}
+                        >
+                          保存
+                        </button>
                         <button
                           type="button"
                           className="reading-calendar-session-btn"
-                          onClick={() => startEdit(s)}
+                          onClick={() => {
+                            setEditingId(null);
+                            setEditMinutes('');
+                            setEditBookId('');
+                          }}
                         >
-                          編集
-                        </button>
-                        <button
-                          type="button"
-                          className="reading-calendar-session-btn delete"
-                          onClick={() => handleDelete(s.id)}
-                        >
-                          削除
+                          キャンセル
                         </button>
                       </div>
-                    </>
-                  )}
-                </li>
-              ))}
+                    ) : (
+                      <>
+                        <span className="reading-calendar-session-minutes">
+                          {formatMinutes(s.minutes)}
+                        </span>
+                        {book && (
+                          <span className="reading-calendar-session-book">
+                            {book.title || '（タイトルなし）'}
+                          </span>
+                        )}
+                        <div className="reading-calendar-session-actions">
+                          <button
+                            type="button"
+                            className="reading-calendar-session-btn"
+                            onClick={() => startEdit(s)}
+                          >
+                            編集
+                          </button>
+                          <button
+                            type="button"
+                            className="reading-calendar-session-btn delete"
+                            onClick={() => handleDelete(s.id)}
+                          >
+                            削除
+                          </button>
+                        </div>
+                      </>
+                    )}
+                  </li>
+                );
+              })}
             </ul>
           )}
           <div className="reading-calendar-modal-add">
@@ -210,7 +239,7 @@ function ReadingCalendar({ onSessionsChange }) {
             前月
           </button>
           <span className="reading-calendar-month">
-            {format(current, 'yyyy年M月', { locale: ja })}
+            {format(current, 'yyyy年M月')}
           </span>
           <button
             type="button"

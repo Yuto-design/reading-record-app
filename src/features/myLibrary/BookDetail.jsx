@@ -1,7 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import BookForm from './BookForm';
 import { getBookStatus } from './BookStatusSidebar';
 import { STATUS_LABELS } from './constants';
+import { getReadingSessions } from '../../utils/storage';
+import { formatMinutes } from '../../utils/changeTime';
 import './styles/BookDetail.css';
 
 function formatDateYMD(isoOrYMD) {
@@ -28,6 +30,13 @@ function BookDetail({ book, onSave, onClose, onDelete, initialEditMode = false }
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
   }, [enlargedIndex, memoAttachments.length]);
+
+  const totalReadingMinutes = useMemo(() => {
+    if (!book?.id) return 0;
+    return getReadingSessions()
+      .filter((s) => s.bookId === book.id)
+      .reduce((sum, s) => sum + (s.minutes || 0), 0);
+  }, [book?.id]);
 
   if (!book) return null;
 
@@ -123,6 +132,11 @@ function BookDetail({ book, onSave, onClose, onDelete, initialEditMode = false }
         {(book.publisher || book.pageCount != null) && (
           <p className="book-detail-view-publisher-isbn">
             {[book.publisher, book.pageCount != null ? `${book.pageCount}ページ` : null].filter(Boolean).join('　')}
+          </p>
+        )}
+        {totalReadingMinutes > 0 && (
+          <p className="book-detail-view-reading-time">
+            この本の累計読書時間: {formatMinutes(totalReadingMinutes)}
           </p>
         )}
         {(book.status === 'read' && book.finishedAt) || (book.status === 'read' && rating > 0) ? (

@@ -32,14 +32,14 @@
   width: 100%;
 }
 
-/* ホーム全体カード：reading-time-card 風・別カラー（紫系） */
+/* ホーム全体カード：reading-time-card 風・別カラー（青系） */
 .home-card {
   position: relative;
   z-index: 1;
   padding: 1.5rem;
   width: 100%;
   box-sizing: border-box;
-  background: #f5f3ff;
+  background: #eff6ff;
   border-radius: 16px;
   overflow: hidden;
   margin-top: 0;
@@ -58,7 +58,7 @@
   height: 120%;
   top: -30%;
   left: -70%;
-  background: #ede9fe;
+  background: #dbeafe;
   border-radius: 50%;
   z-index: 0;
 }
@@ -70,7 +70,7 @@
   height: 110%;
   top: -25%;
   right: -55%;
-  background: #6d28d9;
+  background: #2563eb;
   border-radius: 50%;
   z-index: 0;
 }
@@ -94,7 +94,7 @@
   padding-left: 1rem;
   font-size: 2rem;
   font-weight: 600;
-  color: #5b21b6;
+  color: #1d4ed8;
 }
 
 .home-card-heading::before {
@@ -104,7 +104,7 @@
   top: 0;
   bottom: 0;
   width: 5px;
-  background: #6d28d9;
+  background: #2563eb;
   border-radius: 3px;
 }
 

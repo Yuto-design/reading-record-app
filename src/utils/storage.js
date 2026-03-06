@@ -1,11 +1,22 @@
 const SESSIONS_KEY = 'reading_sessions';
 const BOOKS_KEY = 'reading_books';
+const SETTINGS_KEY = 'reading_settings';
+
+/** 目標のデフォルト値 */
+const DEFAULT_GOALS = {
+  dailyGoalMinutes: 30,
+  weeklyGoalMinutes: 30 * 7,
+  monthlyGoalMinutes: 30 * 30,
+  yearlyGoalMinutes: 30 * 365,
+  bookGoalCount: 50,
+};
 
 /**
  * @typedef {Object} ReadingSession
  * @property {string} id
  * @property {string} date - YYYY-MM-DD
  * @property {number} minutes
+ * @property {string} [bookId] - 紐付けた本のID（任意）
  * @property {number} [startedAt] - timestamp
  * @property {number} [endedAt] - timestamp
  */
@@ -76,6 +87,7 @@ export function saveReadingSession(session) {
     id: session.id || generateId(),
     date: session.date,
     minutes: session.minutes,
+    ...(session.bookId != null && String(session.bookId).trim() && { bookId: String(session.bookId).trim() }),
     ...(session.startedAt != null && { startedAt: session.startedAt }),
     ...(session.endedAt != null && { endedAt: session.endedAt }),
   };
@@ -146,4 +158,91 @@ export function saveBook(book) {
 export function deleteBook(id) {
   const books = getBooks().filter((b) => b.id !== id);
   setJson(BOOKS_KEY, books);
+}
+
+/**
+ * 設定（目標など）を取得する。未設定の項目は DEFAULT_GOALS で補う。
+ * @returns {{ dailyGoalMinutes: number, weeklyGoalMinutes: number, monthlyGoalMinutes: number, yearlyGoalMinutes: number, bookGoalCount: number }}
+ */
+export function getSettings() {
+  try {
+    const raw = localStorage.getItem(SETTINGS_KEY);
+    if (!raw) return { ...DEFAULT_GOALS };
+    const parsed = JSON.parse(raw);
+    return {
+      dailyGoalMinutes: Number(parsed.dailyGoalMinutes) || DEFAULT_GOALS.dailyGoalMinutes,
+      weeklyGoalMinutes: Number(parsed.weeklyGoalMinutes) || DEFAULT_GOALS.weeklyGoalMinutes,
+      monthlyGoalMinutes: Number(parsed.monthlyGoalMinutes) || DEFAULT_GOALS.monthlyGoalMinutes,
+      yearlyGoalMinutes: Number(parsed.yearlyGoalMinutes) || DEFAULT_GOALS.yearlyGoalMinutes,
+      bookGoalCount: Number(parsed.bookGoalCount) || DEFAULT_GOALS.bookGoalCount,
+    };
+  } catch {
+    return { ...DEFAULT_GOALS };
+  }
+}
+
+/**
+ * 設定を保存する。
+ * @param {Partial<{ dailyGoalMinutes: number, weeklyGoalMinutes: number, monthlyGoalMinutes: number, yearlyGoalMinutes: number, bookGoalCount: number }>} settings
+ */
+export function setSettings(settings) {
+  const current = getSettings();
+  const next = { ...current, ...settings };
+  setJson(SETTINGS_KEY, next);
+}
+
+/**
+ * 全データをエクスポート用のオブジェクトで返す。
+ * @returns {{ version: string, exportedAt: string, sessions: ReadingSession[], books: Book[], settings: object }}
+ */
+export function exportData() {
+  return {
+    version: '1',
+    exportedAt: new Date().toISOString(),
+    sessions: getReadingSessions(),
+    books: getBooks(),
+    settings: getSettings(),
+  };
+}
+
+/**
+ * インポート用データを適用する。
+ * @param {object} data - exportData() の形式
+ * @param {'replace'|'merge'} mode - replace: 上書き / merge: 既存にマージ
+ */
+export function importData(data, mode = 'replace') {
+  if (!data || typeof data !== 'object') throw new Error('無効なデータです。');
+  const sessions = Array.isArray(data.sessions) ? data.sessions : [];
+  const books = Array.isArray(data.books) ? data.books : [];
+  const settings = data.settings && typeof data.settings === 'object' ? data.settings : null;
+
+  if (mode === 'replace') {
+    setJson(SESSIONS_KEY, sessions);
+    setJson(BOOKS_KEY, books);
+  } else {
+    const existingSessions = getReadingSessions();
+    const existingBooks = getBooks();
+    const mergedSessions = [...existingSessions];
+    const existingIds = new Set(existingSessions.map((s) => s.id));
+    sessions.forEach((s) => {
+      if (!existingIds.has(s.id)) {
+        mergedSessions.push(s);
+        existingIds.add(s.id);
+      }
+    });
+    const bookIds = new Set(existingBooks.map((b) => b.id));
+    const mergedBooks = [...existingBooks];
+    books.forEach((b) => {
+      if (!bookIds.has(b.id)) {
+        mergedBooks.push(b);
+        bookIds.add(b.id);
+      }
+    });
+    setJson(SESSIONS_KEY, mergedSessions);
+    setJson(BOOKS_KEY, mergedBooks);
+  }
+
+  if (settings && typeof settings === 'object') {
+    setSettings(settings);
+  }
 }

@@ -7,20 +7,21 @@ import {
   startOfMonth,
   endOfMonth,
 } from 'date-fns';
-import { getReadingSessions, getBooks } from '../../utils/storage';
+import { getReadingSessions, getBooks, getSettings } from '../../utils/storage';
 import { formatMinutes } from '../../utils/changeTime';
 import './styles/HomeOverview.css';
-
-const DAILY_GOAL_MINUTES = 30;
-const WEEKLY_GOAL_MINUTES = DAILY_GOAL_MINUTES * 7;
-const MONTHLY_GOAL_MINUTES = DAILY_GOAL_MINUTES * 30;
-const BOOK_GOAL_COUNT = 50;
-const TOTAL_GOAL_MINUTES = DAILY_GOAL_MINUTES * 365;
 
 function HomeOverview() {
   const sessions = getReadingSessions();
   const books = getBooks();
+  const goals = getSettings();
   const todayStr = format(new Date(), 'yyyy-MM-dd');
+
+  const DAILY_GOAL_MINUTES = goals.dailyGoalMinutes;
+  const WEEKLY_GOAL_MINUTES = goals.weeklyGoalMinutes;
+  const MONTHLY_GOAL_MINUTES = goals.monthlyGoalMinutes;
+  const BOOK_GOAL_COUNT = goals.bookGoalCount;
+  const TOTAL_GOAL_MINUTES = goals.yearlyGoalMinutes;
 
   const stats = useMemo(() => {
     const now = new Date();

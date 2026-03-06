@@ -6,6 +6,9 @@ function Layout() {
   const isHome = location.pathname === '/home' || location.pathname === '/';
   const isReading = location.pathname === '/reading';
   const isLibrary = location.pathname === '/library';
+  const isStats = location.pathname === '/stats';
+  const isCompleted = location.pathname === '/completed';
+  const isSettings = location.pathname === '/settings';
 
   return (
     <div className={`layout layout--dark ${isHome ? 'layout--home' : ''}`}>
@@ -32,9 +35,27 @@ function Layout() {
           >
             My Library
           </Link>
+          <Link
+            to="/stats"
+            className={isStats ? 'layout-nav-link active' : 'layout-nav-link'}
+          >
+            Stats
+          </Link>
+          <Link
+            to="/completed"
+            className={isCompleted ? 'layout-nav-link active' : 'layout-nav-link'}
+          >
+            Completed
+          </Link>
+          <Link
+            to="/settings"
+            className={isSettings ? 'layout-nav-link active' : 'layout-nav-link'}
+          >
+            Settings
+          </Link>
         </nav>
       </header>
-      <main className={`layout-main ${isHome ? 'layout-main--home' : ''} ${isLibrary ? 'layout-main--library' : ''}`}>
+      <main className={`layout-main ${isHome ? 'layout-main--home' : ''} ${isLibrary ? 'layout-main--library' : ''} ${isStats ? 'layout-main--stats' : ''} ${isCompleted ? 'layout-main--completed' : ''} ${isSettings ? 'layout-main--settings' : ''}`}>
         <Outlet />
       </main>
     </div>

@@ -1,14 +1,20 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useMemo } from 'react';
 import { format } from 'date-fns';
 import TimerChart from './TimerChart';
-import { saveReadingSession } from '../../utils/storage';
+import { saveReadingSession, getBooks } from '../../utils/storage';
 import './styles/Timer.css';
 
 function Timer({ onSessionSaved }) {
   const [running, setRunning] = useState(false);
   const [elapsed, setElapsed] = useState(0);
+  const [selectedBookId, setSelectedBookId] = useState('');
   const startTimeRef = useRef(null);
   const intervalRef = useRef(null);
+
+  const bookOptions = useMemo(() => {
+    const books = getBooks();
+    return books.filter((b) => b.status === 'reading' || b.status === 'read');
+  }, []);
 
   useEffect(() => {
     if (running) {
@@ -30,7 +36,11 @@ function Timer({ onSessionSaved }) {
     if (elapsed >= 1) {
       const minutes = Math.ceil(elapsed / 60);
       const date = format(new Date(), 'yyyy-MM-dd');
-      saveReadingSession({ date, minutes });
+      saveReadingSession({
+        date,
+        minutes,
+        ...(selectedBookId && { bookId: selectedBookId }),
+      });
       onSessionSaved?.();
       setElapsed(0);
     }
@@ -42,6 +52,26 @@ function Timer({ onSessionSaved }) {
       <div className="timer-inner">
         <div className="timer-container">
           <TimerChart elapsed={elapsed} running={running} />
+          <div className="timer-book-select-wrap">
+            <label htmlFor="timer-book-select" className="timer-book-select-label">
+              読んだ本（任意）
+            </label>
+            <select
+              id="timer-book-select"
+              className="timer-book-select"
+              value={selectedBookId}
+              onChange={(e) => setSelectedBookId(e.target.value)}
+              disabled={running}
+            >
+              <option value="">選択しない</option>
+              {bookOptions.map((b) => (
+                <option key={b.id} value={b.id}>
+                  {b.title || '（タイトルなし）'}
+                  {b.author ? ` - ${b.author}` : ''}
+                </option>
+              ))}
+            </select>
+          </div>
           <div className="timer-actions">
             {running ? (
               <button type="button" className="timer-btn stop" onClick={handleStop}>
