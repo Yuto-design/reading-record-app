@@ -13,6 +13,7 @@ function ReadingTimePage() {
       <div className="reading-time-card">
         <div className="reading-time-card-content">
           <h2 className="reading-time-card-heading">Reading Time</h2>
+          <p className="reading-time-card-sub">読書時間の記録とタイマー</p>
           <div className="timer-row">
             <Timer onSessionSaved={() => setRefreshKey((k) => k + 1)} />
             <PomodoroTimer />

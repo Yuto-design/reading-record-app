@@ -114,6 +114,7 @@ function LibraryPage() {
       <div className="library-page-card">
         <div className="library-page-card-content">
           <h2 className="page-heading library-page-heading">My Library</h2>
+          <p className="library-page-sub">本棚の管理と検索</p>
           <div className="library-page-body">
             <BookStatusSidebar
               statusFilter={statusFilter}

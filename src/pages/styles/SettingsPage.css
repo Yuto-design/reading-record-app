@@ -21,9 +21,10 @@
 
 .settings-page-heading {
   position: relative;
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.25rem;
   padding-left: 1rem;
   font-size: 2rem;
+  font-weight: 600;
   color: #5b21b6;
 }
 

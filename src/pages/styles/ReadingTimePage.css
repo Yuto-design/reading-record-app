@@ -15,12 +15,12 @@
   z-index: 1;
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: 1.5rem;
 }
 
 .reading-time-card-heading {
   position: relative;
-  margin: 0 0 1rem;
+  margin: 0 0 0.25rem;
   padding-left: 1rem;
   font-size: 2rem;
   font-weight: 600;

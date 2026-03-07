@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { HomeHero, HomeHeroFeatures, HomeOverview, HomeRecentBooks } from '../features/home';
 import WeeklyReadingChart from '../features/readingSession/WeeklyReadingChart';
 import RevealOnScroll from '../components/RevealOnScroll';
+import './styles/PageCommon.css';
 import './styles/Home.css';
 
 function Home() {
@@ -10,6 +11,7 @@ function Home() {
       <main className="home-main">
         <div className="home-card">
           <h2 className="home-card-heading">Home</h2>
+          <p className="home-card-sub">今日の読書とアプリの概要</p>
           <div className="home-card-content">
             <HomeHero />
             <HomeHeroFeatures />
