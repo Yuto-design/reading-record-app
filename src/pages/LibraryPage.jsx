@@ -112,7 +112,6 @@ function LibraryPage() {
   return (
     <div className="page-wrapper library-page">
       <div className="library-page-card">
-        <div className="library-page-card-bg" aria-hidden="true" />
         <div className="library-page-card-content">
           <h2 className="page-heading library-page-heading">My Library</h2>
           <div className="library-page-body">

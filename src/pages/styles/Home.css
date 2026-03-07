@@ -1,10 +1,12 @@
 .home {
+  position: relative;
+  z-index: 1;
   max-width: 1200px;
   margin: 0 auto;
   padding-left: 1rem;
   padding-right: 1rem;
-  background: #000000;
-  color: #fafafa;
+  background: transparent;
+  color: #1a1a1a;
   box-sizing: border-box;
 }
 
@@ -16,7 +18,6 @@
 
   .home-card {
     padding: 1.25rem;
-    border-radius: 12px;
   }
 
   .home-card-content {
@@ -32,47 +33,12 @@
   width: 100%;
 }
 
-/* ホーム全体カード：reading-time-card 風・別カラー（青系） */
+/* ホームコンテナ（カードデザイン廃止・背景は layout-main--home に移行） */
 .home-card {
-  position: relative;
-  z-index: 1;
   padding: 1.5rem;
   width: 100%;
   box-sizing: border-box;
-  background: #eff6ff;
-  border-radius: 16px;
-  overflow: hidden;
   margin-top: 0;
-}
-
-.home-card-bg {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-.home-card-bg::before {
-  content: '';
-  position: absolute;
-  width: 140%;
-  height: 120%;
-  top: -30%;
-  left: -70%;
-  background: #dbeafe;
-  border-radius: 50%;
-  z-index: 0;
-}
-
-.home-card-bg::after {
-  content: '';
-  position: absolute;
-  width: 120%;
-  height: 110%;
-  top: -25%;
-  right: -55%;
-  background: #2563eb;
-  border-radius: 50%;
-  z-index: 0;
 }
 
 .home-card-content {
@@ -135,7 +101,7 @@
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(26, 26, 26, 0.6);
 }
 
 .home-report-layout {

@@ -9,7 +9,6 @@ function Home() {
     <div className="home">
       <main className="home-main">
         <div className="home-card">
-          <div className="home-card-bg" aria-hidden="true" />
           <h2 className="home-card-heading">Home</h2>
           <div className="home-card-content">
             <HomeHero />

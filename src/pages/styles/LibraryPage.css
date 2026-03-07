@@ -9,45 +9,11 @@
   min-height: 0;
 }
 
+/* カード背景は layout--library に移行・画面全体で表示 */
 .library-page-card {
-  position: relative;
-  z-index: 1;
   padding: 1.5rem;
   width: 100%;
   box-sizing: border-box;
-  background: #faf6f1;
-  border-radius: 16px;
-  overflow: hidden;
-}
-
-.library-page-card-bg {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-.library-page-card-bg::before {
-  content: '';
-  position: absolute;
-  width: 140%;
-  height: 120%;
-  top: -30%;
-  left: -70%;
-  background: #f0e6dc;
-  border-radius: 50%;
-  z-index: 0;
-}
-
-.library-page-card-bg::after {
-  content: '';
-  position: absolute;
-  width: 120%;
-  height: 110%;
-  top: -25%;
-  right: -55%;
-  background: #c2410c;
-  border-radius: 50%;
-  z-index: 0;
 }
 
 .library-page-card-content {

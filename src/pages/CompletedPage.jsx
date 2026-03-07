@@ -42,7 +42,6 @@ function CompletedPage() {
   return (
     <div className="page-wrapper completed-page">
       <div className="completed-page-card">
-        <div className="completed-page-card-bg" aria-hidden="true" />
         <div className="completed-page-card-content">
           <h2 className="page-heading completed-page-heading">Completed</h2>
           <p className="completed-page-sub">読み終えた本の一覧と振り返り</p>

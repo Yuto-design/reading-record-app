@@ -89,7 +89,6 @@ function StatsPage() {
   return (
     <div className="page-wrapper stats-page">
       <div className="stats-page-card">
-        <div className="stats-page-card-bg" aria-hidden="true" />
         <div className="stats-page-card-content">
           <h2 className="page-heading stats-page-heading">Stats</h2>
           <p className="stats-page-sub">読書の統計と分析</p>

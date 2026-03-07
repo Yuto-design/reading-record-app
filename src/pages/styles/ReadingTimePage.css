@@ -4,45 +4,11 @@
   gap: 0;
 }
 
+/* カード背景は layout--reading に移行・画面全体で表示 */
 .reading-time-card {
-  position: relative;
-  z-index: 1;
   padding: 1.5rem;
   width: 100%;
   box-sizing: border-box;
-  background: #f0f4f2;
-  border-radius: 16px;
-  overflow: hidden;
-}
-
-.reading-time-card-bg {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-.reading-time-card-bg::before {
-  content: '';
-  position: absolute;
-  width: 140%;
-  height: 120%;
-  top: -30%;
-  left: -70%;
-  background: #dce8e2;
-  border-radius: 50%;
-  z-index: 0;
-}
-
-.reading-time-card-bg::after {
-  content: '';
-  position: absolute;
-  width: 120%;
-  height: 110%;
-  top: -25%;
-  right: -55%;
-  background: #0d9488;
-  border-radius: 50%;
-  z-index: 0;
 }
 
 .reading-time-card-content {

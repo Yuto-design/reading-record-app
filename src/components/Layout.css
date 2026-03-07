@@ -8,15 +8,245 @@
   background: var(--color-bg);
 }
 
+/* Home: 画面全体（ヘッダー含む）を main と同じ青系背景に */
 .layout--home {
-  /* Home は layout--dark で背景済み。ここではレイアウトのみ */
+  position: relative;
+  overflow: hidden;
+  background: #eff6ff;
+}
+
+.layout--home::before {
+  content: '';
+  position: absolute;
+  width: 140%;
+  height: 120%;
+  top: -30%;
+  left: -70%;
+  background: #dbeafe;
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.layout--home::after {
+  content: '';
+  position: absolute;
+  width: 120%;
+  height: 110%;
+  top: -25%;
+  right: -55%;
+  background: #2563eb;
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.layout--home .layout-header,
+.layout--home .layout-main {
+  position: relative;
+  z-index: 1;
+}
+
+/* Reading: 画面全体をティール系背景に */
+.layout--reading {
+  position: relative;
+  overflow: hidden;
+  background: #f0f4f2;
+}
+
+.layout--reading::before {
+  content: '';
+  position: absolute;
+  width: 140%;
+  height: 120%;
+  top: -30%;
+  left: -70%;
+  background: #dce8e2;
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.layout--reading::after {
+  content: '';
+  position: absolute;
+  width: 120%;
+  height: 110%;
+  top: -25%;
+  right: -55%;
+  background: #0d9488;
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.layout--reading .layout-header,
+.layout--reading .layout-main {
+  position: relative;
+  z-index: 1;
+}
+
+/* Library: 画面全体をベージュ・オレンジ系背景に */
+.layout--library {
+  position: relative;
+  overflow: hidden;
+  background: #faf6f1;
+}
+
+.layout--library::before {
+  content: '';
+  position: absolute;
+  width: 140%;
+  height: 120%;
+  top: -30%;
+  left: -70%;
+  background: #f0e6dc;
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.layout--library::after {
+  content: '';
+  position: absolute;
+  width: 120%;
+  height: 110%;
+  top: -25%;
+  right: -55%;
+  background: #c2410c;
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.layout--library .layout-header,
+.layout--library .layout-main {
+  position: relative;
+  z-index: 1;
+}
+
+/* Stats: 画面全体を緑系背景に */
+.layout--stats {
+  position: relative;
+  overflow: hidden;
+  background: #f0fdf4;
+}
+
+.layout--stats::before {
+  content: '';
+  position: absolute;
+  width: 140%;
+  height: 120%;
+  top: -30%;
+  left: -70%;
+  background: #dcfce7;
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.layout--stats::after {
+  content: '';
+  position: absolute;
+  width: 120%;
+  height: 110%;
+  top: -25%;
+  right: -55%;
+  background: #0d9488;
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.layout--stats .layout-header,
+.layout--stats .layout-main {
+  position: relative;
+  z-index: 1;
+}
+
+/* Completed: 画面全体をイエロー系背景に */
+.layout--completed {
+  position: relative;
+  overflow: hidden;
+  background: #fefce8;
+}
+
+.layout--completed::before {
+  content: '';
+  position: absolute;
+  width: 140%;
+  height: 120%;
+  top: -30%;
+  left: -70%;
+  background: #fef9c3;
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.layout--completed::after {
+  content: '';
+  position: absolute;
+  width: 120%;
+  height: 110%;
+  top: -25%;
+  right: -55%;
+  background: #ca8a04;
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.layout--completed .layout-header,
+.layout--completed .layout-main {
+  position: relative;
+  z-index: 1;
+}
+
+/* Settings: 画面全体をバイオレット系背景に */
+.layout--settings {
+  position: relative;
+  overflow: hidden;
+  background: #f5f3ff;
+}
+
+.layout--settings::before {
+  content: '';
+  position: absolute;
+  width: 140%;
+  height: 120%;
+  top: -30%;
+  left: -70%;
+  background: #ede9fe;
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.layout--settings::after {
+  content: '';
+  position: absolute;
+  width: 120%;
+  height: 110%;
+  top: -25%;
+  right: -55%;
+  background: #7c3aed;
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.layout--settings .layout-header,
+.layout--settings .layout-main {
+  position: relative;
+  z-index: 1;
 }
 
 .layout-header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(70, 118, 129, 0.85);
+  background: #000000;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   color: #eee;
@@ -116,6 +346,7 @@
   padding-right: 0.5rem;
   max-width: 1200px;
   width: 100%;
+  background: transparent;
 }
 
 .layout-main--library {

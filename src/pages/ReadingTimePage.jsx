@@ -12,7 +12,6 @@ function ReadingTimePage() {
   return (
     <div className="page-wrapper reading-time-page">
       <div className="reading-time-card">
-        <div className="reading-time-card-bg" aria-hidden="true" />
         <div className="reading-time-card-content">
           <h2 className="reading-time-card-heading">Reading Time</h2>
           <div className="timer-row">

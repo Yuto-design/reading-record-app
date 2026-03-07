@@ -66,7 +66,7 @@ function Layout() {
   const location = useLocation();
 
   return (
-    <div className={`layout layout--dark ${location.pathname === '/home' || location.pathname === '/' ? 'layout--home' : ''}`}>
+    <div className={`layout layout--dark ${location.pathname === '/home' || location.pathname === '/' ? 'layout--home' : ''} ${location.pathname === '/reading' ? 'layout--reading' : ''} ${location.pathname === '/library' ? 'layout--library' : ''} ${location.pathname === '/stats' ? 'layout--stats' : ''} ${location.pathname === '/completed' ? 'layout--completed' : ''} ${location.pathname === '/settings' ? 'layout--settings' : ''}`}>
       <header className="layout-header">
         <h1 className="layout-title">
           <Link to="/">Reading Record</Link>
@@ -86,7 +86,7 @@ function Layout() {
           ))}
         </nav>
       </header>
-      <main className={`layout-main ${location.pathname === '/' || location.pathname === '/home' ? 'layout-main--home' : ''} ${location.pathname === '/library' ? 'layout-main--library' : ''} ${location.pathname === '/stats' ? 'layout-main--stats' : ''} ${location.pathname === '/completed' ? 'layout-main--completed' : ''} ${location.pathname === '/settings' ? 'layout-main--settings' : ''}`}>
+      <main className={`layout-main ${location.pathname === '/' || location.pathname === '/home' ? 'layout-main--home' : ''} ${location.pathname === '/reading' ? 'layout-main--reading' : ''} ${location.pathname === '/library' ? 'layout-main--library' : ''} ${location.pathname === '/stats' ? 'layout-main--stats' : ''} ${location.pathname === '/completed' ? 'layout-main--completed' : ''} ${location.pathname === '/settings' ? 'layout-main--settings' : ''}`}>
         <Outlet />
       </main>
     </div>

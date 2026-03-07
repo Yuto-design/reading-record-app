@@ -4,45 +4,11 @@
   gap: 0;
 }
 
+/* カード背景は layout--settings に移行・画面全体で表示 */
 .settings-page-card {
-  position: relative;
-  z-index: 1;
   padding: 1.5rem;
   width: 100%;
   box-sizing: border-box;
-  background: #f5f3ff;
-  border-radius: 16px;
-  overflow: hidden;
-}
-
-.settings-page-card-bg {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-.settings-page-card-bg::before {
-  content: '';
-  position: absolute;
-  width: 140%;
-  height: 120%;
-  top: -30%;
-  left: -70%;
-  background: #ede9fe;
-  border-radius: 50%;
-  z-index: 0;
-}
-
-.settings-page-card-bg::after {
-  content: '';
-  position: absolute;
-  width: 120%;
-  height: 110%;
-  top: -25%;
-  right: -55%;
-  background: #7c3aed;
-  border-radius: 50%;
-  z-index: 0;
 }
 
 .settings-page-card-content {

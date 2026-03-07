@@ -81,7 +81,6 @@ function SettingsPage() {
   return (
     <div className="page-wrapper settings-page">
       <div className="settings-page-card">
-        <div className="settings-page-card-bg" aria-hidden="true" />
         <div className="settings-page-card-content">
           <h2 className="page-heading settings-page-heading">Settings</h2>
 

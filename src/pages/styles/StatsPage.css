@@ -4,45 +4,11 @@
   gap: 0;
 }
 
+/* カード背景は layout--stats に移行・画面全体で表示 */
 .stats-page-card {
-  position: relative;
-  z-index: 1;
   padding: 1.5rem;
   width: 100%;
   box-sizing: border-box;
-  background: #f0fdf4;
-  border-radius: 16px;
-  overflow: hidden;
-}
-
-.stats-page-card-bg {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-.stats-page-card-bg::before {
-  content: '';
-  position: absolute;
-  width: 140%;
-  height: 120%;
-  top: -30%;
-  left: -70%;
-  background: #dcfce7;
-  border-radius: 50%;
-  z-index: 0;
-}
-
-.stats-page-card-bg::after {
-  content: '';
-  position: absolute;
-  width: 120%;
-  height: 110%;
-  top: -25%;
-  right: -55%;
-  background: #0d9488;
-  border-radius: 50%;
-  z-index: 0;
 }
 
 .stats-page-card-content {
