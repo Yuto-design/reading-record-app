@@ -46,15 +46,48 @@
 
 .layout-nav {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.35rem;
+}
+
+.layout-nav-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  display: block;
 }
 
 .layout-nav-link {
-  padding: 0.5rem 1rem;
+  position: relative;
+  padding: 0.5rem 0.65rem;
   color: #aaa;
   text-decoration: none;
-  border-radius: 6px;
+  border-radius: 8px;
   transition: background 0.2s, color 0.2s, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.layout-nav-tooltip {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  padding: 0.35rem 0.6rem;
+  font-size: 0.8125rem;
+  white-space: nowrap;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.85);
+  border-radius: 6px;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s ease, visibility 0.15s ease, transform 0.15s ease;
+}
+
+.layout-nav-link:hover .layout-nav-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(4px);
 }
 
 .layout-nav-link:hover {
