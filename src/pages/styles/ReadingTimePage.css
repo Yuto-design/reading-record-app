@@ -4,7 +4,6 @@
   gap: 0;
 }
 
-/* カード背景は layout--reading に移行・画面全体で表示 */
 .reading-time-card {
   padding: 1.5rem;
   width: 100%;
@@ -55,7 +54,6 @@
 
 .reading-time-card-content .timer.card,
 .reading-time-card-content .pomodoro.card,
-.reading-time-card-content .weekly-reading-chart.card,
 .reading-time-card-content .reading-calendar.card {
   --color-surface: #ffffff;
   --color-bg: #f5f6f8;

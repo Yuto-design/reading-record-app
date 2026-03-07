@@ -2,7 +2,6 @@ import { useState } from 'react';
 import Timer from '../features/readingSession/Timer';
 import PomodoroTimer from '../features/readingSession/PomodoroTimer';
 import ReadingCalendar from '../features/readingSession/ReadingCalendar';
-import WeeklyReadingChart from '../features/readingSession/WeeklyReadingChart';
 import './styles/PageCommon.css';
 import './styles/ReadingTimePage.css';
 
@@ -18,7 +17,6 @@ function ReadingTimePage() {
             <Timer onSessionSaved={() => setRefreshKey((k) => k + 1)} />
             <PomodoroTimer />
           </div>
-          <WeeklyReadingChart key={`chart-${refreshKey}`} theme="light" />
           <ReadingCalendar
             key={`cal-${refreshKey}`}
             onSessionsChange={() => setRefreshKey((k) => k + 1)}
