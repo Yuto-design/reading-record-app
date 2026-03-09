@@ -10,20 +10,16 @@ function ReadingTimePage() {
 
   return (
     <div className="page-wrapper reading-time-page">
-      <div className="reading-time-card">
-        <div className="reading-time-card-content">
-          <h2 className="reading-time-card-heading">Reading Time</h2>
-          <p className="reading-time-card-sub">読書時間の記録とタイマー</p>
-          <div className="timer-row">
-            <Timer onSessionSaved={() => setRefreshKey((k) => k + 1)} />
-            <PomodoroTimer />
-          </div>
-          <ReadingCalendar
-            key={`cal-${refreshKey}`}
-            onSessionsChange={() => setRefreshKey((k) => k + 1)}
-          />
-        </div>
+      <h2 className="reading-time-card-heading">Reading Time</h2>
+      <p className="reading-time-card-sub">読書時間の記録とタイマー</p>
+      <div className="timer-row">
+        <Timer onSessionSaved={() => setRefreshKey((k) => k + 1)} />
+        <PomodoroTimer />
       </div>
+      <ReadingCalendar
+        key={`cal-${refreshKey}`}
+        onSessionsChange={() => setRefreshKey((k) => k + 1)}
+      />
     </div>
   );
 }

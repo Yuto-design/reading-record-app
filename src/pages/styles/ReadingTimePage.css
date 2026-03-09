@@ -1,21 +1,10 @@
 .reading-time-page {
   display: flex;
   flex-direction: column;
-  gap: 0;
-}
-
-.reading-time-card {
+  gap: 1.5rem;
   padding: 1.5rem;
   width: 100%;
   box-sizing: border-box;
-}
-
-.reading-time-card-content {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
 }
 
 .reading-time-card-heading {
@@ -52,43 +41,42 @@
   min-width: 260px;
 }
 
-.reading-time-card-content .timer.card,
-.reading-time-card-content .pomodoro.card,
-.reading-time-card-content .reading-calendar.card {
-  --color-surface: #ffffff;
-  --color-bg: #f5f6f8;
+.reading-time-page .timer.card,
+.reading-time-page .pomodoro.card,
+.reading-time-page .reading-calendar.card {
+  --color-surface: rgba(255, 255, 255, 0.85);
+  --color-bg: rgba(245, 246, 248, 0.9);
   --color-text: #1a1a1a;
   --color-text-muted: #555555;
   --color-border: rgba(0, 0, 0, 0.1);
   --color-dark-soft: #e8eaef;
   --color-dark: #2d2d44;
-  background: #ffffff;
-  border-color: rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(0, 0, 0, 0.08);
 }
 
-.reading-time-card-content .reading-calendar-nav-btn,
-.reading-time-card-content .reading-calendar-day,
-.reading-time-card-content .reading-calendar-modal,
-.reading-time-card-content .pomodoro-input {
+.reading-time-page .reading-calendar-nav-btn,
+.reading-time-page .reading-calendar-day,
+.reading-time-page .reading-calendar-modal,
+.reading-time-page .pomodoro-input {
   background: var(--color-bg);
 }
 
-.reading-time-card-content .reading-calendar-day.other-month {
+.reading-time-page .reading-calendar-day.other-month {
   background: #e8eaef;
 }
 
-.reading-time-card-content .reading-calendar-day:hover {
+.reading-time-page .reading-calendar-day:hover {
   background: #e0e2e8;
 }
 
-.reading-time-card-content .reading-calendar-day.other-month:hover {
+.reading-time-page .reading-calendar-day.other-month:hover {
   background: #d8dae0;
 }
 
 @media (max-width: 768px) {
-  .reading-time-card {
+  .reading-time-page {
     padding: 1.25rem;
-    border-radius: 12px;
   }
 
   .reading-time-card-heading {

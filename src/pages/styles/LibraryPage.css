@@ -5,24 +5,19 @@
 .library-page {
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: 1.5rem;
   min-height: 0;
-}
-
-/* カード背景は layout--library に移行・画面全体で表示 */
-.library-page-card {
   padding: 1.5rem;
   width: 100%;
   box-sizing: border-box;
-}
-
-.library-page-card-content {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  min-height: 0;
+  --color-surface: #ffffff;
+  --color-bg: #f5f6f8;
+  --color-text: #1a1a1a;
+  --color-text-muted: #555555;
+  --color-border: rgba(0, 0, 0, 0.1);
+  --color-dark-soft: #e8eaef;
+  --color-dark: #2d2d44;
+  --glass-bg: #ffffff;
 }
 
 .library-page-heading {
@@ -52,89 +47,78 @@
   flex: 1;
 }
 
-.library-page-card-content {
-  --color-surface: #ffffff;
-  --color-bg: #f5f6f8;
-  --color-text: #1a1a1a;
-  --color-text-muted: #555555;
-  --color-border: rgba(0, 0, 0, 0.1);
-  --color-dark-soft: #e8eaef;
-  --color-dark: #2d2d44;
-  --glass-bg: #ffffff;
-}
-
-.library-page-card-content .page-heading.library-page-heading {
+.library-page .page-heading.library-page-heading {
   color: #7c2d12;
 }
 
-.library-page-card-content .library-page-sidebar {
+.library-page .library-page-sidebar {
   background: #ffffff;
   border-color: rgba(0, 0, 0, 0.1);
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
 }
 
-.library-page-card-content .library-page-filter-btn {
+.library-page .library-page-filter-btn {
   background: #f5f6f8;
   color: #555555;
 }
 
-.library-page-card-content .library-page-filter-btn:hover {
+.library-page .library-page-filter-btn:hover {
   background: #e8eaef;
   color: #1a1a1a;
 }
 
-.library-page-card-content .library-page-filter-btn.active {
+.library-page .library-page-filter-btn.active {
   color: #fff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-.library-page-card-content .library-page-filter-btn.active .library-page-filter-count {
+.library-page .library-page-filter-btn.active .library-page-filter-count {
   background: rgba(255, 255, 255, 0.4);
 }
 
-.library-page-card-content .library-page-filter-btn--all.active {
+.library-page .library-page-filter-btn--all.active {
   background: linear-gradient(135deg, #4a4a6a 0%, #2d2d44 100%);
 }
 
-.library-page-card-content .library-page-filter-btn--want.active {
+.library-page .library-page-filter-btn--want.active {
   background: linear-gradient(135deg, #5c9ead 0%, #3d7a8a 100%);
 }
 
-.library-page-card-content .library-page-filter-btn--reading.active {
+.library-page .library-page-filter-btn--reading.active {
   background: linear-gradient(135deg, #d4a853 0%, #b8860b 100%);
 }
 
-.library-page-card-content .library-page-filter-btn--read.active {
+.library-page .library-page-filter-btn--read.active {
   background: linear-gradient(135deg, #5a9e6b 0%, #3d7d4a 100%);
 }
 
-.library-page-card-content .library-page-sidebar-author-select,
-.library-page-card-content .library-page-sidebar-tag-pill {
+.library-page .library-page-sidebar-author-select,
+.library-page .library-page-sidebar-tag-pill {
   background: #ffffff;
   border-color: rgba(0, 0, 0, 0.12);
   color: #1a1a1a;
 }
 
-.library-page-card-content .library-page-sidebar-tag-pill:hover {
+.library-page .library-page-sidebar-tag-pill:hover {
   background: #e8eaef;
 }
 
-.library-page-card-content .library-page-filter-count {
+.library-page .library-page-filter-count {
   background: rgba(0, 0, 0, 0.08);
   color: inherit;
 }
 
-.library-page-card-content .book-list-item {
-  background: #ffffff;
+.library-page .book-list-item {
+  background: rgba(255, 255, 255, 0.85);
   border: 1px solid rgba(0, 0, 0, 0.08);
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
 }
 
-.library-page-card-content .book-list-item-thumb {
+.library-page .book-list-item-thumb {
   background: #e8eaef;
 }
 
-.library-page-card-content .book-list-item-content:hover {
+.library-page .book-list-item-content:hover {
   background: #f5f6f8;
 }
 
@@ -162,12 +146,11 @@
 }
 
 @media (max-width: 768px) {
-  .library-page-card {
+  .library-page {
     padding: 1.25rem;
-    border-radius: 12px;
   }
 
-  .library-page-card-content .page-heading {
+  .library-page .page-heading {
     font-size: 1.5rem;
   }
 }

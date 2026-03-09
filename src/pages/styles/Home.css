@@ -50,9 +50,9 @@
   display: flex;
   flex-direction: column;
   gap: 0;
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.85);
   border-radius: 16px;
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.08);
   overflow: hidden;
 }
 
