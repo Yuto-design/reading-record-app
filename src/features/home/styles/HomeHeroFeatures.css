@@ -21,10 +21,10 @@
 .home-hero-features-inner {
   position: relative;
   z-index: 1;
-  display: grid;
-  grid-template-columns: 0.85fr 1.5fr;
+  display: flex;
+  flex-direction: column;
   gap: 2rem;
-  align-items: start;
+  align-items: stretch;
 }
 
 .home-hero-features-left {
@@ -82,18 +82,11 @@
   border-radius: 4px;
 }
 
-.home-hero-features-right {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
 .home-hero-feature-cards {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto;
+  grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
+  width: 100%;
 }
 
 .home-hero-feature-card {
@@ -188,20 +181,8 @@
     min-height: 0;
   }
 
-  .home-hero-features-inner {
-    grid-template-columns: 1fr;
-  }
-
   .home-hero-features-left {
     padding: 0;
-  }
-
-  .home-hero-features-right {
-    order: 1;
-  }
-
-  .home-hero-features-left {
-    order: 0;
   }
 }
 

@@ -63,9 +63,8 @@ function HomeHeroFeatures() {
             <span className="home-hero-features-tag">可視化</span>
           </div>
         </div>
-        <div className="home-hero-features-right">
-          <div className="home-hero-feature-cards">
-            {FEATURES_DATA.map((item) => (
+        <div className="home-hero-feature-cards">
+          {FEATURES_DATA.map((item) => (
               <article
                 key={item.key}
                 className="home-hero-feature-card"
@@ -93,7 +92,6 @@ function HomeHeroFeatures() {
                 </div>
               </article>
             ))}
-          </div>
         </div>
       </div>
     </div>
