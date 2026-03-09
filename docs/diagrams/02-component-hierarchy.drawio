@@ -1,0 +1,124 @@
+<mxfile host="65bd71144e">
+    <diagram name="コンポーネント階層" id="reading-record-components">
+        <mxGraphModel dx="532" dy="815" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="900" background="#FFFFFF" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="home" value="&lt;font color=&quot;#000000&quot;&gt;Home&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="40" width="100" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="h1" value="&lt;font color=&quot;#000000&quot;&gt;HomeHero&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="120" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="h2" value="&lt;font color=&quot;#000000&quot;&gt;HomeOverview&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="160" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="h3" value="&lt;font color=&quot;#000000&quot;&gt;WeeklyReadingChart&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="200" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="h4" value="&lt;font color=&quot;#000000&quot;&gt;HomeRecentBooks&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="240" width="110" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="eh1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="home" target="h1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="eh2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="home" target="h2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="eh3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="home" target="h3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="eh4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="home" target="h4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="rt" value="&lt;font color=&quot;#000000&quot;&gt;ReadingTimePage&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+                    <mxGeometry x="280" y="40" width="140" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="r1" value="&lt;font color=&quot;#000000&quot;&gt;Timer&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+                    <mxGeometry x="280" y="120" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="r2" value="&lt;font color=&quot;#000000&quot;&gt;PomodoroTimer&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+                    <mxGeometry x="280" y="160" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="r3" value="&lt;font color=&quot;#000000&quot;&gt;ReadingCalendar&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+                    <mxGeometry x="280" y="200" width="110" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="er1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="rt" target="r1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="er2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="rt" target="r2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="er3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="rt" target="r3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="lib" value="&lt;font color=&quot;#000000&quot;&gt;LibraryPage&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+                    <mxGeometry x="500" y="40" width="110" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="l1" value="&lt;font color=&quot;#000000&quot;&gt;BookStatusSidebar&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+                    <mxGeometry x="460" y="120" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="l2" value="&lt;font color=&quot;#000000&quot;&gt;LibrarySearchFilter&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+                    <mxGeometry x="460" y="160" width="130" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="l3" value="&lt;font color=&quot;#000000&quot;&gt;BookList&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+                    <mxGeometry x="460" y="200" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="l4" value="&lt;font color=&quot;#000000&quot;&gt;BookForm&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+                    <mxGeometry x="460" y="240" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="l5" value="&lt;font color=&quot;#000000&quot;&gt;BookDetailPage&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+                    <mxGeometry x="460" y="280" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="el1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="lib" target="l1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="el2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="lib" target="l2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="el3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="lib" target="l3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="el4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="lib" target="l4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="el5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="lib" target="l5" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="st" value="&lt;font color=&quot;#000000&quot;&gt;StatsPage&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+                    <mxGeometry x="680" y="40" width="100" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="st1" value="&lt;font color=&quot;#000000&quot;&gt;recharts グラフ&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+                    <mxGeometry x="660" y="120" width="140" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="est1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="st" target="st1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="cp" value="&lt;font color=&quot;#000000&quot;&gt;CompletedPage&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+                    <mxGeometry x="860" y="40" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="cp1" value="&lt;font color=&quot;#000000&quot;&gt;読了本一覧&lt;br&gt;(Library へリンク)&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+                    <mxGeometry x="860" y="120" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="ecp1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="cp" target="cp1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="set" value="&lt;font color=&quot;#000000&quot;&gt;SettingsPage&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+                    <mxGeometry x="1040" y="40" width="110" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="set1" value="&lt;font color=&quot;#000000&quot;&gt;目標設定フォーム&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+                    <mxGeometry x="1020" y="120" width="150" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="set2" value="&lt;font color=&quot;#000000&quot;&gt;エクスポート/インポート&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+                    <mxGeometry x="1020" y="160" width="150" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="eset1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="set" target="set1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="eset2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="set" target="set2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

@@ -1,0 +1,55 @@
+<mxfile host="65bd71144e">
+    <diagram name="アプリケーションアーキテクチャ" id="reading-record-architecture">
+        <mxGraphModel dx="546" dy="815" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="#FFFFFF" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="br" value="&lt;font color=&quot;#000000&quot;&gt;BrowserRouter&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                    <mxGeometry x="440" y="40" width="140" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="br" target="layout" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="layout" value="&lt;font color=&quot;#000000&quot;&gt;Layout&lt;br&gt;(Header + Nav + Outlet)&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;verticalAlign=middle;spacingTop=4;" parent="1" vertex="1">
+                    <mxGeometry x="380" y="120" width="260" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="home" value="&lt;font color=&quot;#000000&quot;&gt;Home&lt;br&gt;/ または /home&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="260" width="120" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="reading" value="&lt;font color=&quot;#000000&quot;&gt;ReadingTimePage&lt;br&gt;/reading&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+                    <mxGeometry x="260" y="260" width="120" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="library" value="&lt;font color=&quot;#000000&quot;&gt;LibraryPage&lt;br&gt;/library&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+                    <mxGeometry x="400" y="260" width="120" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="stats" value="&lt;font color=&quot;#000000&quot;&gt;StatsPage&lt;br&gt;/stats&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+                    <mxGeometry x="540" y="260" width="120" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="completed" value="&lt;font color=&quot;#000000&quot;&gt;CompletedPage&lt;br&gt;/completed&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+                    <mxGeometry x="680" y="260" width="120" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="settings" value="&lt;font color=&quot;#000000&quot;&gt;SettingsPage&lt;br&gt;/settings&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+                    <mxGeometry x="820" y="260" width="120" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;exitX=0.25;exitY=1;entryX=0.5;entryY=0;" parent="1" source="layout" target="home" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;exitX=0.35;exitY=1;entryX=0.5;entryY=0;" parent="1" source="layout" target="reading" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="layout" target="library" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;exitX=0.65;exitY=1;entryX=0.5;entryY=0;" parent="1" source="layout" target="stats" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;exitX=0.8;exitY=1;entryX=0.5;entryY=0;" parent="1" source="layout" target="completed" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;exitX=0.9;exitY=1;entryX=0.5;entryY=0;" parent="1" source="layout" target="settings" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
