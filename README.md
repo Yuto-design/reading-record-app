@@ -1,72 +1,92 @@
-# Getting Started with Create React App
+# Reading Record App（読書記録アプリ）
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+読書時間の記録と、読んだ本をまとめる「自分用図書館」機能を持つ Web アプリです。  
+データはブラウザの **localStorage** に保存されるため、バックエンド不要でそのまま利用できます。
 
-## Available Scripts
+## 主な機能
 
-In the project directory, you can run:
+| ページ | パス | 説明 |
+|--------|------|------|
+| **Home** | `/`, `/home` | 今日の読書サマリー・今週のグラフ・最近追加した本の一覧 |
+| **Reading Time** | `/reading` | 読書タイマー・ポモドーロタイマー・月間カレンダー |
+| **Library** | `/library` | 本の登録・一覧・検索・詳細・編集（読みたい / 読んでいる / 読了） |
+| **Stats** | `/stats` | 月別・週別の読書時間グラフ、目標達成率 |
+| **Completed** | `/completed` | 読了した本の一覧と年別サマリー |
+| **Settings** | `/settings` | 日・週・月・年・冊数の目標設定、データのエクスポート／インポート |
 
-### `npm start`
+- **読書セッション**: タイマーで計測した時間を日付ごとに記録。直近 7 日間の折れ線グラフや月間カレンダーで可視化。
+- **図書館**: タイトル・著者・概要・表紙画像・評価・タグ・読書メモ・読了日などを登録し、ステータス（読みたい / 読んでいる / 読了）で管理。
+- **目標**: 1 日・1 週間・1 ヶ月・1 年の読書時間（分）と年間読了冊数を設定し、Stats などで達成率を確認可能。
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 技術スタック
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **React** 19（Create React App）
+- **React Router** v7（画面切り替え）
+- **Recharts**（折れ線・棒グラフ）
+- **date-fns**（日付フォーマット・週・月の計算）
+- **localStorage**（読書セッション・本・設定の永続化）
 
-### `npm test`
+その他: `react-circular-progressbar`（目標達成率）、`react-countdown-circle-timer`（ポモドーロ）など。
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 必要な環境
 
-### `npm run build`
+- **Node.js** 18 以上（推奨: 20+）
+- **npm** または **yarn**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## セットアップ・起動
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+# リポジトリをクローン
+git clone https://github.com/<your-username>/reading-record-app.git
+cd reading-record-app
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# 依存関係をインストール
+npm install
 
-### `npm run eject`
+# 開発サーバーを起動
+npm start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+ブラウザで [http://localhost:3000](http://localhost:3000) を開くとアプリが表示されます。
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 利用可能なスクリプト
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+| コマンド | 説明 |
+|----------|------|
+| `npm start` | 開発モードで起動（ホットリロード有効） |
+| `npm run build` | 本番用にビルド（`build/` に出力） |
+| `npm test` | テストランナーを起動（Watch モード） |
+| `npm run eject` | CRA の設定をプロジェクトに展開（非推奨・取り消し不可） |
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## プロジェクト構成
 
-## Learn More
+```
+src/
+  App.jsx              # ルーティング（BrowserRouter, Routes）
+  components/          # 共通レイアウト（Layout）、RevealOnScroll など
+  pages/               # 各画面（Home, ReadingTimePage, LibraryPage, ...）
+  features/            # 機能単位のコンポーネント
+    home/              # ホーム用（HomeHero, HomeOverview, HomeRecentBooks など）
+    readingSession/    # タイマー、ポモドーロ、カレンダー、週間グラフ
+    myLibrary/         # 図書館（BookList, BookForm, BookDetail, 検索・フィルタ）
+  utils/               # storage（localStorage 読み書き）、changeTime, changeRecord, imageCompress
+  hooks/               # useInView など
+docs/
+  diagrams/            # draw.io 形式の設計図（アーキテクチャ・画面遷移・データモデルなど）
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+設計図の詳細は `docs/diagrams/` 内の drawio ファイルを参照してください。
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## データの保存について
 
-### Code Splitting
+- すべてのデータは **同一オリジンの localStorage** にのみ保存されます。
+- サーバーへは送信されないため、別デバイスや別ブラウザとは自動同期されません。
+- **Settings** の「エクスポート」で JSON をダウンロードし、別環境では「インポート」で取り込むことができます（上書き or マージを選択可能）。
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## PWA について
 
-### Analyzing the Bundle Size
+`public/manifest.json` が含まれており、ホスティング環境によっては PWA としてインストール可能です。オフライン動作やプッシュ通知は現状未実装です。
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## ライセンス
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# reading-record-app
-# reading-record-app
+private リポジトリの場合は利用規約に従ってください。
